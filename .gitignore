@@ -1,2 +1,3 @@
 .env
 .air/
+__pycache__/
