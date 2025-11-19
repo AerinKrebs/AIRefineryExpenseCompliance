@@ -4,13 +4,46 @@ import pandas as pd
 from air import AsyncAIRefinery, DistillerClient
 from dotenv import load_dotenv
 
-# TODO: Load API Key & set other state variables
-# API_KEY = 
-# PROJECT_NAME = 
+# Load API Key & set other state variables
+load_dotenv()
+API_KEY = str(os.getenv("API_KEY"))
+PROJECT_NAME = "ExpenseCompliance_AIRefinery_Project"
 
-# TODO: Helper function that sends a prompt to a model hosted on AIR
+# Helper function that sends a prompt to a model hosted on AIR
+async def get_model_response(prompt: str, model: str="openai/gpt-4o-mini") -> str:
+    """
+    Sends a prompt to a given model hosted in AI Refinery, then returns the result.
 
-# TODO: Functions that build agent prompts and give proper context/tools
+    Parameters:
+        prompt (str): The prompt to send to the LLM.
+        model (str): The ID of the LLM to use. Is openai/gpt-4o-mini by default
+
+    Returns:
+        str: The model's response.
+    """
+
+    client = AsyncAIRefinery(api_key=API_KEY)
+    response = await client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0].message.content.strip()
+
+
+# ========================================== AGENTS ===========================================
+
+# TODO: Function for image understanding agent
+async def image_understanding_agent(query: str, env_variable=None, chat_history=None) -> str:
+    return ""
+
+# TODO: Function for critical thinking agent
+async def critical_thinking_agent(query: str, env_variable=None, chat_history=None) -> str:
+    return ""
+
+# TODO: Function for validation agent
+async def validation_agent(query: str, env_variable=None, chat_history=None) -> str:
+    return ""
+
 
 # TODO: Driver that gets called by UI to send query to agentic system
 async def get_expense_compliance_response(user_id: str, query: str) -> str:
@@ -35,14 +68,16 @@ async def get_expense_compliance_response(user_id: str, query: str) -> str:
     #     uuid=user_id,
     #     executor_dict={
     #         #  TODO: update this once other agents are here
-    #         "<Agent Name>": agent_function_name,
+            # "Image Understanding Agent": image_understanding_agent,
+            # "Critical Thinking Agent": critical_thinking_agent,
+            # "Validation Agent": validation_agent
     #     },
     # ) as dc:
         
-    #     # Add Cosmic Mart data to memory
+    #     # Add expense form data to memory
     #     await dc.add_memory(
     #         source="env_variable",
-    #         variables_dict=cosmic_mart_data
+    #         variables_dict=None # TODO: add form data here
     #     )
 
     #     # Send the query to the agentic system
