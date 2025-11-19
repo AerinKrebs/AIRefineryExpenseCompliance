@@ -2,19 +2,25 @@
 # Orchestrator & Flow Agents
 
 meta:
-  project: "AI Refinery Expense Compliance"
+  project: "AI Refinery — Expense Compliance MVP"
   owner: "Cubero, Jonathan"
   created: "2025-11-19"
   environment: "dev"
   notes: |
-    This configuration encodes the Phase‑1 end‑to‑end flow:
+    End‑to‑end flow:
     UI intake -> Orchestration kickoff -> Image Understanding -> Validation/Critical Thinking
-    -> Compliance checks -> Decision + audit. Confidence‑based routing and re‑entry loops are defined.
+    -> Compliance checks -> Decision + audit. Confidence‑based routing + re‑entry loops.
 
 orchestrator_agent:
   name: "orchestrator_expense_mvp"
   type: "orchestrator"
   description: "Entry‑point coordinator that routes tasks to specialized agents and manages decisions."
+  agent_list:                        # ensure callable agents are listed for routing
+    - "flow_expense_mvp"
+    - "img_understanding_receipts"  # placeholder utility agent id
+    - "validator_expense"
+  settings:
+    enable_routing: true             # keep true so orchestrator can hand off to Flow/utilities
   inputs:
     - name: "expenses_table"
       type: "excel"
@@ -51,28 +57,40 @@ orchestrator_agent:
 flow_superagent:
   name: "flow_expense_mvp"
   type: "flow"
-  goal: "Validate an expense report and return an approval decision with rationale."
+  goal: "Validate an expense report from receipts and return an approval decision with rationale."
+  context:
+    policy_version: "v1"
+    min_confidence: 0.80
   utility_agents:
-    - id: "agent_receipt_extractor"     # Image Understanding Agent (placeholder)
+    - id: "img_understanding_receipts"     # Image Understanding Agent (placeholder)
       name: "receipt_extractor"
       type: "image_understanding"
       config:
-        output_schema: ["date", "vendor", "total", "tax", "line_items[]"]
-    - id: "agent_form_validator"        # Validation / Critical Thinking Agent (placeholder)
+        task: "expense_receipt_extraction"
+        return_format: "json"
+        output_schema: ["receipt_id","vendor","datetime","currency","subtotal","tax","total","line_items[]","confidence","raw_ocr_text"]
+    - id: "validator_expense"               # Validation / Critical Thinking Agent (placeholder)
       name: "form_validator"
       type: "validator"
       config:
         compare_fields: ["date", "vendor", "amount"]
-    - id: "agent_compliance_checker"    # Compliance / anomaly policy agent (placeholder)
+        contract:
+          input:
+            extracted: "json"
+            form_row: "json"
+            policy_version: "string"
+          output:
+            match_status: ["MATCH","MISMATCH","INCOMPLETE"]
+            missing_fields: "string[]"
+            discrepancies: "json[]"
+            confidence: "float"
+    - id: "compliance_checker_v1"           # Optional policy/anomaly checks
       name: "compliance_checker"
       type: "compliance"
       config:
         ruleset_version: "v1"
-        emit:
-          - "policy_violations[]"
-          - "anomaly_score"
-          - "recommended_action"
-    - id: "agent_decision_writer"       # Author final decision payload (placeholder)
+        emit: ["policy_violations[]","anomaly_score","recommended_action"]
+    - id: "decision_writer_v1"              # Author final decision payload
       name: "decision_writer"
       type: "author"
       config:
@@ -81,20 +99,24 @@ flow_superagent:
   transitions:
     - from: "start"
       to: "receipt_extractor"
+
     - from: "receipt_extractor"
       to: "form_validator"
+
     - from: "form_validator"
-      condition: "validation.confidence >= 0.80 and validation.missing_fields == 0"
+      condition: "validation.confidence >= {{context.min_confidence}} and len(validation.missing_fields) == 0"
       to: "compliance_checker"
+
     - from: "form_validator"
-      condition: "validation.confidence < 0.80 or validation.missing_fields > 0"
+      condition: "validation.confidence < {{context.min_confidence}} or len(validation.missing_fields) > 0"
       to: "ui_correction"   # loop handled by Orchestrator via UI prompt
+
     - from: "compliance_checker"
       branches:
         - condition: "len(compliance.policy_violations) == 0 and compliance.anomaly_score < 0.20"
           to: "decision_writer"   # APPROVE
         - condition: "len(compliance.policy_violations) > 0 or compliance.anomaly_score >= 0.20"
-          to: "decision_writer"   # REVIEW or REJECT
+          to: "decision_writer"   # REVIEW/REJECT
 
   outputs:
     - name: "decision"
