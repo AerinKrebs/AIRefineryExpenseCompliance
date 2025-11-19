@@ -8,8 +8,10 @@
 ```plaintext
 API_KEY="<YOUR API KEY HERE>"
 ```
+3. Activate the venv
+4. pip install the requiremnts.txt
 
-3. In the terminal, run this command:
+5. In the terminal, run this command:
 ```bash
 streamlit run comet_app.py
 ```
