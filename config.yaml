@@ -1,0 +1,122 @@
+# AI Refinery: Phase-1 (MVP) configuration
+# Orchestrator & Flow Agents
+
+meta:
+  project: "AI Refinery Expense Compliance"
+  owner: "Cubero, Jonathan"
+  created: "2025-11-19"
+  environment: "dev"
+  notes: |
+    This configuration encodes the Phase‑1 end‑to‑end flow:
+    UI intake -> Orchestration kickoff -> Image Understanding -> Validation/Critical Thinking
+    -> Compliance checks -> Decision + audit. Confidence‑based routing and re‑entry loops are defined.
+
+orchestrator_agent:
+  name: "orchestrator_expense_mvp"
+  type: "orchestrator"
+  description: "Entry‑point coordinator that routes tasks to specialized agents and manages decisions."
+  inputs:
+    - name: "expenses_table"
+      type: "excel"
+      schema:
+        columns: ["expense_id", "date", "amount", "vendor", "category", "project", "region", "attachments_flag"]
+    - name: "receipt_images"
+      type: "blob[]"
+    - name: "policy_context"
+      type: "json"
+      optional: true
+  outputs:
+    - name: "decision"
+      type: "enum"
+      values: ["APPROVE", "REVIEW", "REJECT"]
+    - name: "explanation"
+      type: "text"
+    - name: "audit_log_refs"
+      type: "json"
+  routing:
+    thresholds:
+      validation_confidence_pass: 0.80
+      anomaly_alert: 0.20
+    escalation:
+      approver_group: "jonathan.cubero@accenture.com"  # TODO: decide who should be here
+      notify_on_reject: true
+  logging:
+    level: "INFO"
+    trace: true
+    sinks:
+      - type: "file"
+        path: "./logs/orchestrator.log"
+      - type: "console"
+
+flow_superagent:
+  name: "flow_expense_mvp"
+  type: "flow"
+  goal: "Validate an expense report and return an approval decision with rationale."
+  utility_agents:
+    - id: "agent_receipt_extractor"     # Image Understanding Agent (placeholder)
+      name: "receipt_extractor"
+      type: "image_understanding"
+      config:
+        output_schema: ["date", "vendor", "total", "tax", "line_items[]"]
+    - id: "agent_form_validator"        # Validation / Critical Thinking Agent (placeholder)
+      name: "form_validator"
+      type: "validator"
+      config:
+        compare_fields: ["date", "vendor", "amount"]
+    - id: "agent_compliance_checker"    # Compliance / anomaly policy agent (placeholder)
+      name: "compliance_checker"
+      type: "compliance"
+      config:
+        ruleset_version: "v1"
+        emit:
+          - "policy_violations[]"
+          - "anomaly_score"
+          - "recommended_action"
+    - id: "agent_decision_writer"       # Author final decision payload (placeholder)
+      name: "decision_writer"
+      type: "author"
+      config:
+        format: "json"
+
+  transitions:
+    - from: "start"
+      to: "receipt_extractor"
+    - from: "receipt_extractor"
+      to: "form_validator"
+    - from: "form_validator"
+      condition: "validation.confidence >= 0.80 and validation.missing_fields == 0"
+      to: "compliance_checker"
+    - from: "form_validator"
+      condition: "validation.confidence < 0.80 or validation.missing_fields > 0"
+      to: "ui_correction"   # loop handled by Orchestrator via UI prompt
+    - from: "compliance_checker"
+      branches:
+        - condition: "len(compliance.policy_violations) == 0 and compliance.anomaly_score < 0.20"
+          to: "decision_writer"   # APPROVE
+        - condition: "len(compliance.policy_violations) > 0 or compliance.anomaly_score >= 0.20"
+          to: "decision_writer"   # REVIEW or REJECT
+
+  outputs:
+    - name: "decision"
+      type: "enum"
+      values: ["APPROVE", "REVIEW", "REJECT"]
+    - name: "explanation"
+      type: "text"
+    - name: "audit_log_refs"
+      type: "json"
+
+ui_hooks:
+  correction_prompt:
+    enabled: true
+    message: "Some fields are missing or confidence is low. Please review and correct the highlighted items."
+    return_to_node: "form_validator"
+
+observability:
+  enable_trace: true
+  artifacts:
+    - name: "orchestration_plan"
+      type: "json"
+    - name: "agent_responses"
+      type: "json"
+    - name: "decision_rationale"
+      type: "markdown"
