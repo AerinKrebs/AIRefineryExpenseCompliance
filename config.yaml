@@ -1,0 +1,50 @@
+memory_config:
+  memory_modules:
+    - memory_name: env_variable
+      memory_class: VariableMemoryModule
+      kwargs:
+        variables: {}
+    - memory_name: chat_history  
+      memory_class: ChatMemoryModule  
+      kwargs:  
+        n_rounds: 5
+        
+utility_agents:
+  - agent_class: CustomAgent
+    agent_name: "Image Understanding Agent"
+    agent_description: "" # TODO
+    config: {}
+
+  - agent_class: CustomAgent
+    agent_name: "Critical Thinking Agent"
+    agent_description: "" # TODO
+    config: {}
+
+  - agent_class: CustomAgent
+    agent_name: "Validation Agent"
+    agent_description: "" # TODO
+    config: {}
+
+super_agents:
+  - agent_class: FlowSuperAgent
+    agent_name: "Flow Agent"
+    agent_description: "" # TODO
+    config:
+      goal: "" # TODO
+      agent_list:
+        - agent_name: "Image Understanding Agent"
+          # TODO
+          # next_step:
+          #   - "<AGENT NAME>"
+        - agent_name: "Critical Thinking Agent"
+          # TODO
+          # next_step:
+          #   - "<AGENT NAME>"
+        - agent_name: "Validation Agent"
+          # TODO
+          # next_step:
+          #   - "<AGENT NAME>"
+
+orchestrator:
+  agent_list:
+    - agent_name: "Flow Agent"
