@@ -69,6 +69,7 @@ async def get_vision_model_response(prompt: str, image_data: str, model: str = "
     )
     return response.choices[0].message.content.strip()
 # ========================================== AGENTS ===========================================
+
 #Function for image understanding agent
 async def image_understanding_agent(query: str, env_variable=None, chat_history=None) -> str:
     """
@@ -129,28 +130,57 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
         4. Categorize the expense based on vendor type and items
         5. Note any quality issues (blurry, cut off, faded text)
         6. If multiple receipts in one image, process only the primary one and note others
+        User context: {query}
 
+        IMPORTANT: Return ONLY the raw JSON object. Do NOT wrap it in markdown code blocks or any other formatting.
         Return ONLY the JSON object, no additional text.
         """
     
     try:
-        # Call vision model for image analysis
+        # Call vision model
         response = await get_vision_model_response(
             prompt=extraction_prompt,
             image_data=image_data,
-            model="openai/gpt-4o"  # Vision-capable model
+            model="openai/gpt-4o"
         )
         
-        # Parse the response to validate JSON
+        # Parse response - handle markdown code blocks
         try:
-            extracted_data = json.loads(response)
-        except json.JSONDecodeError:
-            # If response isn't valid JSON, wrap it
-            extracted_data = {
+            clean_response = response.strip()
+            
+            # ==================== FIXED PARSING LOGIC ====================
+            # Remove markdown code blocks if present
+            import re
+            
+            # Pattern to match ```json ... ``` or ``` ... ```
+            code_block_pattern = r'```(?:json)?\s*([\s\S]*?)\s*```'
+            match = re.search(code_block_pattern, clean_response)
+            
+            if match:
+                # Extract content from inside code blocks
+                clean_response = match.group(1).strip()
+            
+            # Also handle case where there's no code block but starts/ends with ```
+            if clean_response.startswith('```'):
+                # Find the end of the first line (might be ```json or just ```)
+                first_newline = clean_response.find('\n')
+                if first_newline != -1:
+                    clean_response = clean_response[first_newline + 1:]
+            
+            if clean_response.endswith('```'):
+                clean_response = clean_response[:-3]
+            
+            clean_response = clean_response.strip()
+            extracted_data = json.loads(clean_response)
+            
+        except json.JSONDecodeError as e:
+            # If parsing still fails, return error with raw response
+            return json.dumps({
+                "success": False,
+                "error": f"Failed to parse model response as JSON: {str(e)}",
                 "raw_response": response,
-                "parse_error": True,
-                "confidence_score": 0
-            }
+                "extracted_data": None
+            }, indent=2)
         
         # Add metadata
         result = {
