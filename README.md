@@ -16,6 +16,7 @@ streamlit run expense_compliance_app.py
 
 ## File Structure
 * ```NortTwinExample```: directory with the North Twin chatbot.
+* ```tests```: directory with unit tests and data to run tests.
 * ```agents.py```:  contains python code for AI agents.
 * ```create_air_project.py```:  creates a new project or version of a project in AI Refinery (needs to be run when changes are made to config or agents(?)).
 * ```expense_compliance_app.py```:  contains Streamlit UI for the project.
