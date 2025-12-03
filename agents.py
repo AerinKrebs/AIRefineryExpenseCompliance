@@ -3,6 +3,7 @@ import yaml
 import json
 import pandas as pd
 from air import AsyncAIRefinery, DistillerClient
+from audit import audit_log
 from dotenv import load_dotenv
 
 # Load API Key & set other state variables
@@ -189,6 +190,13 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
             "image_type": image_type,
             "processing_notes": []
         }
+        # Save to audit log
+        audit_log.save(
+            agent_name="Image Understanding Agent",
+            result=result,
+            user_id=env_variable.get("user_id", "unknown")
+        )
+    
         
         # Basic validation checks
         if extracted_data.get("total_amount") is None:

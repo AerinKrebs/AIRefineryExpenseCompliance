@@ -7,6 +7,7 @@ from pathlib import Path
 
 # Import your agent
 from agents import image_understanding_agent
+from audit import audit_log
 
 
 def encode_image_to_base64(image_path: str) -> str:
@@ -81,7 +82,7 @@ def print_extracted_data(data: dict):
         print(f"\n  Notes: {notes}")
 
 
-async def test_receipt(image_path: str):
+async def test_receipt(image_path: str, user_id: str = "test_user"):
     """
     Test the image understanding agent with a local receipt image.
     
@@ -218,6 +219,8 @@ Supported image formats:
     .jpg, .jpeg, .png, .gif, .webp, .bmp
 """)
 
+audit_log.print_summary()
+
 
 # ==================== MAIN ====================
 
@@ -239,3 +242,6 @@ if __name__ == "__main__":
         print_usage()
         print("\nStarting interactive mode...\n")
         asyncio.run(interactive_mode())
+
+
+audit_log.print_summary()
