@@ -4,7 +4,8 @@ Usage:
     from audit import audit_log
     audit_log.save(agent_name, result, user_id)
 """
-
+#============== WARNING: ALL CLAUDE DEVELOPED FILE ==========================
+# This file was developed by Claude, an AI assistant, as part of the AI Refinery project.
 import json
 import os
 from datetime import datetime

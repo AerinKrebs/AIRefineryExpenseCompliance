@@ -32,6 +32,7 @@ async def get_model_response(prompt: str, model: str="openai/gpt-4o-mini") -> st
     return response.choices[0].message.content.strip()
 
 #=========================================== SUPPORTING FUNCTIONS ===========================================
+#Function for vision model call to AIR
 async def get_vision_model_response(prompt: str, image_data: str, model: str = "openai/gpt-4o") -> str:
     """
     Sends a prompt with an image to a vision-capable model hosted in AI Refinery.
@@ -55,7 +56,7 @@ async def get_vision_model_response(prompt: str, image_data: str, model: str = "
             "type": "image_url",
             "image_url": {"url": f"data:image/jpeg;base64,{image_data}"}
         }
-    
+    #result for vision model call
     response = await client.chat.completions.create(
         model=model,
         messages=[
@@ -145,11 +146,9 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
             model="openai/gpt-4o"
         )
         
-        # Parse response - handle markdown code blocks
+        # Parse response - handle markdown code blocks ============================ IGNORE========================
         try:
             clean_response = response.strip()
-            
-            # ==================== FIXED PARSING LOGIC ====================
             # Remove markdown code blocks if present
             import re
             
@@ -182,15 +181,15 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
                 "raw_response": response,
                 "extracted_data": None
             }, indent=2)
-        
-        # Add metadata
+    # ============================ IGNORE========================
+        # Add metadata for contextualization
         result = {
             "success": True,
             "extracted_data": extracted_data,
             "image_type": image_type,
             "processing_notes": []
         }
-        # Save to audit log
+        # Save to audit log 
         audit_log.save(
             agent_name="Image Understanding Agent",
             result=result,
