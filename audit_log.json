@@ -1,0 +1,84 @@
+{
+  "entries": [
+    {
+      "timestamp": "2025-12-03T10:04:44.214480",
+      "agent": "Image Understanding Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "vendor_name": "Craigs’ Landscaping",
+        "vendor_address": "123 Sierra Dr, Mountain View 94039",
+        "date": "2020-08-01",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 650.0,
+        "tax_amount": 55.25,
+        "tip_amount": null,
+        "total_amount": 640.25,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Stone Work",
+            "quantity": 3.4,
+            "unit_price": 125.0,
+            "total": 425.0
+          },
+          {
+            "description": "Mulching, weeding, planting",
+            "quantity": 3,
+            "unit_price": 75.0,
+            "total": 225.0
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 95,
+        "raw_text_extracted": "Invoice\nCraigs’ Landscaping\n123 Sierra Dr.\nMountain View 94039\n123-456-7890\ncraigslandscaping@email.com\ncraigslandscaping.com\nBill To\nSmith Enterprises\n456 Sierra Dr\nMountain View 94039\nInvoice Details\nInvoice # 12345\nTerms: Net 30\nInvoice Date: 8/1/2020\nTerms Due: 8/30/2020\nProducts/Services Qty/Hrs Rate Amount\nStone Work 3.4 $125 $425\nMulching, weeding, planting 3 $75 $225\nSubtotal $650.00\nDiscount -$65.00\nTax 8.5% $55.25\nTotal $640.25",
+        "notes": "Discount applied. No payment method or card details mentioned. Text is clear and legible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-03T10:05:52.751213",
+      "agent": "Image Understanding Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "vendor_name": "Craigs’ Landscaping",
+        "vendor_address": "123 Sierra Dr, Mountain View 94039",
+        "date": "2020-08-01",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 650.0,
+        "tax_amount": 55.25,
+        "tip_amount": null,
+        "total_amount": 640.25,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Stone Work",
+            "quantity": 3.4,
+            "unit_price": 125.0,
+            "total": 425.0
+          },
+          {
+            "description": "Mulching, weeding, planting",
+            "quantity": 3,
+            "unit_price": 75.0,
+            "total": 225.0
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 95,
+        "raw_text_extracted": "Invoice\nCraigs’ Landscaping\n123 Sierra Dr.\nMountain View 94039\n123-456-7890\ncraigslandscaping@email.com\ncraigslandscaping.com\nBill To\nSmith Enterprises\n456 Sierra Dr\nMountain View 94039\nInvoice Details\nInvoice # 12345\nTerms: Net 30\nInvoice Date: 8/1/2020\nTerms Due: 8/30/2020\nProducts/Services Qty/Hrs Rate Amount\nStone Work 3.4 $125 $425\nMulching, weeding, planting 3 $75 $225\nSubtotal $650.00\nDiscount -$65.00\nTax 8.5% $55.25\nTotal $640.25",
+        "notes": "Discount applied. No payment method information provided."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    }
+  ]
+}

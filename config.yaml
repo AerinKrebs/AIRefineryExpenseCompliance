@@ -12,8 +12,120 @@ memory_config:
 utility_agents:
   - agent_class: CustomAgent
     agent_name: "Image Understanding Agent"
-    agent_description: "" # TODO
-    config: {}
+    agent_description: "Analyzes receipt and invoice images to extract key expense data including vendor name, date, total amount, line items, tax, tips, and payment method. Performs OCR and structured data extraction from uploaded expense documentation images."
+    config: 
+      system_prompt: |
+        You are an expert receipt and invoice analyzer for expense compliance. 
+        Your task is to extract structured data from expense document images.
+
+        For each image, extract and return the following information in JSON format:
+        - vendor_name: The business/merchant name
+        - vendor_address: Full address if visible
+        - date: Transaction date (YYYY-MM-DD format)
+        - time: Transaction time if visible
+        - currency: Currency code (e.g., USD, EUR)
+        - subtotal: Pre-tax amount
+        - tax_amount: Tax charged
+        - tip_amount: Tip if applicable
+        - total_amount: Final total
+        - payment_method: How it was paid (cash, credit card, etc.)
+        - card_last_four: Last 4 digits of card if visible
+        - line_items: Array of {description, quantity, unit_price, total}
+        - expense_category: Suggested category (meals, travel, supplies, etc.)
+        - confidence_score: Your confidence in the extraction (0-100)
+        - notes: Any issues or unclear items
+        
+        If any field is not visible or unclear, set it to null and note the issue.
+      # Define what the agent expects as input
+      input_schema:
+        type: object
+        required:
+          - image_data
+        properties:
+          image_data:
+            type: string
+            description: "Base64 encoded image data or HTTP(S) URL to image"
+          image_type:
+            type: string
+            enum: ["receipt", "invoice", "unknown"]
+            default: "unknown"
+            description: "Type of expense document"
+          expense_description:
+            type: string
+            description: "User-provided description of the expense"
+          claimed_amount:
+            type: number
+            description: "Amount the user is claiming for reimbursement"
+      
+      # Define what the agent returns
+      output_schema:
+        type: object
+        required:
+          - success
+          - extracted_data
+        properties:
+          success:
+            type: boolean
+            description: "Whether extraction was successful"
+          error:
+            type: string
+            description: "Error message if success is false"
+          extracted_data:
+            type: object
+            properties:
+              vendor_name:
+                type: ["string", "null"]
+              vendor_address:
+                type: ["string", "null"]
+              date:
+                type: ["string", "null"]
+                format: date
+              time:
+                type: ["string", "null"]
+              currency:
+                type: ["string", "null"]
+              subtotal:
+                type: ["number", "null"]
+              tax_amount:
+                type: ["number", "null"]
+              tip_amount:
+                type: ["number", "null"]
+              total_amount:
+                type: ["number", "null"]
+              payment_method:
+                type: ["string", "null"]
+              card_last_four:
+                type: ["string", "null"]
+              line_items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    description:
+                      type: string
+                    quantity:
+                      type: number
+                    unit_price:
+                      type: number
+                    total:
+                      type: number
+              expense_category:
+                type: string
+                enum: ["meals", "travel", "supplies", "entertainment", "lodging", "transportation", "other"]
+              confidence_score:
+                type: integer
+                minimum: 0
+                maximum: 100
+              raw_text_extracted:
+                type: string
+              notes:
+                type: string
+          image_type:
+            type: string
+          processing_notes:
+            type: array
+            items:
+              type: string
 
   - agent_class: CustomAgent
     agent_name: "Critical Thinking Agent"
@@ -33,9 +145,8 @@ super_agents:
       goal: "" # TODO
       agent_list:
         - agent_name: "Image Understanding Agent"
-          # TODO
-          # next_step:
-          #   - "<AGENT NAME>"
+          next_step:
+            - "Critical Thinking Agent"
         - agent_name: "Critical Thinking Agent"
           # TODO
           # next_step:
