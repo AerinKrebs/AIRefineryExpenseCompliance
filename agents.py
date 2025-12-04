@@ -29,7 +29,9 @@ async def get_model_response(prompt: str, model: str="openai/gpt-4o-mini") -> st
         model=model,
         messages=[{"role": "user", "content": prompt}]
     )
-    return response.choices[0].message.content.strip()
+    # Guard against missing/None content on the response object
+    content = getattr(response.choices[0].message, "content", None) or ""
+    return content.strip()
 
 #=========================================== SUPPORTING FUNCTIONS ===========================================
 #Function for vision model call to AIR
@@ -69,7 +71,9 @@ async def get_vision_model_response(prompt: str, image_data: str, model: str = "
             }
         ]
     )
-    return response.choices[0].message.content.strip()
+    # Guard against missing/None content on the response object
+    content = getattr(response.choices[0].message, "content", None) or ""
+    return content.strip()
 # ========================================== AGENTS ===========================================
 
 #Function for image understanding agent
@@ -193,7 +197,7 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
         audit_log.save(
             agent_name="Image Understanding Agent",
             result=result,
-            user_id=env_variable.get("user_id", "unknown")
+            user_id=(env_variable or {}).get("user_id", "unknown")
         )
     
         
@@ -220,9 +224,183 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
 async def critical_thinking_agent(query: str, env_variable=None, chat_history=None) -> str:
     return ""
 
-# TODO: Function for validation agent
+# Validation Agent: ensures submitted expenses comply with org policies
 async def validation_agent(query: str, env_variable=None, chat_history=None) -> str:
-    return ""
+    """
+    Validates a single expense report or expense item represented in `env_variable`.
+
+    Expected input (env_variable):
+      - expense: dict (extracted expense data) OR extracted_data in same shape as image_understanding_agent
+      - attachments: list of receipt/attachment metadata (optional)
+      - nights: int (for lodging) (optional)
+      - justification: str (optional)
+      - claimed_amount: number (optional)
+      - policy_overrides: dict (optional) to override default limits
+
+    Returns:
+      JSON string with validation outcome, flags, and suggested actions.
+    """
+
+    # Defensive defaults
+    env = env_variable or {}
+    expense = env.get("expense") or env.get("extracted_data") or {}
+    attachments = env.get("attachments") or env.get("receipts") or []
+
+    # Policy defaults (can be overridden via env_variable.policy_overrides)
+    policy = {
+        "lodging_limit_per_night": 200.0,
+        "airfare_limit": 1500.0,
+        "high_value_threshold": 1000.0,
+        "routine_threshold": 500.0,
+        "min_receipt_amount": 0.01  # receipts required for any positive claim
+    }
+    overrides = env.get("policy_overrides") or {}
+    policy.update(overrides)
+
+    # Prepare result structure
+    issues = []
+    flags = []
+    suggested_actions = []
+
+    # Helper to safely get numeric total
+    def _get_amount(src):
+        try:
+            if src is None:
+                return None
+            return float(src)
+        except Exception:
+            return None
+
+    total_amount = _get_amount(expense.get("total_amount") or env.get("claimed_amount"))
+    category = (expense.get("expense_category") or env.get("expense_category") or "other")
+    category = category.lower() if isinstance(category, str) else "other"
+
+    # Required fields check
+    required_fields = ["date", "vendor_name", "expense_category"]
+    missing_required = [f for f in required_fields if not expense.get(f)]
+    if missing_required:
+        issues.append(f"Missing required fields: {', '.join(missing_required)}")
+
+    # Receipt attachment check
+    receipts_present = len(attachments) > 0
+    # Enforce receipts for any claimed positive amount
+    if total_amount is not None and total_amount > 0 and not receipts_present:
+        issues.append("Missing receipt(s) for claimed amount")
+        flags.append("missing_receipt")
+        suggested_actions.append("Attach receipt image(s) before submission")
+
+    # Standard review: lodging
+    if category in ("lodging",):
+        # Only enforce per-night limits when 'nights' is explicitly provided
+        nights_provided = None
+        if "nights" in env:
+            nights_provided = env.get("nights")
+        elif "nights" in expense:
+            nights_provided = expense.get("nights")
+
+        if nights_provided is not None:
+            try:
+                nights = int(nights_provided) if nights_provided else 1
+            except Exception:
+                nights = 1
+
+            if total_amount is not None:
+                per_night = total_amount / max(1, nights)
+                if per_night > policy["lodging_limit_per_night"]:
+                    issues.append(f"Lodging per-night cost ${per_night:.2f} exceeds policy limit ${policy['lodging_limit_per_night']:.2f}")
+                    flags.append("lodging_limit_exceeded")
+                    suggested_actions.append("Provide justification or adjust lodging to policy-compliant rate")
+
+    # Standard review: airfare / travel
+    if category in ("airfare", "travel", "transportation"):
+        if total_amount is not None and total_amount > policy["airfare_limit"]:
+            issues.append(f"Airfare/Travel amount ${total_amount:.2f} exceeds policy limit ${policy['airfare_limit']:.2f}")
+            flags.append("airfare_limit_exceeded")
+            suggested_actions.append("Route to travel manager for exception approval")
+
+    # Validate expense category
+    valid_categories = {"meals", "travel", "supplies", "entertainment", "lodging", "transportation", "other"}
+    if category not in valid_categories:
+        issues.append(f"Unknown expense category: {category}")
+        flags.append("invalid_category")
+        suggested_actions.append("Select a valid expense category")
+
+    # Incomplete reporting detection: check for essential doc fields
+    if not expense.get("date") or not expense.get("total_amount"):
+        issues.append("Incomplete reporting: date or total amount missing or unparsed")
+        flags.append("incomplete_reporting")
+        suggested_actions.append("Provide the transaction date and total amount")
+
+    # High-value expense logic
+    if total_amount is not None and total_amount >= policy["high_value_threshold"]:
+        # Require justification and at least one receipt and cost center or approver
+        justification = (env.get("justification") or expense.get("justification") or "").strip()
+        cost_center = env.get("cost_center") or expense.get("cost_center")
+        approver = env.get("approver") or expense.get("approver")
+
+        if not justification:
+            issues.append("High-value expense requires a justification")
+            flags.append("high_value_missing_justification")
+            suggested_actions.append("Add a justification explaining the business need")
+
+        if not receipts_present:
+            issues.append("High-value expense must include receipts")
+            flags.append("high_value_missing_receipt")
+            suggested_actions.append("Attach all supporting receipts/documents")
+
+        if not (cost_center or approver):
+            issues.append("High-value expense requires cost center or designated approver information")
+            flags.append("high_value_missing_approval_info")
+            suggested_actions.append("Provide cost center or approver to route for higher approval")
+
+        # If any high-value-specific issues, route for higher approval
+        if any(f.startswith("high_value_") or f == "high_value_missing_receipt" for f in flags):
+            flags.append("route_for_higher_approval")
+
+    # Routine expense logic: auto-approve travel/lodging under threshold and compliant
+    auto_approved = False
+    if total_amount is not None and total_amount <= policy["routine_threshold"]:
+        # Conditions: receipts present, no category limit violations, category is travel/lodging
+        if receipts_present and not any(f in ("lodging_limit_exceeded", "airfare_limit_exceeded", "invalid_category") for f in flags):
+            if category in ("lodging", "travel", "transportation"):
+                auto_approved = True
+                flags.append("auto_approved_routine")
+
+    # Final status determination
+    if auto_approved:
+        status = "auto_approved"
+    # Route for higher approval takes precedence over request for correction
+    elif "route_for_higher_approval" in flags or any(f.startswith("lodging_limit_exceeded") or f.startswith("airfare_limit_exceeded") for f in flags):
+        status = "requires_higher_approval"
+    elif any(f in ("missing_receipt", "incomplete_reporting", "invalid_category") for f in flags):
+        status = "needs_correction"
+    else:
+        status = "approved"
+
+    result = {
+        "success": True,
+        "status": status,
+        "total_amount": total_amount,
+        "category": category,
+        "issues": issues,
+        "flags": flags,
+        "suggested_actions": suggested_actions,
+        "auto_approved": auto_approved,
+        "raw_expense": expense
+    }
+
+    # Save to audit log
+    try:
+        audit_log.save(
+            agent_name="Validation Agent",
+            result=result,
+            user_id=env.get("user_id", expense.get("user_id", "unknown"))
+        )
+    except Exception:
+        # Do not fail on audit logging errors
+        pass
+
+    return json.dumps(result, indent=2)
 
 
 # TODO: Driver that gets called by UI to send query to agentic system

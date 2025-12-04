@@ -79,6 +79,497 @@
       "error": null,
       "notes": [],
       "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:35:18.633544",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 300.0,
+        "category": "lodging",
+        "issues": [
+          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+        ],
+        "flags": [
+          "lodging_limit_exceeded"
+        ],
+        "suggested_actions": [
+          "Provide justification or adjust lodging to policy-compliant rate"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Hotel Simple",
+          "date": "2025-12-01",
+          "total_amount": 300,
+          "expense_category": "lodging"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:35:18.936736",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": null,
+        "category": "meals",
+        "issues": [
+          "Missing required fields: date",
+          "Incomplete reporting: date or total amount missing or unparsed"
+        ],
+        "flags": [
+          "incomplete_reporting"
+        ],
+        "suggested_actions": [
+          "Provide the transaction date and total amount"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Vendor X",
+          "expense_category": "meals"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:35:18.976675",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 2500.0,
+        "category": "other",
+        "issues": [
+          "Missing receipt(s) for claimed amount",
+          "High-value expense requires a justification",
+          "High-value expense must include receipts",
+          "High-value expense requires cost center or designated approver information"
+        ],
+        "flags": [
+          "missing_receipt",
+          "high_value_missing_justification",
+          "high_value_missing_receipt",
+          "high_value_missing_approval_info",
+          "route_for_higher_approval"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission",
+          "Add a justification explaining the business need",
+          "Attach all supporting receipts/documents",
+          "Provide cost center or approver to route for higher approval"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Consulting Co",
+          "date": "2025-12-01",
+          "total_amount": 2500,
+          "expense_category": "other"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:35:19.022769",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 900.0,
+        "category": "lodging",
+        "issues": [
+          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+        ],
+        "flags": [
+          "lodging_limit_exceeded"
+        ],
+        "suggested_actions": [
+          "Provide justification or adjust lodging to policy-compliant rate"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Hotel Lux",
+          "date": "2025-12-01",
+          "total_amount": 900,
+          "expense_category": "lodging",
+          "nights": 3
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:35:19.061451",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 45.0,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Office Supplies",
+          "date": "2025-12-02",
+          "total_amount": 45,
+          "expense_category": "supplies"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:39:05.289334",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 300.0,
+        "category": "lodging",
+        "issues": [
+          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+        ],
+        "flags": [
+          "lodging_limit_exceeded"
+        ],
+        "suggested_actions": [
+          "Provide justification or adjust lodging to policy-compliant rate"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Hotel Simple",
+          "date": "2025-12-01",
+          "total_amount": 300,
+          "expense_category": "lodging"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:39:05.329807",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": null,
+        "category": "meals",
+        "issues": [
+          "Missing required fields: date",
+          "Incomplete reporting: date or total amount missing or unparsed"
+        ],
+        "flags": [
+          "incomplete_reporting"
+        ],
+        "suggested_actions": [
+          "Provide the transaction date and total amount"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Vendor X",
+          "expense_category": "meals"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:39:05.366602",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 2500.0,
+        "category": "other",
+        "issues": [
+          "Missing receipt(s) for claimed amount",
+          "High-value expense requires a justification",
+          "High-value expense must include receipts",
+          "High-value expense requires cost center or designated approver information"
+        ],
+        "flags": [
+          "missing_receipt",
+          "high_value_missing_justification",
+          "high_value_missing_receipt",
+          "high_value_missing_approval_info",
+          "route_for_higher_approval"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission",
+          "Add a justification explaining the business need",
+          "Attach all supporting receipts/documents",
+          "Provide cost center or approver to route for higher approval"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Consulting Co",
+          "date": "2025-12-01",
+          "total_amount": 2500,
+          "expense_category": "other"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:39:05.404869",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 900.0,
+        "category": "lodging",
+        "issues": [
+          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+        ],
+        "flags": [
+          "lodging_limit_exceeded"
+        ],
+        "suggested_actions": [
+          "Provide justification or adjust lodging to policy-compliant rate"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Hotel Lux",
+          "date": "2025-12-01",
+          "total_amount": 900,
+          "expense_category": "lodging",
+          "nights": 3
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:39:05.491494",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 45.0,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Office Supplies",
+          "date": "2025-12-02",
+          "total_amount": 45,
+          "expense_category": "supplies"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:42:56.758999",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "auto_approved",
+        "total_amount": 300.0,
+        "category": "lodging",
+        "issues": [],
+        "flags": [
+          "auto_approved_routine"
+        ],
+        "suggested_actions": [],
+        "auto_approved": true,
+        "raw_expense": {
+          "vendor_name": "Hotel Simple",
+          "date": "2025-12-01",
+          "total_amount": 300,
+          "expense_category": "lodging"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:42:56.793645",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": null,
+        "category": "meals",
+        "issues": [
+          "Missing required fields: date",
+          "Incomplete reporting: date or total amount missing or unparsed"
+        ],
+        "flags": [
+          "incomplete_reporting"
+        ],
+        "suggested_actions": [
+          "Provide the transaction date and total amount"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Vendor X",
+          "expense_category": "meals"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:42:56.830463",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 2500.0,
+        "category": "other",
+        "issues": [
+          "Missing receipt(s) for claimed amount",
+          "High-value expense requires a justification",
+          "High-value expense must include receipts",
+          "High-value expense requires cost center or designated approver information"
+        ],
+        "flags": [
+          "missing_receipt",
+          "high_value_missing_justification",
+          "high_value_missing_receipt",
+          "high_value_missing_approval_info",
+          "route_for_higher_approval"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission",
+          "Add a justification explaining the business need",
+          "Attach all supporting receipts/documents",
+          "Provide cost center or approver to route for higher approval"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Consulting Co",
+          "date": "2025-12-01",
+          "total_amount": 2500,
+          "expense_category": "other"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:42:56.865943",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 900.0,
+        "category": "lodging",
+        "issues": [
+          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+        ],
+        "flags": [
+          "lodging_limit_exceeded"
+        ],
+        "suggested_actions": [
+          "Provide justification or adjust lodging to policy-compliant rate"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Hotel Lux",
+          "date": "2025-12-01",
+          "total_amount": 900,
+          "expense_category": "lodging",
+          "nights": 3
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-04T10:42:56.901106",
+      "agent": "Validation Agent",
+      "user_id": "unknown",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 45.0,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Office Supplies",
+          "date": "2025-12-02",
+          "total_amount": 45,
+          "expense_category": "supplies"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
     }
   ]
 }
