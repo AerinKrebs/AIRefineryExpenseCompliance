@@ -128,33 +128,189 @@ utility_agents:
               type: string
 
   - agent_class: CustomAgent
-    agent_name: "Critical Thinking Agent"
-    agent_description: "" # TODO
-    config: {}
-
-  - agent_class: CustomAgent
     agent_name: "Validation Agent"
-    agent_description: "" # TODO
-    config: {}
+    agent_description: "Validates extracted expense data for accuracy, completeness, format correctness, and data quality. Performs field validation, calculation verification, date/time checks, and data consistency analysis. Does NOT perform policy checks or approval routing."
+    config:
+      system_prompt: |
+        You are an expert data validator for expense management systems. Your job is to validate extracted receipt/invoice data for accuracy, consistency, and data quality ONLY.
+        
+        IMPORTANT: DO NOT perform any policy checks, approval routing, or compliance assessments. Another agent will handle those.
+        
+        Your validation tasks:
+        1. Field Completeness - Verify critical fields are present (vendor_name, date, total_amount)
+        2. Data Type & Format - Validate dates (YYYY-MM-DD), times (HH:MM), currency codes, card numbers (4 digits)
+        3. Business Logic - Verify calculations (subtotal + tax + tip = total, line items sum correctly)
+        4. Consistency Checks - Compare extracted values against raw text
+        5. Data Quality - Flag OCR errors, low confidence scores, suspicious values
+        
+        Return validation results with detailed error information, suggested corrections, and data quality scores.
+      
+      # Define what the agent expects as input
+      input_schema:
+        type: object
+        required:
+          - extracted_data
+        properties:
+          extracted_data:
+            type: object
+            description: "The extracted expense data from Image Understanding Agent"
+            properties:
+              vendor_name:
+                type: ["string", "null"]
+              vendor_address:
+                type: ["string", "null"]
+              date:
+                type: ["string", "null"]
+              time:
+                type: ["string", "null"]
+              currency:
+                type: ["string", "null"]
+              subtotal:
+                type: ["number", "null"]
+              tax_amount:
+                type: ["number", "null"]
+              tip_amount:
+                type: ["number", "null"]
+              total_amount:
+                type: ["number", "null"]
+              payment_method:
+                type: ["string", "null"]
+              card_last_four:
+                type: ["string", "null"]
+              line_items:
+                type: array
+              expense_category:
+                type: string
+              confidence_score:
+                type: integer
+              raw_text_extracted:
+                type: string
+              notes:
+                type: string
+      
+      # Define what the agent returns
+      output_schema:
+        type: object
+        required:
+          - success
+          - status
+          - validated_data
+        properties:
+          success:
+            type: boolean
+            description: "Whether validation passed (true) or failed (false)"
+          status:
+            type: string
+            enum: ["approved", "needs_correction", "incomplete_data"]
+            description: "Validation status"
+          validated_data:
+            type: object
+            description: "Corrected/validated expense data"
+          validation_errors:
+            type: array
+            description: "List of validation error messages"
+            items:
+              type: string
+          validation_warnings:
+            type: array
+            description: "List of validation warnings"
+            items:
+              type: string
+          validation_details:
+            type: object
+            description: "Detailed validation information"
+            properties:
+              validation_status:
+                type: string
+              is_valid:
+                type: boolean
+              data_quality_score:
+                type: integer
+                minimum: 0
+                maximum: 100
+              validation_errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    issue:
+                      type: string
+                    severity:
+                      type: string
+                      enum: ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+                    current_value:
+                      type: ["string", "number", "null"]
+                    expected:
+                      type: string
+              validation_warnings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    issue:
+                      type: string
+                    recommendation:
+                      type: string
+              corrected_data:
+                type: object
+              corrections_made:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    original_value:
+                      type: ["string", "number", "null"]
+                    corrected_value:
+                      type: ["string", "number", "null"]
+                    reason:
+                      type: string
+              validation_summary:
+                type: object
+                properties:
+                  total_errors:
+                    type: integer
+                  critical_errors:
+                    type: integer
+                  total_warnings:
+                    type: integer
+                  fields_corrected:
+                    type: integer
+                  data_completeness_score:
+                    type: integer
+                  calculation_accuracy:
+                    type: string
+                    enum: ["VERIFIED", "FAILED", "PARTIAL"]
+              data_quality_notes:
+                type: array
+                items:
+                  type: string
+          data_quality:
+            type: object
+            properties:
+              score:
+                type: integer
+                minimum: 0
+                maximum: 100
+              summary:
+                type: object
 
 super_agents:
   - agent_class: FlowSuperAgent
     agent_name: "Flow Agent"
-    agent_description: "" # TODO
+    agent_description: "Orchestrates the expense compliance workflow by coordinating image analysis and data validation. Routes extracted expense data through validation checks to ensure data quality before policy compliance evaluation."
     config:
-      goal: "" # TODO
+      goal: "Process expense documents through image extraction and data validation to produce clean, validated expense data ready for policy compliance checking."
       agent_list:
         - agent_name: "Image Understanding Agent"
           next_step:
-            - "Critical Thinking Agent"
-        - agent_name: "Critical Thinking Agent"
-          # TODO
-          # next_step:
-          #   - "<AGENT NAME>"
+            - "Validation Agent"
         - agent_name: "Validation Agent"
-          # TODO
-          # next_step:
-          #   - "<AGENT NAME>"
 
 orchestrator:
   agent_list:
