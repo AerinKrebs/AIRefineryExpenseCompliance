@@ -496,9 +496,7 @@ async def get_expense_compliance_response(user_id: str, query: str) -> str:
     #     project=PROJECT_NAME,
     #     uuid=user_id,
     #     executor_dict={
-    #         #  TODO: update this once other agents are here
             # "Image Understanding Agent": image_understanding_agent,
-            # "Critical Thinking Agent": critical_thinking_agent,
             # "Validation Agent": validation_agent
     #     },
     # ) as dc:
