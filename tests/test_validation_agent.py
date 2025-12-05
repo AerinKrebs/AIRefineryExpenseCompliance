@@ -39,20 +39,57 @@ class ValidationAgentTester:
         """Map the agent's status to our expected test statuses"""
         status_mapping = {
             "approved": "PASS",
-            "auto_approved": "PASS",
             "needs_correction": "FAIL",
-            "incomplete_reporting": "FAIL",
-            "requires_higher_approval": "NEEDS_REVIEW",
-            "flagged_for_review": "NEEDS_REVIEW",
-            "rejected": "FAIL"
+            "incomplete_data": "FAIL",
         }
         return status_mapping.get(actual_status, "UNKNOWN")
     
+    def extract_error_details(self, validation_errors: list) -> list:
+        """Extract detailed error information from validation errors"""
+        error_details = []
+        for error in validation_errors:
+            if isinstance(error, dict):
+                error_details.append({
+                    "field": error.get("field", "unknown"),
+                    "issue": error.get("issue", str(error)),
+                    "severity": error.get("severity", "unknown"),
+                    "current_value": error.get("current_value"),
+                    "expected": error.get("expected")
+                })
+            else:
+                error_details.append({
+                    "field": "unknown",
+                    "issue": str(error),
+                    "severity": "unknown",
+                    "current_value": None,
+                    "expected": None
+                })
+        return error_details
+    
+    def extract_warning_details(self, validation_warnings: list) -> list:
+        """Extract detailed warning information from validation warnings"""
+        warning_details = []
+        for warning in validation_warnings:
+            if isinstance(warning, dict):
+                warning_details.append({
+                    "field": warning.get("field", "unknown"),
+                    "issue": warning.get("issue", str(warning)),
+                    "recommendation": warning.get("recommendation", "")
+                })
+            else:
+                warning_details.append({
+                    "field": "unknown",
+                    "issue": str(warning),
+                    "recommendation": ""
+                })
+        return warning_details
+        
     async def run_validation_test(
         self, 
         test_name: str, 
         extracted_data: Dict[Any, Any], 
         expected_status: str,
+        expected_error_fields: list = None,
         user_id: str = "test_user"
     ) -> Dict[Any, Any]:
         """
@@ -61,7 +98,8 @@ class ValidationAgentTester:
         Args:
             test_name: Name of the test case
             extracted_data: The data to validate
-            expected_status: Expected validation status (PASS/FAIL/NEEDS_REVIEW)
+            expected_status: Expected validation status (PASS/FAIL)
+            expected_error_fields: Fields expected to have errors
             user_id: User ID for audit logging
         
         Returns:
@@ -89,17 +127,36 @@ class ValidationAgentTester:
             if not audit_entry:
                 raise Exception("No audit log entry found")
             
-            # Extract validation data
+            # Extract validation data from the new structure
             validation_data = audit_entry.get("data", {})
             actual_status_raw = validation_data.get("status", "UNKNOWN")
             actual_status = self.map_status_to_expected(actual_status_raw)
             
-            issues = validation_data.get("issues", [])
-            flags = validation_data.get("flags", [])
-            suggested_actions = validation_data.get("suggested_actions", [])
+            # Get validation details
+            validation_details = validation_data.get("validation_details", {})
+            
+            # Extract errors and warnings from the validation_details
+            raw_errors = validation_details.get("validation_errors", [])
+            raw_warnings = validation_details.get("validation_warnings", [])
+            
+            error_details = self.extract_error_details(raw_errors)
+            warning_details = self.extract_warning_details(raw_warnings)
+            
+            # Get data quality info
+            data_quality = validation_data.get("data_quality", {})
+            quality_score = data_quality.get("score", 0)
+            quality_summary = data_quality.get("summary", {})
             
             # Check if result matches expectation
-            test_passed = actual_status == expected_status
+            status_match = actual_status == expected_status
+            
+            # Check if expected error fields are present
+            error_fields_found = [err["field"] for err in error_details]
+            field_match = True
+            if expected_error_fields:
+                field_match = all(field in error_fields_found for field in expected_error_fields)
+            
+            test_passed = status_match and field_match
             
             if test_passed:
                 self.passed += 1
@@ -111,35 +168,61 @@ class ValidationAgentTester:
             test_result = {
                 "test_name": test_name,
                 "passed": test_passed,
+                "status_match": status_match,
+                "field_match": field_match,
                 "expected_status": expected_status,
                 "actual_status": actual_status,
                 "actual_status_raw": actual_status_raw,
-                "issues": issues,
-                "flags": flags,
-                "suggested_actions": suggested_actions,
+                "expected_error_fields": expected_error_fields or [],
+                "actual_error_fields": error_fields_found,
+                "errors": error_details,
+                "warnings": warning_details,
+                "data_quality_score": quality_score,
+                "quality_summary": quality_summary,
                 "full_result": validation_data
             }
             
             self.test_results.append(test_result)
             
-            # Print summary
+            # Print detailed summary
             print(f"\n{status_icon}")
-            print(f"Expected: {expected_status}, Got: {actual_status} (raw: {actual_status_raw})")
+            print(f"Expected Status: {expected_status}, Got: {actual_status} (raw: {actual_status_raw})")
             
-            if issues:
-                print(f"\nIssues ({len(issues)}):")
-                for issue in issues[:5]:  # Show first 5
-                    print(f"  - {issue}")
+            if expected_error_fields:
+                print(f"\nExpected Error Fields: {', '.join(expected_error_fields)}")
+                print(f"Actual Error Fields: {', '.join(error_fields_found)}")
+                if not field_match:
+                    missing = set(expected_error_fields) - set(error_fields_found)
+                    if missing:
+                        print(f"⚠️  Missing expected errors on: {', '.join(missing)}")
             
-            if flags:
-                print(f"\nFlags ({len(flags)}):")
-                for flag in flags[:5]:  # Show first 5
-                    print(f"  - {flag}")
+            print(f"\nData Quality Score: {quality_score}/100")
+            print(f"Total Errors: {len(error_details)} (Critical: {quality_summary.get('critical_errors', 0)})")
+            print(f"Total Warnings: {len(warning_details)}")
             
-            if suggested_actions:
-                print(f"\nSuggested Actions:")
-                for action in suggested_actions[:3]:
-                    print(f"  - {action}")
+            if error_details:
+                print(f"\n📋 Validation Errors ({len(error_details)}):")
+                for i, error in enumerate(error_details[:5], 1):  # Show first 5
+                    print(f"  {i}. [{error['severity']}] {error['field']}: {error['issue']}")
+                    if error['current_value'] is not None:
+                        print(f"     Current: {error['current_value']}")
+                    if error['expected']:
+                        print(f"     Expected: {error['expected']}")
+            
+            if warning_details:
+                print(f"\n⚠️  Validation Warnings ({len(warning_details)}):")
+                for i, warning in enumerate(warning_details[:5], 1):  # Show first 5
+                    print(f"  {i}. {warning['field']}: {warning['issue']}")
+                    if warning['recommendation']:
+                        print(f"     → {warning['recommendation']}")
+            
+            # Show corrections if any were made
+            corrections = validation_details.get("corrections_made", [])
+            if corrections:
+                print(f"\n🔧 Corrections Made ({len(corrections)}):")
+                for i, correction in enumerate(corrections[:3], 1):
+                    print(f"  {i}. {correction.get('field')}: {correction.get('original_value')} → {correction.get('corrected_value')}")
+                    print(f"     Reason: {correction.get('reason')}")
             
             return test_result
             
@@ -169,13 +252,27 @@ class ValidationAgentTester:
         print(f"Success Rate: {(self.passed / (self.passed + self.failed) * 100):.1f}%")
         print(f"{'='*80}\n")
         
-        # Show failed tests
+        # Show failed tests with details
         if self.failed > 0:
-            print("\nFailed Tests:")
+            print("\n❌ Failed Tests:")
             for result in self.test_results:
                 if not result.get("passed"):
-                    print(f"  ❌ {result['test_name']}")
-                    print(f"     Expected: {result['expected_status']}, Got: {result.get('actual_status')}")
+                    print(f"\n  {result['test_name']}")
+                    print(f"    Expected: {result['expected_status']}, Got: {result.get('actual_status')}")
+                    
+                    if not result.get("status_match"):
+                        print(f"    ⚠️  Status mismatch")
+                    
+                    if not result.get("field_match"):
+                        print(f"    ⚠️  Error field mismatch")
+                        expected = set(result.get("expected_error_fields", []))
+                        actual = set(result.get("actual_error_fields", []))
+                        missing = expected - actual
+                        unexpected = actual - expected
+                        if missing:
+                            print(f"       Missing: {', '.join(missing)}")
+                        if unexpected:
+                            print(f"       Unexpected: {', '.join(unexpected)}")
 
 
 # ========================================== TEST CASES ===========================================
@@ -554,94 +651,103 @@ async def run_all_tests():
     tester = ValidationAgentTester()
     
     print("\n" + "="*80)
-    print("VALIDATION AGENT TEST SUITE")
+    print("VALIDATION AGENT TEST SUITE - DATA VALIDATION ONLY")
     print("="*80)
     
-    # Note: Based on audit log, most tests return "needs_correction" 
-    # Update expectations to match actual behavior
-    
-    # Test 1: Valid receipt (currently returns needs_correction due to missing receipt flag)
+    # Test 1: Valid receipt (should PASS - no data errors)
     await tester.run_validation_test(
         "Test 1: Valid Receipt",
         await test_valid_receipt(),
-        expected_status="FAIL"  # Agent flags "missing_receipt"
+        expected_status="PASS",
+        expected_error_fields=[]
     )
     
-    # Test 2: Missing total (should FAIL)
+    # Test 2: Missing total (should FAIL with total_amount error)
     await tester.run_validation_test(
         "Test 2: Missing Total Amount",
         await test_missing_total(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["total_amount"]
     )
     
-    # Test 3: Calculation mismatch (should FAIL)
+    # Test 3: Calculation mismatch (should FAIL with calculation error)
     await tester.run_validation_test(
         "Test 3: Calculation Mismatch",
         await test_calculation_mismatch(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["total_amount"]
     )
     
-    # Test 4: Invalid date format (should FAIL)
+    # Test 4: Invalid date format (should FAIL with date error)
     await tester.run_validation_test(
         "Test 4: Invalid Date Format",
         await test_invalid_date_format(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["date"]
     )
     
-    # Test 5: Line items mismatch (should FAIL)
+    # Test 5: Line items mismatch (should FAIL with subtotal/line_items error)
     await tester.run_validation_test(
         "Test 5: Line Items Don't Sum",
         await test_line_items_mismatch(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["subtotal", "line_items"]
     )
     
-    # Test 6: Future date (should FAIL)
+    # Test 6: Future date (should FAIL with date error)
     await tester.run_validation_test(
         "Test 6: Future Date",
         await test_future_date(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["date"]
     )
     
-    # Test 7: Negative amounts (should FAIL)
+    # Test 7: Negative amounts (should FAIL with tax_amount error)
     await tester.run_validation_test(
         "Test 7: Negative Amounts",
         await test_negative_amounts(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["tax_amount"]
     )
     
-    # Test 8: Invalid card number (should FAIL)
+    # Test 8: Invalid card number (should FAIL with card_last_four error)
     await tester.run_validation_test(
         "Test 8: Invalid Card Number",
         await test_invalid_card_number(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["card_last_four"]
     )
     
-    # Test 9: Missing vendor (should FAIL)
+    # Test 9: Missing vendor (should FAIL with vendor_name error)
     await tester.run_validation_test(
         "Test 9: Missing Vendor Name",
         await test_missing_vendor(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["vendor_name"]
     )
     
-    # Test 10: Low confidence (should FAIL)
+    # Test 10: Low confidence (should FAIL with confidence_score error)
     await tester.run_validation_test(
         "Test 10: Low Confidence Score",
         await test_low_confidence_score(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["confidence_score"]
     )
     
-    # Test 11: Wrong currency (should FAIL)
+    # Test 11: Wrong currency (should FAIL with currency error)
     await tester.run_validation_test(
         "Test 11: Invalid Currency Code",
         await test_wrong_currency(),
-        expected_status="FAIL"
+        expected_status="FAIL",
+        expected_error_fields=["currency"]
     )
     
-    # Test 12: Large amount (should NEEDS_REVIEW)
+    # Test 12: Large amount (should PASS - just a large number, not invalid)
     await tester.run_validation_test(
         "Test 12: Large Expense Amount",
         await test_large_expense_amount(),
-        expected_status="NEEDS_REVIEW"
+        expected_status="PASS",  # Data is valid, policy agent will handle amount limits
+        expected_error_fields=[]
     )
     
     # Print final summary

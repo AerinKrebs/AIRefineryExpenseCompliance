@@ -5,6 +5,7 @@ import pandas as pd
 from air import AsyncAIRefinery, DistillerClient
 from audit import audit_log
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Load API Key & set other state variables
 load_dotenv()
@@ -220,187 +221,257 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
             "extracted_data": None
         })
 
-# TODO: Function for critical thinking agent
-async def critical_thinking_agent(query: str, env_variable=None, chat_history=None) -> str:
-    return ""
-
 # Validation Agent: ensures submitted expenses comply with org policies
+# ========================================== VALIDATION AGENT ===========================================
+
 async def validation_agent(query: str, env_variable=None, chat_history=None) -> str:
     """
-    Validates a single expense report or expense item represented in `env_variable`.
-
-    Expected input (env_variable):
-      - expense: dict (extracted expense data) OR extracted_data in same shape as image_understanding_agent
-      - attachments: list of receipt/attachment metadata (optional)
-      - nights: int (for lodging) (optional)
-      - justification: str (optional)
-      - claimed_amount: number (optional)
-      - policy_overrides: dict (optional) to override default limits
-
+    Agentic validator that uses an LLM to intelligently validate extracted expense data
+    for correctness, consistency, and data quality. Does NOT perform policy checks.
+    
+    Parameters:
+        query (str): The user's query or validation instructions.
+        env_variable (dict): Environment variables containing extracted expense data.
+        chat_history (list): Previous conversation history.
+    
     Returns:
-      JSON string with validation outcome, flags, and suggested actions.
+        str: JSON string containing validation results and corrected data.
     """
+    
+    # Extract the data to validate
+    extracted_data = env_variable.get("extracted_data", {}) if env_variable else {}
+    
+    if not extracted_data:
+        return json.dumps({
+            "success": False,
+            "error": "No data provided for validation",
+            "validated_data": None,
+            "validation_errors": ["Missing input data"],
+            "validation_warnings": []
+        })
+    
+    # Build the validation prompt for the LLM
+    validation_prompt = f"""
+You are an expert data validator for expense management systems. Your job is to validate extracted receipt/invoice data for accuracy, consistency, and data quality ONLY. 
 
-    # Defensive defaults
-    env = env_variable or {}
-    expense = env.get("expense") or env.get("extracted_data") or {}
-    attachments = env.get("attachments") or env.get("receipts") or []
+**IMPORTANT: DO NOT perform any policy checks, approval routing, or compliance assessments. Another agent will handle those.**
 
-    # Policy defaults (can be overridden via env_variable.policy_overrides)
-    policy = {
-        "lodging_limit_per_night": 200.0,
-        "airfare_limit": 1500.0,
-        "high_value_threshold": 1000.0,
-        "routine_threshold": 500.0,
-        "min_receipt_amount": 0.01  # receipts required for any positive claim
-    }
-    overrides = env.get("policy_overrides") or {}
-    policy.update(overrides)
 
-    # Prepare result structure
-    issues = []
-    flags = []
-    suggested_actions = []
+**CURRENT DATE/TIME:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+**CURRENT DATE (for validation):** {datetime.now().strftime("%Y-%m-%d")}
 
-    # Helper to safely get numeric total
-    def _get_amount(src):
-        try:
-            if src is None:
-                return None
-            return float(src)
-        except Exception:
-            return None
+**DATA TO VALIDATE:**
+{json.dumps(extracted_data, indent=2)}
 
-    total_amount = _get_amount(expense.get("total_amount") or env.get("claimed_amount"))
-    category = (expense.get("expense_category") or env.get("expense_category") or "other")
-    category = category.lower() if isinstance(category, str) else "other"
+**USER CONTEXT:**
+{query}
 
-    # Required fields check
-    required_fields = ["date", "vendor_name", "expense_category"]
-    missing_required = [f for f in required_fields if not expense.get(f)]
-    if missing_required:
-        issues.append(f"Missing required fields: {', '.join(missing_required)}")
+**YOUR VALIDATION TASKS:**
 
-    # Receipt attachment check
-    receipts_present = len(attachments) > 0
-    # Enforce receipts for any claimed positive amount
-    if total_amount is not None and total_amount > 0 and not receipts_present:
-        issues.append("Missing receipt(s) for claimed amount")
-        flags.append("missing_receipt")
-        suggested_actions.append("Attach receipt image(s) before submission")
+1. **Field Completeness Check:**
+   - Verify all critical fields are present: vendor_name, date, total_amount
+   - Check for missing optional fields that should be present based on the raw text
+   - Flag any suspicious null values
 
-    # Standard review: lodging
-    if category in ("lodging",):
-        # Only enforce per-night limits when 'nights' is explicitly provided
-        nights_provided = None
-        if "nights" in env:
-            nights_provided = env.get("nights")
-        elif "nights" in expense:
-            nights_provided = expense.get("nights")
+2. **Data Type & Format Validation:**
+   - Ensure dates are in YYYY-MM-DD format and are valid dates
+   - **CRITICAL: Check that dates are NOT in the future (after {datetime.now().strftime("%Y-%m-%d")})**
+   - Ensure times are in HH:MM format if present
+   - Verify all monetary values are valid numbers (not negative, no extreme outliers)
+   - Check currency codes are valid ISO codes (USD, EUR, GBP, etc.)
+   - Validate card_last_four is exactly 4 digits if present
 
-        if nights_provided is not None:
-            try:
-                nights = int(nights_provided) if nights_provided else 1
-            except Exception:
-                nights = 1
+3. **Business Logic Validation:**
+   - Verify: subtotal + tax_amount + tip_amount = total_amount (allow 1% tolerance for rounding)
+   - **CRITICAL: Check that total_amount is correct**
+   - Verify: sum of line_items totals = subtotal (allow small rounding differences)
+   - For each line item: verify quantity × unit_price = total
+    - Check if dates are reasonable (not in future, not too old like >10 years from {datetime.now().strftime("%Y-%m-%d")})
 
-            if total_amount is not None:
-                per_night = total_amount / max(1, nights)
-                if per_night > policy["lodging_limit_per_night"]:
-                    issues.append(f"Lodging per-night cost ${per_night:.2f} exceeds policy limit ${policy['lodging_limit_per_night']:.2f}")
-                    flags.append("lodging_limit_exceeded")
-                    suggested_actions.append("Provide justification or adjust lodging to policy-compliant rate")
+4. **Consistency Checks:**
+   - Compare extracted values against raw_text_extracted to verify accuracy
+   - Check if vendor name matches what's in the raw text
+   - Verify amounts mentioned in raw text match extracted amounts
+   - Ensure expense_category makes sense for the vendor and line items
 
-    # Standard review: airfare / travel
-    if category in ("airfare", "travel", "transportation"):
-        if total_amount is not None and total_amount > policy["airfare_limit"]:
-            issues.append(f"Airfare/Travel amount ${total_amount:.2f} exceeds policy limit ${policy['airfare_limit']:.2f}")
-            flags.append("airfare_limit_exceeded")
-            suggested_actions.append("Route to travel manager for exception approval")
+5. **Data Quality Assessment:**
+   - Evaluate if confidence_score aligns with data quality
+   - Identify any discrepancies or suspicious values
+   - Flag potential OCR errors or misreadings
 
-    # Validate expense category
-    valid_categories = {"meals", "travel", "supplies", "entertainment", "lodging", "transportation", "other"}
-    if category not in valid_categories:
-        issues.append(f"Unknown expense category: {category}")
-        flags.append("invalid_category")
-        suggested_actions.append("Select a valid expense category")
+**CORRECTION INSTRUCTIONS:**
+- If you find errors, provide corrected values when possible
+- Use the raw_text_extracted to help correct misreadings
+- Apply reasonable defaults only when safe (e.g., USD for currency if $ symbol seen)
+- Do NOT guess or make up data that isn't in the raw text
 
-    # Incomplete reporting detection: check for essential doc fields
-    if not expense.get("date") or not expense.get("total_amount"):
-        issues.append("Incomplete reporting: date or total amount missing or unparsed")
-        flags.append("incomplete_reporting")
-        suggested_actions.append("Provide the transaction date and total amount")
+**STATUS GUIDELINES:**
+- Use "approved" if all data is valid and complete
+- Use "needs_correction" if there are data quality issues that need fixing
+- Use "incomplete_data" if critical fields are missing
+- DO NOT use policy-related statuses like "requires_higher_approval" or "route_for_higher_approval"
 
-    # High-value expense logic
-    if total_amount is not None and total_amount >= policy["high_value_threshold"]:
-        # Require justification and at least one receipt and cost center or approver
-        justification = (env.get("justification") or expense.get("justification") or "").strip()
-        cost_center = env.get("cost_center") or expense.get("cost_center")
-        approver = env.get("approver") or expense.get("approver")
+**OUTPUT FORMAT:**
+Return a JSON object with this exact structure:
 
-        if not justification:
-            issues.append("High-value expense requires a justification")
-            flags.append("high_value_missing_justification")
-            suggested_actions.append("Add a justification explaining the business need")
+{{
+  "validation_status": "approved" or "needs_correction" or "incomplete_data",
+  "is_valid": true/false,
+  "data_quality_score": 0-100,
+  
+  "validation_errors": [
+    {{
+      "field": "field_name",
+      "issue": "description of error",
+      "severity": "CRITICAL/HIGH/MEDIUM/LOW",
+      "current_value": "what was found",
+      "expected": "what it should be or validation rule"
+    }}
+  ],
+  
+  "validation_warnings": [
+    {{
+      "field": "field_name",
+      "issue": "description of warning",
+      "recommendation": "suggested action"
+    }}
+  ],
+  
+  "corrected_data": {{
+    // Full corrected version of the input data with fixes applied
+    // Include ALL fields from original, even if unchanged
+  }},
+  
+  "corrections_made": [
+    {{
+      "field": "field_name",
+      "original_value": "old value",
+      "corrected_value": "new value",
+      "reason": "why correction was made"
+    }}
+  ],
+  
+  "validation_summary": {{
+    "total_errors": 0,
+    "critical_errors": 0,
+    "total_warnings": 0,
+    "fields_corrected": 0,
+    "data_completeness_score": 0-100,
+    "calculation_accuracy": "VERIFIED/FAILED/PARTIAL"
+  }},
+  
+  "data_quality_notes": [
+    "Any data quality concerns or observations",
+    "OCR errors or potential misreadings",
+    "Recommendations for data improvement"
+  ]
+}}
 
-        if not receipts_present:
-            issues.append("High-value expense must include receipts")
-            flags.append("high_value_missing_receipt")
-            suggested_actions.append("Attach all supporting receipts/documents")
+**CRITICAL RULES:**
+1. ONLY validate data quality - do NOT check policies, amounts limits, approval requirements
+2. Be thorough but fair - don't flag minor issues as critical
+3. Base corrections on actual evidence from raw_text_extracted
+4. If calculations don't match, identify which field is likely wrong
+5. Consider OCR errors (0/O, 1/I, 5/S confusion)
+6. Return ONLY valid JSON, no markdown formatting or extra text
+7. Focus on: completeness, accuracy, format, consistency - NOT policy compliance
 
-        if not (cost_center or approver):
-            issues.append("High-value expense requires cost center or designated approver information")
-            flags.append("high_value_missing_approval_info")
-            suggested_actions.append("Provide cost center or approver to route for higher approval")
-
-        # If any high-value-specific issues, route for higher approval
-        if any(f.startswith("high_value_") or f == "high_value_missing_receipt" for f in flags):
-            flags.append("route_for_higher_approval")
-
-    # Routine expense logic: auto-approve travel/lodging under threshold and compliant
-    auto_approved = False
-    if total_amount is not None and total_amount <= policy["routine_threshold"]:
-        # Conditions: receipts present, no category limit violations, category is travel/lodging
-        if receipts_present and not any(f in ("lodging_limit_exceeded", "airfare_limit_exceeded", "invalid_category") for f in flags):
-            if category in ("lodging", "travel", "transportation"):
-                auto_approved = True
-                flags.append("auto_approved_routine")
-
-    # Final status determination
-    if auto_approved:
-        status = "auto_approved"
-    # Route for higher approval takes precedence over request for correction
-    elif "route_for_higher_approval" in flags or any(f.startswith("lodging_limit_exceeded") or f.startswith("airfare_limit_exceeded") for f in flags):
-        status = "requires_higher_approval"
-    elif any(f in ("missing_receipt", "incomplete_reporting", "invalid_category") for f in flags):
-        status = "needs_correction"
-    else:
-        status = "approved"
-
-    result = {
-        "success": True,
-        "status": status,
-        "total_amount": total_amount,
-        "category": category,
-        "issues": issues,
-        "flags": flags,
-        "suggested_actions": suggested_actions,
-        "auto_approved": auto_approved,
-        "raw_expense": expense
-    }
-
-    # Save to audit log
+Perform the validation now.
+"""
+    
     try:
+        # Call the LLM for validation
+        client = AsyncAIRefinery(api_key=API_KEY)
+        
+        response = await client.chat.completions.create(
+            model="openai/gpt-4o",  # Use a capable model for reasoning
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert data validator. You validate financial data for accuracy and quality. You do NOT perform policy checks or compliance assessments."
+                },
+                {
+                    "role": "user",
+                    "content": validation_prompt
+                }
+            ],
+            temperature=0.1  # Low temperature for consistent validation
+        )
+        
+        validation_response = response.choices[0].message.content.strip()
+        
+        # Parse the validation response
+        try:
+            # Clean response of markdown formatting
+            clean_response = validation_response.strip()
+            
+            # Remove markdown code blocks if present
+            import re
+            code_block_pattern = r'```(?:json)?\s*([\s\S]*?)\s*```'
+            match = re.search(code_block_pattern, clean_response)
+            
+            if match:
+                clean_response = match.group(1).strip()
+            
+            # Remove any leading/trailing ``` markers
+            clean_response = clean_response.strip('`').strip()
+            
+            validation_result = json.loads(clean_response)
+            
+            # Ensure required top-level fields exist
+            validation_result.setdefault("validation_status", "needs_correction")
+            validation_result.setdefault("is_valid", False)
+            validation_result.setdefault("validation_errors", [])
+            validation_result.setdefault("validation_warnings", [])
+            validation_result.setdefault("corrected_data", extracted_data)
+            
+        except json.JSONDecodeError as e:
+            return json.dumps({
+                "success": False,
+                "error": f"Failed to parse validation response as JSON: {str(e)}",
+                "raw_response": validation_response,
+                "validated_data": None,
+                "validation_errors": ["LLM returned invalid JSON format"],
+                "validation_warnings": []
+            }, indent=2)
+        
+        # Prepare final result
+        result = {
+            "success": validation_result.get("is_valid", False),
+            "status": validation_result.get("validation_status"),
+            "validated_data": validation_result.get("corrected_data"),
+            "validation_errors": [
+                err.get("issue", str(err)) if isinstance(err, dict) else str(err)
+                for err in validation_result.get("validation_errors", [])
+            ],
+            "validation_warnings": [
+                warn.get("issue", str(warn)) if isinstance(warn, dict) else str(warn)
+                for warn in validation_result.get("validation_warnings", [])
+            ],
+            "validation_details": validation_result,  # Full detailed response
+            "data_quality": {
+                "score": validation_result.get("data_quality_score", 0),
+                "summary": validation_result.get("validation_summary", {})
+            }
+        }
+        
+        # Save to audit log
         audit_log.save(
             agent_name="Validation Agent",
             result=result,
-            user_id=env.get("user_id", expense.get("user_id", "unknown"))
+            user_id=env_variable.get("user_id", "unknown")
         )
-    except Exception:
-        # Do not fail on audit logging errors
-        pass
-
-    return json.dumps(result, indent=2)
+        
+        return json.dumps(result, indent=2)
+        
+    except Exception as e:
+        return json.dumps({
+            "success": False,
+            "error": f"Validation agent error: {str(e)}",
+            "validated_data": None,
+            "validation_errors": [str(e)],
+            "validation_warnings": []
+        }, indent=2)
 
 
 # TODO: Driver that gets called by UI to send query to agentic system
