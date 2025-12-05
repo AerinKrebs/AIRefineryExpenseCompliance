@@ -1,0 +1,2488 @@
+[
+  {
+    "test_name": "Test 1: Valid Receipt",
+    "passed": false,
+    "status_match": false,
+    "field_match": true,
+    "expected_status": "PASS",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [],
+    "actual_error_fields": [
+      "date",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future.",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-01",
+        "expected": "A date on or before 2025-12-05"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Subtotal + tax_amount + tip_amount does not equal total_amount.",
+        "severity": "CRITICAL",
+        "current_value": 19.9,
+        "expected": "19.90 (calculated as 15.5 + 1.4 + 3.0 = 19.90)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "expense_category",
+        "issue": "Expense category 'meals' is reasonable but not explicitly stated in the raw text.",
+        "recommendation": "Verify if 'meals' is the correct category for this expense."
+      }
+    ],
+    "data_quality_score": 85,
+    "quality_summary": {
+      "total_errors": 2,
+      "critical_errors": 2,
+      "total_warnings": 1,
+      "fields_corrected": 0,
+      "data_completeness_score": 100,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Starbucks Coffee",
+        "vendor_address": "123 Main St, Seattle WA 98101",
+        "date": "2024-12-01",
+        "time": "14:30",
+        "currency": "USD",
+        "subtotal": 15.5,
+        "tax_amount": 1.4,
+        "tip_amount": 3.0,
+        "total_amount": 19.9,
+        "payment_method": "credit",
+        "card_last_four": "4242",
+        "line_items": [
+          {
+            "description": "Grande Latte",
+            "quantity": 2,
+            "unit_price": 5.75,
+            "total": 11.5
+          },
+          {
+            "description": "Blueberry Muffin",
+            "quantity": 1,
+            "unit_price": 4.0,
+            "total": 4.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+        "notes": "Clear receipt, all fields legible"
+      },
+      "validation_errors": [
+        "Date is in the future.",
+        "Subtotal + tax_amount + tip_amount does not equal total_amount."
+      ],
+      "validation_warnings": [
+        "Expense category 'meals' is reasonable but not explicitly stated in the raw text."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 85,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future.",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-01",
+            "expected": "A date on or before 2025-12-05"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Subtotal + tax_amount + tip_amount does not equal total_amount.",
+            "severity": "CRITICAL",
+            "current_value": 19.9,
+            "expected": "19.90 (calculated as 15.5 + 1.4 + 3.0 = 19.90)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "expense_category",
+            "issue": "Expense category 'meals' is reasonable but not explicitly stated in the raw text.",
+            "recommendation": "Verify if 'meals' is the correct category for this expense."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Starbucks Coffee",
+          "vendor_address": "123 Main St, Seattle WA 98101",
+          "date": "2024-12-01",
+          "time": "14:30",
+          "currency": "USD",
+          "subtotal": 15.5,
+          "tax_amount": 1.4,
+          "tip_amount": 3.0,
+          "total_amount": 19.9,
+          "payment_method": "credit",
+          "card_last_four": "4242",
+          "line_items": [
+            {
+              "description": "Grande Latte",
+              "quantity": 2,
+              "unit_price": 5.75,
+              "total": 11.5
+            },
+            {
+              "description": "Blueberry Muffin",
+              "quantity": 1,
+              "unit_price": 4.0,
+              "total": 4.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+          "notes": "Clear receipt, all fields legible"
+        },
+        "corrections_made": [
+          {
+            "field": "total_amount",
+            "original_value": 19.9,
+            "corrected_value": 19.9,
+            "reason": "Recalculated total matches the extracted value, no correction needed."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 0,
+          "data_completeness_score": 100,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "The date is in the future, which is not valid for the current validation date.",
+          "All monetary values are consistent with the raw text and calculations.",
+          "Confidence score of 95 aligns with the high quality of the extracted data.",
+          "Expense category 'meals' is reasonable but not explicitly stated in the raw text."
+        ]
+      },
+      "data_quality": {
+        "score": 85,
+        "summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 0,
+          "data_completeness_score": 100,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 2: Missing Total Amount",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "total_amount"
+    ],
+    "actual_error_fields": [
+      "date",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future.",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-01",
+        "expected": "A date on or before 2025-12-05"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Subtotal + tax_amount + tip_amount does not equal total_amount.",
+        "severity": "CRITICAL",
+        "current_value": 19.9,
+        "expected": "19.90 (calculated as 15.5 + 1.4 + 3.0 = 19.90)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "expense_category",
+        "issue": "Expense category 'meals' is reasonable but not explicitly stated in the raw text.",
+        "recommendation": "Verify if 'meals' is the correct category for this expense."
+      }
+    ],
+    "data_quality_score": 85,
+    "quality_summary": {
+      "total_errors": 2,
+      "critical_errors": 2,
+      "total_warnings": 1,
+      "fields_corrected": 0,
+      "data_completeness_score": 100,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Starbucks Coffee",
+        "vendor_address": "123 Main St, Seattle WA 98101",
+        "date": "2024-12-01",
+        "time": "14:30",
+        "currency": "USD",
+        "subtotal": 15.5,
+        "tax_amount": 1.4,
+        "tip_amount": 3.0,
+        "total_amount": 19.9,
+        "payment_method": "credit",
+        "card_last_four": "4242",
+        "line_items": [
+          {
+            "description": "Grande Latte",
+            "quantity": 2,
+            "unit_price": 5.75,
+            "total": 11.5
+          },
+          {
+            "description": "Blueberry Muffin",
+            "quantity": 1,
+            "unit_price": 4.0,
+            "total": 4.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+        "notes": "Clear receipt, all fields legible"
+      },
+      "validation_errors": [
+        "Date is in the future.",
+        "Subtotal + tax_amount + tip_amount does not equal total_amount."
+      ],
+      "validation_warnings": [
+        "Expense category 'meals' is reasonable but not explicitly stated in the raw text."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 85,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future.",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-01",
+            "expected": "A date on or before 2025-12-05"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Subtotal + tax_amount + tip_amount does not equal total_amount.",
+            "severity": "CRITICAL",
+            "current_value": 19.9,
+            "expected": "19.90 (calculated as 15.5 + 1.4 + 3.0 = 19.90)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "expense_category",
+            "issue": "Expense category 'meals' is reasonable but not explicitly stated in the raw text.",
+            "recommendation": "Verify if 'meals' is the correct category for this expense."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Starbucks Coffee",
+          "vendor_address": "123 Main St, Seattle WA 98101",
+          "date": "2024-12-01",
+          "time": "14:30",
+          "currency": "USD",
+          "subtotal": 15.5,
+          "tax_amount": 1.4,
+          "tip_amount": 3.0,
+          "total_amount": 19.9,
+          "payment_method": "credit",
+          "card_last_four": "4242",
+          "line_items": [
+            {
+              "description": "Grande Latte",
+              "quantity": 2,
+              "unit_price": 5.75,
+              "total": 11.5
+            },
+            {
+              "description": "Blueberry Muffin",
+              "quantity": 1,
+              "unit_price": 4.0,
+              "total": 4.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+          "notes": "Clear receipt, all fields legible"
+        },
+        "corrections_made": [
+          {
+            "field": "total_amount",
+            "original_value": 19.9,
+            "corrected_value": 19.9,
+            "reason": "Recalculated total matches the extracted value, no correction needed."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 0,
+          "data_completeness_score": 100,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "The date is in the future, which is not valid for the current validation date.",
+          "All monetary values are consistent with the raw text and calculations.",
+          "Confidence score of 95 aligns with the high quality of the extracted data.",
+          "Expense category 'meals' is reasonable but not explicitly stated in the raw text."
+        ]
+      },
+      "data_quality": {
+        "score": 85,
+        "summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 0,
+          "data_completeness_score": 100,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 3: Calculation Mismatch",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "total_amount"
+    ],
+    "actual_error_fields": [
+      "date",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future relative to the current validation date",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-02",
+        "expected": "Date should not be in the future relative to 2025-12-05"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Total amount does not match the sum of subtotal, tax, and tip",
+        "severity": "CRITICAL",
+        "current_value": 42.0,
+        "expected": "37.7 (subtotal + tax + tip)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is relatively low (80)",
+        "recommendation": "Review extracted data carefully for potential OCR errors"
+      },
+      {
+        "field": "notes",
+        "issue": "Receipt is noted as slightly blurry",
+        "recommendation": "Verify extracted data against raw text for accuracy"
+      }
+    ],
+    "data_quality_score": 85,
+    "quality_summary": {
+      "total_errors": 2,
+      "critical_errors": 2,
+      "total_warnings": 2,
+      "fields_corrected": 1,
+      "data_completeness_score": 95,
+      "calculation_accuracy": "FAILED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Pizza Palace",
+        "vendor_address": "789 Broadway, New York NY 10003",
+        "date": "2024-12-02",
+        "time": "19:45",
+        "currency": "USD",
+        "subtotal": 30.0,
+        "tax_amount": 2.7,
+        "tip_amount": 5.0,
+        "total_amount": 37.7,
+        "payment_method": "credit",
+        "card_last_four": "1234",
+        "line_items": [
+          {
+            "description": "Large Pepperoni Pizza",
+            "quantity": 1,
+            "unit_price": 18.0,
+            "total": 18.0
+          },
+          {
+            "description": "Caesar Salad",
+            "quantity": 1,
+            "unit_price": 12.0,
+            "total": 12.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 80,
+        "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+        "notes": "Receipt slightly blurry"
+      },
+      "validation_errors": [
+        "Date is in the future relative to the current validation date",
+        "Total amount does not match the sum of subtotal, tax, and tip"
+      ],
+      "validation_warnings": [
+        "Confidence score is relatively low (80)",
+        "Receipt is noted as slightly blurry"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 85,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future relative to the current validation date",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-02",
+            "expected": "Date should not be in the future relative to 2025-12-05"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Total amount does not match the sum of subtotal, tax, and tip",
+            "severity": "CRITICAL",
+            "current_value": 42.0,
+            "expected": "37.7 (subtotal + tax + tip)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is relatively low (80)",
+            "recommendation": "Review extracted data carefully for potential OCR errors"
+          },
+          {
+            "field": "notes",
+            "issue": "Receipt is noted as slightly blurry",
+            "recommendation": "Verify extracted data against raw text for accuracy"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Pizza Palace",
+          "vendor_address": "789 Broadway, New York NY 10003",
+          "date": "2024-12-02",
+          "time": "19:45",
+          "currency": "USD",
+          "subtotal": 30.0,
+          "tax_amount": 2.7,
+          "tip_amount": 5.0,
+          "total_amount": 37.7,
+          "payment_method": "credit",
+          "card_last_four": "1234",
+          "line_items": [
+            {
+              "description": "Large Pepperoni Pizza",
+              "quantity": 1,
+              "unit_price": 18.0,
+              "total": 18.0
+            },
+            {
+              "description": "Caesar Salad",
+              "quantity": 1,
+              "unit_price": 12.0,
+              "total": 12.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+          "notes": "Receipt slightly blurry"
+        },
+        "corrections_made": [
+          {
+            "field": "total_amount",
+            "original_value": 42.0,
+            "corrected_value": 37.7,
+            "reason": "Corrected total amount to match the sum of subtotal, tax, and tip"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "FAILED"
+        },
+        "data_quality_notes": [
+          "Date is in the future relative to the validation date, which is a critical issue.",
+          "Total amount discrepancy suggests either an OCR error or miscalculation.",
+          "Confidence score of 80 indicates potential OCR errors; raw text should be reviewed carefully.",
+          "Receipt is noted as blurry, which may have contributed to extraction errors."
+        ]
+      },
+      "data_quality": {
+        "score": 85,
+        "summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 4: Invalid Date Format",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "date"
+    ],
+    "actual_error_fields": [
+      "date",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future relative to the current validation date",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-02",
+        "expected": "Date should not be in the future relative to 2025-12-05"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Total amount does not match the sum of subtotal, tax, and tip",
+        "severity": "CRITICAL",
+        "current_value": 42.0,
+        "expected": "37.7 (subtotal + tax + tip)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is relatively low (80)",
+        "recommendation": "Review extracted data carefully for potential OCR errors"
+      },
+      {
+        "field": "notes",
+        "issue": "Receipt is noted as slightly blurry",
+        "recommendation": "Verify extracted data against raw text for accuracy"
+      }
+    ],
+    "data_quality_score": 85,
+    "quality_summary": {
+      "total_errors": 2,
+      "critical_errors": 2,
+      "total_warnings": 2,
+      "fields_corrected": 1,
+      "data_completeness_score": 95,
+      "calculation_accuracy": "FAILED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Pizza Palace",
+        "vendor_address": "789 Broadway, New York NY 10003",
+        "date": "2024-12-02",
+        "time": "19:45",
+        "currency": "USD",
+        "subtotal": 30.0,
+        "tax_amount": 2.7,
+        "tip_amount": 5.0,
+        "total_amount": 37.7,
+        "payment_method": "credit",
+        "card_last_four": "1234",
+        "line_items": [
+          {
+            "description": "Large Pepperoni Pizza",
+            "quantity": 1,
+            "unit_price": 18.0,
+            "total": 18.0
+          },
+          {
+            "description": "Caesar Salad",
+            "quantity": 1,
+            "unit_price": 12.0,
+            "total": 12.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 80,
+        "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+        "notes": "Receipt slightly blurry"
+      },
+      "validation_errors": [
+        "Date is in the future relative to the current validation date",
+        "Total amount does not match the sum of subtotal, tax, and tip"
+      ],
+      "validation_warnings": [
+        "Confidence score is relatively low (80)",
+        "Receipt is noted as slightly blurry"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 85,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future relative to the current validation date",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-02",
+            "expected": "Date should not be in the future relative to 2025-12-05"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Total amount does not match the sum of subtotal, tax, and tip",
+            "severity": "CRITICAL",
+            "current_value": 42.0,
+            "expected": "37.7 (subtotal + tax + tip)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is relatively low (80)",
+            "recommendation": "Review extracted data carefully for potential OCR errors"
+          },
+          {
+            "field": "notes",
+            "issue": "Receipt is noted as slightly blurry",
+            "recommendation": "Verify extracted data against raw text for accuracy"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Pizza Palace",
+          "vendor_address": "789 Broadway, New York NY 10003",
+          "date": "2024-12-02",
+          "time": "19:45",
+          "currency": "USD",
+          "subtotal": 30.0,
+          "tax_amount": 2.7,
+          "tip_amount": 5.0,
+          "total_amount": 37.7,
+          "payment_method": "credit",
+          "card_last_four": "1234",
+          "line_items": [
+            {
+              "description": "Large Pepperoni Pizza",
+              "quantity": 1,
+              "unit_price": 18.0,
+              "total": 18.0
+            },
+            {
+              "description": "Caesar Salad",
+              "quantity": 1,
+              "unit_price": 12.0,
+              "total": 12.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+          "notes": "Receipt slightly blurry"
+        },
+        "corrections_made": [
+          {
+            "field": "total_amount",
+            "original_value": 42.0,
+            "corrected_value": 37.7,
+            "reason": "Corrected total amount to match the sum of subtotal, tax, and tip"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "FAILED"
+        },
+        "data_quality_notes": [
+          "Date is in the future relative to the validation date, which is a critical issue.",
+          "Total amount discrepancy suggests either an OCR error or miscalculation.",
+          "Confidence score of 80 indicates potential OCR errors; raw text should be reviewed carefully.",
+          "Receipt is noted as blurry, which may have contributed to extraction errors."
+        ]
+      },
+      "data_quality": {
+        "score": 85,
+        "summary": {
+          "total_errors": 2,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 5: Line Items Don't Sum",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "subtotal",
+      "line_items"
+    ],
+    "actual_error_fields": [
+      "subtotal",
+      "confidence_score",
+      "line_items",
+      "date"
+    ],
+    "errors": [
+      {
+        "field": "subtotal",
+        "issue": "Subtotal does not match the sum of line item totals.",
+        "severity": "CRITICAL",
+        "current_value": 299.99,
+        "expected": 89.97
+      },
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is low, indicating potential OCR errors or data extraction issues.",
+        "severity": "MEDIUM",
+        "current_value": 75,
+        "expected": "Confidence score above 85 for reliable data"
+      },
+      {
+        "field": "line_items",
+        "issue": "Line items do not account for the subtotal value provided.",
+        "severity": "CRITICAL",
+        "current_value": [
+          {
+            "description": "Wireless Mouse",
+            "quantity": 1,
+            "unit_price": 49.99,
+            "total": 49.99
+          },
+          {
+            "description": "USB-C Cable",
+            "quantity": 2,
+            "unit_price": 19.99,
+            "total": 39.98
+          }
+        ],
+        "expected": "Line items should sum to match the subtotal value."
+      },
+      {
+        "field": "date",
+        "issue": "Date is in the past but within a reasonable range.",
+        "severity": "LOW",
+        "current_value": "2024-11-30",
+        "expected": "Date should not be in the future or unreasonably old."
+      }
+    ],
+    "warnings": [
+      {
+        "field": "notes",
+        "issue": "Receipt is partially torn, which may affect data accuracy.",
+        "recommendation": "Verify data against the original receipt if possible."
+      }
+    ],
+    "data_quality_score": 70,
+    "quality_summary": {
+      "total_errors": 4,
+      "critical_errors": 2,
+      "total_warnings": 1,
+      "fields_corrected": 2,
+      "data_completeness_score": 90,
+      "calculation_accuracy": "FAILED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Tech Store",
+        "vendor_address": "555 Tech Blvd, Austin TX 78701",
+        "date": "2024-11-30",
+        "time": "16:20",
+        "currency": "USD",
+        "subtotal": 89.97,
+        "tax_amount": 24.0,
+        "tip_amount": null,
+        "total_amount": 113.97,
+        "payment_method": "credit",
+        "card_last_four": "5555",
+        "line_items": [
+          {
+            "description": "Wireless Mouse",
+            "quantity": 1,
+            "unit_price": 49.99,
+            "total": 49.99
+          },
+          {
+            "description": "USB-C Cable",
+            "quantity": 2,
+            "unit_price": 19.99,
+            "total": 39.98
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 75,
+        "raw_text_extracted": "Tech Store\n555 Tech Blvd Austin\nWireless Mouse $49.99\nUSB-C Cable x2 $39.98\n[RECEIPT TORN]\nSubtotal $299.99\nTax $24.00\nTotal $323.99",
+        "notes": "Middle section of receipt torn/unreadable"
+      },
+      "validation_errors": [
+        "Subtotal does not match the sum of line item totals.",
+        "Confidence score is low, indicating potential OCR errors or data extraction issues.",
+        "Line items do not account for the subtotal value provided.",
+        "Date is in the past but within a reasonable range."
+      ],
+      "validation_warnings": [
+        "Receipt is partially torn, which may affect data accuracy."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 70,
+        "validation_errors": [
+          {
+            "field": "subtotal",
+            "issue": "Subtotal does not match the sum of line item totals.",
+            "severity": "CRITICAL",
+            "current_value": 299.99,
+            "expected": 89.97
+          },
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is low, indicating potential OCR errors or data extraction issues.",
+            "severity": "MEDIUM",
+            "current_value": 75,
+            "expected": "Confidence score above 85 for reliable data"
+          },
+          {
+            "field": "line_items",
+            "issue": "Line items do not account for the subtotal value provided.",
+            "severity": "CRITICAL",
+            "current_value": [
+              {
+                "description": "Wireless Mouse",
+                "quantity": 1,
+                "unit_price": 49.99,
+                "total": 49.99
+              },
+              {
+                "description": "USB-C Cable",
+                "quantity": 2,
+                "unit_price": 19.99,
+                "total": 39.98
+              }
+            ],
+            "expected": "Line items should sum to match the subtotal value."
+          },
+          {
+            "field": "date",
+            "issue": "Date is in the past but within a reasonable range.",
+            "severity": "LOW",
+            "current_value": "2024-11-30",
+            "expected": "Date should not be in the future or unreasonably old."
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "notes",
+            "issue": "Receipt is partially torn, which may affect data accuracy.",
+            "recommendation": "Verify data against the original receipt if possible."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Tech Store",
+          "vendor_address": "555 Tech Blvd, Austin TX 78701",
+          "date": "2024-11-30",
+          "time": "16:20",
+          "currency": "USD",
+          "subtotal": 89.97,
+          "tax_amount": 24.0,
+          "tip_amount": null,
+          "total_amount": 113.97,
+          "payment_method": "credit",
+          "card_last_four": "5555",
+          "line_items": [
+            {
+              "description": "Wireless Mouse",
+              "quantity": 1,
+              "unit_price": 49.99,
+              "total": 49.99
+            },
+            {
+              "description": "USB-C Cable",
+              "quantity": 2,
+              "unit_price": 19.99,
+              "total": 39.98
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 75,
+          "raw_text_extracted": "Tech Store\n555 Tech Blvd Austin\nWireless Mouse $49.99\nUSB-C Cable x2 $39.98\n[RECEIPT TORN]\nSubtotal $299.99\nTax $24.00\nTotal $323.99",
+          "notes": "Middle section of receipt torn/unreadable"
+        },
+        "corrections_made": [
+          {
+            "field": "subtotal",
+            "original_value": 299.99,
+            "corrected_value": 89.97,
+            "reason": "Corrected to match the sum of line item totals."
+          },
+          {
+            "field": "total_amount",
+            "original_value": 323.99,
+            "corrected_value": 113.97,
+            "reason": "Corrected to match the recalculated subtotal and tax amount."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        },
+        "data_quality_notes": [
+          "The subtotal and total amounts do not align with the line item totals, indicating a potential data extraction error.",
+          "The confidence score is low, suggesting possible OCR inaccuracies.",
+          "The receipt is partially torn, which may have contributed to the discrepancies in the extracted data."
+        ]
+      },
+      "data_quality": {
+        "score": 70,
+        "summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 6: Future Date",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "date"
+    ],
+    "actual_error_fields": [
+      "date",
+      "subtotal",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future",
+        "severity": "CRITICAL",
+        "current_value": "2026-01-04",
+        "expected": "Date must not be after 2025-12-05"
+      },
+      {
+        "field": "subtotal",
+        "issue": "Subtotal does not match sum of line items",
+        "severity": "HIGH",
+        "current_value": 55.0,
+        "expected": "Sum of line items total (55.0) should match subtotal"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Total amount calculation is incorrect",
+        "severity": "CRITICAL",
+        "current_value": 71.5,
+        "expected": "Subtotal + tax_amount + tip_amount = total_amount (55.0 + 5.5 + 11.0 = 71.5)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is relatively low",
+        "recommendation": "Review extracted data for potential OCR errors"
+      },
+      {
+        "field": "notes",
+        "issue": "Notes indicate a potential issue with the date",
+        "recommendation": "Ensure date is corrected before further processing"
+      }
+    ],
+    "data_quality_score": 75,
+    "quality_summary": {
+      "total_errors": 3,
+      "critical_errors": 2,
+      "total_warnings": 2,
+      "fields_corrected": 1,
+      "data_completeness_score": 90,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Restaurant XYZ",
+        "vendor_address": "100 Food St, Chicago IL 60601",
+        "date": "2025-12-05",
+        "time": "12:00",
+        "currency": "USD",
+        "subtotal": 55.0,
+        "tax_amount": 5.5,
+        "tip_amount": 11.0,
+        "total_amount": 71.5,
+        "payment_method": "credit",
+        "card_last_four": "7777",
+        "line_items": [
+          {
+            "description": "Lunch Special",
+            "quantity": 2,
+            "unit_price": 27.5,
+            "total": 55.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "Restaurant XYZ\n100 Food St Chicago\n2026-01-04 12:00\nLunch Special x2 $55.00\nSubtotal $55.00\nTax $5.50\nTip $11.00\nTotal $71.50",
+        "notes": "Date corrected to current date"
+      },
+      "validation_errors": [
+        "Date is in the future",
+        "Subtotal does not match sum of line items",
+        "Total amount calculation is incorrect"
+      ],
+      "validation_warnings": [
+        "Confidence score is relatively low",
+        "Notes indicate a potential issue with the date"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 75,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future",
+            "severity": "CRITICAL",
+            "current_value": "2026-01-04",
+            "expected": "Date must not be after 2025-12-05"
+          },
+          {
+            "field": "subtotal",
+            "issue": "Subtotal does not match sum of line items",
+            "severity": "HIGH",
+            "current_value": 55.0,
+            "expected": "Sum of line items total (55.0) should match subtotal"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Total amount calculation is incorrect",
+            "severity": "CRITICAL",
+            "current_value": 71.5,
+            "expected": "Subtotal + tax_amount + tip_amount = total_amount (55.0 + 5.5 + 11.0 = 71.5)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is relatively low",
+            "recommendation": "Review extracted data for potential OCR errors"
+          },
+          {
+            "field": "notes",
+            "issue": "Notes indicate a potential issue with the date",
+            "recommendation": "Ensure date is corrected before further processing"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Restaurant XYZ",
+          "vendor_address": "100 Food St, Chicago IL 60601",
+          "date": "2025-12-05",
+          "time": "12:00",
+          "currency": "USD",
+          "subtotal": 55.0,
+          "tax_amount": 5.5,
+          "tip_amount": 11.0,
+          "total_amount": 71.5,
+          "payment_method": "credit",
+          "card_last_four": "7777",
+          "line_items": [
+            {
+              "description": "Lunch Special",
+              "quantity": 2,
+              "unit_price": 27.5,
+              "total": 55.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 85,
+          "raw_text_extracted": "Restaurant XYZ\n100 Food St Chicago\n2026-01-04 12:00\nLunch Special x2 $55.00\nSubtotal $55.00\nTax $5.50\nTip $11.00\nTotal $71.50",
+          "notes": "Date corrected to current date"
+        },
+        "corrections_made": [
+          {
+            "field": "date",
+            "original_value": "2026-01-04",
+            "corrected_value": "2025-12-05",
+            "reason": "Date was in the future; corrected to current date"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 3,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "Date was in the future and corrected to current date.",
+          "Confidence score is relatively low, suggesting potential OCR errors.",
+          "Subtotal and line items match correctly, but total amount calculation was verified and found accurate."
+        ]
+      },
+      "data_quality": {
+        "score": 75,
+        "summary": {
+          "total_errors": 3,
+          "critical_errors": 2,
+          "total_warnings": 2,
+          "fields_corrected": 1,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 7: Negative Amounts",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "tax_amount"
+    ],
+    "actual_error_fields": [
+      "tax_amount",
+      "total_amount",
+      "confidence_score",
+      "date"
+    ],
+    "errors": [
+      {
+        "field": "tax_amount",
+        "issue": "Tax amount is negative, which is invalid for a typical expense.",
+        "severity": "CRITICAL",
+        "current_value": -5.0,
+        "expected": "Tax amount should be a positive value or zero."
+      },
+      {
+        "field": "total_amount",
+        "issue": "Subtotal + tax_amount does not equal total_amount.",
+        "severity": "CRITICAL",
+        "current_value": 45.0,
+        "expected": "Subtotal + tax_amount + tip_amount should equal total_amount."
+      },
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is low, indicating potential OCR errors.",
+        "severity": "MEDIUM",
+        "current_value": 70,
+        "expected": "Confidence score should ideally be above 80 for reliable data."
+      },
+      {
+        "field": "date",
+        "issue": "Date is in the past but within a reasonable range.",
+        "severity": "LOW",
+        "current_value": "2024-12-01",
+        "expected": "Ensure the date is accurate and aligns with the receipt."
+      }
+    ],
+    "warnings": [
+      {
+        "field": "notes",
+        "issue": "Notes indicate a potential OCR misreading of a refund as a negative tax.",
+        "recommendation": "Review the raw text and confirm if this is a refund or an OCR error."
+      }
+    ],
+    "data_quality_score": 65,
+    "quality_summary": {
+      "total_errors": 4,
+      "critical_errors": 2,
+      "total_warnings": 1,
+      "fields_corrected": 2,
+      "data_completeness_score": 90,
+      "calculation_accuracy": "FAILED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Gas Station",
+        "vendor_address": "999 Highway 1, Los Angeles CA 90001",
+        "date": "2024-12-01",
+        "time": "08:30",
+        "currency": "USD",
+        "subtotal": 50.0,
+        "tax_amount": 0.0,
+        "tip_amount": null,
+        "total_amount": 50.0,
+        "payment_method": "credit",
+        "card_last_four": "3333",
+        "line_items": [
+          {
+            "description": "Gasoline",
+            "quantity": 12.5,
+            "unit_price": 4.0,
+            "total": 50.0
+          }
+        ],
+        "expense_category": "travel",
+        "confidence_score": 70,
+        "raw_text_extracted": "Gas Station\n999 Highway 1 LA\nGasoline 12.5 gal @ $4.00\nSubtotal $50.00\nTax -$5.00\nTotal $45.00",
+        "notes": "OCR may have misread refund as negative"
+      },
+      "validation_errors": [
+        "Tax amount is negative, which is invalid for a typical expense.",
+        "Subtotal + tax_amount does not equal total_amount.",
+        "Confidence score is low, indicating potential OCR errors.",
+        "Date is in the past but within a reasonable range."
+      ],
+      "validation_warnings": [
+        "Notes indicate a potential OCR misreading of a refund as a negative tax."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 65,
+        "validation_errors": [
+          {
+            "field": "tax_amount",
+            "issue": "Tax amount is negative, which is invalid for a typical expense.",
+            "severity": "CRITICAL",
+            "current_value": -5.0,
+            "expected": "Tax amount should be a positive value or zero."
+          },
+          {
+            "field": "total_amount",
+            "issue": "Subtotal + tax_amount does not equal total_amount.",
+            "severity": "CRITICAL",
+            "current_value": 45.0,
+            "expected": "Subtotal + tax_amount + tip_amount should equal total_amount."
+          },
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is low, indicating potential OCR errors.",
+            "severity": "MEDIUM",
+            "current_value": 70,
+            "expected": "Confidence score should ideally be above 80 for reliable data."
+          },
+          {
+            "field": "date",
+            "issue": "Date is in the past but within a reasonable range.",
+            "severity": "LOW",
+            "current_value": "2024-12-01",
+            "expected": "Ensure the date is accurate and aligns with the receipt."
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "notes",
+            "issue": "Notes indicate a potential OCR misreading of a refund as a negative tax.",
+            "recommendation": "Review the raw text and confirm if this is a refund or an OCR error."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Gas Station",
+          "vendor_address": "999 Highway 1, Los Angeles CA 90001",
+          "date": "2024-12-01",
+          "time": "08:30",
+          "currency": "USD",
+          "subtotal": 50.0,
+          "tax_amount": 0.0,
+          "tip_amount": null,
+          "total_amount": 50.0,
+          "payment_method": "credit",
+          "card_last_four": "3333",
+          "line_items": [
+            {
+              "description": "Gasoline",
+              "quantity": 12.5,
+              "unit_price": 4.0,
+              "total": 50.0
+            }
+          ],
+          "expense_category": "travel",
+          "confidence_score": 70,
+          "raw_text_extracted": "Gas Station\n999 Highway 1 LA\nGasoline 12.5 gal @ $4.00\nSubtotal $50.00\nTax -$5.00\nTotal $45.00",
+          "notes": "OCR may have misread refund as negative"
+        },
+        "corrections_made": [
+          {
+            "field": "tax_amount",
+            "original_value": -5.0,
+            "corrected_value": 0.0,
+            "reason": "Tax amounts cannot be negative; likely an OCR error or misinterpretation of a refund."
+          },
+          {
+            "field": "total_amount",
+            "original_value": 45.0,
+            "corrected_value": 50.0,
+            "reason": "Corrected to match the sum of subtotal and tax_amount."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        },
+        "data_quality_notes": [
+          "The tax amount being negative is highly unusual and likely an OCR error.",
+          "The total amount was corrected to match the subtotal and tax amount.",
+          "The confidence score is low, suggesting potential OCR inaccuracies.",
+          "The date is valid and not in the future, but it should be verified against the receipt."
+        ]
+      },
+      "data_quality": {
+        "score": 65,
+        "summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 1,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 8: Invalid Card Number",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "card_last_four"
+    ],
+    "actual_error_fields": [
+      "date",
+      "card_last_four",
+      "subtotal",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future relative to the current validation date.",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-03",
+        "expected": "A date on or before 2025-12-05"
+      },
+      {
+        "field": "card_last_four",
+        "issue": "Card last four digits are not exactly 4 digits.",
+        "severity": "CRITICAL",
+        "current_value": "12",
+        "expected": "A 4-digit value"
+      },
+      {
+        "field": "subtotal",
+        "issue": "Subtotal does not match the sum of line item totals.",
+        "severity": "HIGH",
+        "current_value": 87.5,
+        "expected": "Sum of line item totals (87.50)"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Total amount does not match the sum of subtotal, tax, and tip.",
+        "severity": "CRITICAL",
+        "current_value": 95.38,
+        "expected": "95.38 (calculated as subtotal + tax_amount + tip_amount)"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is relatively low for extracted data.",
+        "recommendation": "Review extracted data for potential OCR errors."
+      },
+      {
+        "field": "expense_category",
+        "issue": "Expense category 'meals' may not align with vendor type 'Grocery Store'.",
+        "recommendation": "Consider reviewing the category for accuracy."
+      }
+    ],
+    "data_quality_score": 75,
+    "quality_summary": {
+      "total_errors": 4,
+      "critical_errors": 3,
+      "total_warnings": 2,
+      "fields_corrected": 2,
+      "data_completeness_score": 90,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Grocery Store",
+        "vendor_address": "200 Main St, Denver CO 80201",
+        "date": "2024-12-03",
+        "time": "17:00",
+        "currency": "USD",
+        "subtotal": 87.5,
+        "tax_amount": 7.88,
+        "tip_amount": 0.0,
+        "total_amount": 95.38,
+        "payment_method": "credit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Groceries",
+            "quantity": 1,
+            "unit_price": 87.5,
+            "total": 87.5
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 80,
+        "raw_text_extracted": "Grocery Store\n200 Main St Denver\nGroceries $87.50\nSubtotal $87.50\nTax $7.88\nTotal $95.38\nCard **12",
+        "notes": "Card number partially readable"
+      },
+      "validation_errors": [
+        "Date is in the future relative to the current validation date.",
+        "Card last four digits are not exactly 4 digits.",
+        "Subtotal does not match the sum of line item totals.",
+        "Total amount does not match the sum of subtotal, tax, and tip."
+      ],
+      "validation_warnings": [
+        "Confidence score is relatively low for extracted data.",
+        "Expense category 'meals' may not align with vendor type 'Grocery Store'."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 75,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future relative to the current validation date.",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-03",
+            "expected": "A date on or before 2025-12-05"
+          },
+          {
+            "field": "card_last_four",
+            "issue": "Card last four digits are not exactly 4 digits.",
+            "severity": "CRITICAL",
+            "current_value": "12",
+            "expected": "A 4-digit value"
+          },
+          {
+            "field": "subtotal",
+            "issue": "Subtotal does not match the sum of line item totals.",
+            "severity": "HIGH",
+            "current_value": 87.5,
+            "expected": "Sum of line item totals (87.50)"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Total amount does not match the sum of subtotal, tax, and tip.",
+            "severity": "CRITICAL",
+            "current_value": 95.38,
+            "expected": "95.38 (calculated as subtotal + tax_amount + tip_amount)"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is relatively low for extracted data.",
+            "recommendation": "Review extracted data for potential OCR errors."
+          },
+          {
+            "field": "expense_category",
+            "issue": "Expense category 'meals' may not align with vendor type 'Grocery Store'.",
+            "recommendation": "Consider reviewing the category for accuracy."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Grocery Store",
+          "vendor_address": "200 Main St, Denver CO 80201",
+          "date": "2024-12-03",
+          "time": "17:00",
+          "currency": "USD",
+          "subtotal": 87.5,
+          "tax_amount": 7.88,
+          "tip_amount": 0.0,
+          "total_amount": 95.38,
+          "payment_method": "credit",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Groceries",
+              "quantity": 1,
+              "unit_price": 87.5,
+              "total": 87.5
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "Grocery Store\n200 Main St Denver\nGroceries $87.50\nSubtotal $87.50\nTax $7.88\nTotal $95.38\nCard **12",
+          "notes": "Card number partially readable"
+        },
+        "corrections_made": [
+          {
+            "field": "card_last_four",
+            "original_value": "12",
+            "corrected_value": null,
+            "reason": "Card last four digits are incomplete and cannot be validated."
+          },
+          {
+            "field": "tip_amount",
+            "original_value": null,
+            "corrected_value": 0.0,
+            "reason": "Tip amount is null but should default to 0.0 for accurate calculations."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 4,
+          "critical_errors": 3,
+          "total_warnings": 2,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "The date is in the future relative to the validation date, which is not valid.",
+          "Card last four digits are incomplete, likely due to OCR error or partial data extraction.",
+          "Confidence score is relatively low, indicating potential OCR issues.",
+          "Expense category 'meals' may not align with the vendor type 'Grocery Store'.",
+          "Subtotal and total amounts are consistent with raw text, but card details are incomplete."
+        ]
+      },
+      "data_quality": {
+        "score": 75,
+        "summary": {
+          "total_errors": 4,
+          "critical_errors": 3,
+          "total_warnings": 2,
+          "fields_corrected": 2,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 9: Missing Vendor Name",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "vendor_name"
+    ],
+    "actual_error_fields": [
+      "vendor_name",
+      "date",
+      "confidence_score",
+      "line_items"
+    ],
+    "errors": [
+      {
+        "field": "vendor_name",
+        "issue": "Critical field is missing",
+        "severity": "CRITICAL",
+        "current_value": null,
+        "expected": "Vendor name must be provided or extracted from raw text"
+      },
+      {
+        "field": "date",
+        "issue": "Date is in the future",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-01",
+        "expected": "Date must not be in the future (after 2025-12-05)"
+      },
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is very low, indicating poor data quality",
+        "severity": "HIGH",
+        "current_value": 45,
+        "expected": "Confidence score should ideally be above 70 for reliable data"
+      },
+      {
+        "field": "line_items",
+        "issue": "Line items are missing, but subtotal is provided",
+        "severity": "MEDIUM",
+        "current_value": [],
+        "expected": "Line items should be extracted if subtotal is present"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "vendor_address",
+        "issue": "Vendor address is marked as 'Unknown'",
+        "recommendation": "Verify if vendor address can be extracted or clarified"
+      },
+      {
+        "field": "time",
+        "issue": "Time is missing",
+        "recommendation": "Consider extracting time if available in raw text"
+      },
+      {
+        "field": "tip_amount",
+        "issue": "Tip amount is missing",
+        "recommendation": "Verify if tip amount is applicable or should be explicitly marked as 0"
+      }
+    ],
+    "data_quality_score": 55,
+    "quality_summary": {
+      "total_errors": 4,
+      "critical_errors": 2,
+      "total_warnings": 3,
+      "fields_corrected": 1,
+      "data_completeness_score": 60,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": null,
+        "vendor_address": "Unknown",
+        "date": null,
+        "time": null,
+        "currency": "USD",
+        "subtotal": 25.0,
+        "tax_amount": 2.25,
+        "tip_amount": null,
+        "total_amount": 27.25,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [],
+        "expense_category": "other",
+        "confidence_score": 45,
+        "raw_text_extracted": "[FADED RECEIPT]\n...some items...\nSubtotal $25.00\nTax $2.25\nTotal $27.25\nCash",
+        "notes": "Receipt heavily faded, vendor info unreadable"
+      },
+      "validation_errors": [
+        "Critical field is missing",
+        "Date is in the future",
+        "Confidence score is very low, indicating poor data quality",
+        "Line items are missing, but subtotal is provided"
+      ],
+      "validation_warnings": [
+        "Vendor address is marked as 'Unknown'",
+        "Time is missing",
+        "Tip amount is missing"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 55,
+        "validation_errors": [
+          {
+            "field": "vendor_name",
+            "issue": "Critical field is missing",
+            "severity": "CRITICAL",
+            "current_value": null,
+            "expected": "Vendor name must be provided or extracted from raw text"
+          },
+          {
+            "field": "date",
+            "issue": "Date is in the future",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-01",
+            "expected": "Date must not be in the future (after 2025-12-05)"
+          },
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is very low, indicating poor data quality",
+            "severity": "HIGH",
+            "current_value": 45,
+            "expected": "Confidence score should ideally be above 70 for reliable data"
+          },
+          {
+            "field": "line_items",
+            "issue": "Line items are missing, but subtotal is provided",
+            "severity": "MEDIUM",
+            "current_value": [],
+            "expected": "Line items should be extracted if subtotal is present"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "vendor_address",
+            "issue": "Vendor address is marked as 'Unknown'",
+            "recommendation": "Verify if vendor address can be extracted or clarified"
+          },
+          {
+            "field": "time",
+            "issue": "Time is missing",
+            "recommendation": "Consider extracting time if available in raw text"
+          },
+          {
+            "field": "tip_amount",
+            "issue": "Tip amount is missing",
+            "recommendation": "Verify if tip amount is applicable or should be explicitly marked as 0"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": null,
+          "vendor_address": "Unknown",
+          "date": null,
+          "time": null,
+          "currency": "USD",
+          "subtotal": 25.0,
+          "tax_amount": 2.25,
+          "tip_amount": null,
+          "total_amount": 27.25,
+          "payment_method": "cash",
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "other",
+          "confidence_score": 45,
+          "raw_text_extracted": "[FADED RECEIPT]\n...some items...\nSubtotal $25.00\nTax $2.25\nTotal $27.25\nCash",
+          "notes": "Receipt heavily faded, vendor info unreadable"
+        },
+        "corrections_made": [
+          {
+            "field": "date",
+            "original_value": "2024-12-01",
+            "corrected_value": null,
+            "reason": "Date is in the future and invalid for the current validation context"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 3,
+          "fields_corrected": 1,
+          "data_completeness_score": 60,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "The vendor name and address are missing or unreadable, which significantly impacts data quality.",
+          "The confidence score is low, indicating potential OCR errors or incomplete extraction.",
+          "The date is in the future, which is invalid for the current validation context.",
+          "Line items are missing, which reduces the ability to verify the subtotal and total amounts."
+        ]
+      },
+      "data_quality": {
+        "score": 55,
+        "summary": {
+          "total_errors": 4,
+          "critical_errors": 2,
+          "total_warnings": 3,
+          "fields_corrected": 1,
+          "data_completeness_score": 60,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 10: Low Confidence Score",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "confidence_score"
+    ],
+    "actual_error_fields": [
+      "vendor_name",
+      "date",
+      "subtotal",
+      "tax_amount",
+      "tip_amount",
+      "confidence_score"
+    ],
+    "errors": [
+      {
+        "field": "vendor_name",
+        "issue": "Vendor name appears incomplete or unclear based on raw text.",
+        "severity": "MEDIUM",
+        "current_value": "Caf\u00c3\u00a9 unclear",
+        "expected": "Vendor name should match raw text or be corrected based on evidence."
+      },
+      {
+        "field": "date",
+        "issue": "Date is in the past but appears valid.",
+        "severity": "LOW",
+        "current_value": "2024-11-25",
+        "expected": "Date should not be in the future or excessively old."
+      },
+      {
+        "field": "subtotal",
+        "issue": "Subtotal does not align with total_amount based on missing tax/tip fields.",
+        "severity": "CRITICAL",
+        "current_value": 12.0,
+        "expected": "Subtotal + tax_amount + tip_amount should equal total_amount."
+      },
+      {
+        "field": "tax_amount",
+        "issue": "Tax amount is missing but may be relevant based on total_amount discrepancy.",
+        "severity": "HIGH",
+        "current_value": null,
+        "expected": "Tax amount should be provided if applicable."
+      },
+      {
+        "field": "tip_amount",
+        "issue": "Tip amount is missing but may be relevant based on total_amount discrepancy.",
+        "severity": "HIGH",
+        "current_value": null,
+        "expected": "Tip amount should be provided if applicable."
+      },
+      {
+        "field": "confidence_score",
+        "issue": "Confidence score is very low, indicating poor data extraction quality.",
+        "severity": "CRITICAL",
+        "current_value": 35,
+        "expected": "Confidence score should ideally be above 70 for reliable data."
+      }
+    ],
+    "warnings": [
+      {
+        "field": "vendor_address",
+        "issue": "Vendor address is missing.",
+        "recommendation": "Consider adding vendor address if available from the receipt or other sources."
+      },
+      {
+        "field": "payment_method",
+        "issue": "Payment method is missing.",
+        "recommendation": "Consider adding payment method if available from the receipt or other sources."
+      },
+      {
+        "field": "card_last_four",
+        "issue": "Card last four digits are missing.",
+        "recommendation": "Consider adding card last four digits if available from the receipt or other sources."
+      },
+      {
+        "field": "line_items",
+        "issue": "Line items are empty.",
+        "recommendation": "Consider adding line items if available from the receipt or other sources."
+      }
+    ],
+    "data_quality_score": 45,
+    "quality_summary": {
+      "total_errors": 6,
+      "critical_errors": 2,
+      "total_warnings": 4,
+      "fields_corrected": 3,
+      "data_completeness_score": 60,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Caf\u00c3\u00a9",
+        "vendor_address": null,
+        "date": "2024-11-25",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 12.0,
+        "tax_amount": 0.0,
+        "tip_amount": 2.5,
+        "total_amount": 14.5,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [],
+        "expense_category": "meals",
+        "confidence_score": 35,
+        "raw_text_extracted": "...f\u00c3\u00a9...\n...coffee... $12...\n...Total... $14.50...",
+        "notes": "Receipt water damaged, most text unreadable"
+      },
+      "validation_errors": [
+        "Vendor name appears incomplete or unclear based on raw text.",
+        "Date is in the past but appears valid.",
+        "Subtotal does not align with total_amount based on missing tax/tip fields.",
+        "Tax amount is missing but may be relevant based on total_amount discrepancy.",
+        "Tip amount is missing but may be relevant based on total_amount discrepancy.",
+        "Confidence score is very low, indicating poor data extraction quality."
+      ],
+      "validation_warnings": [
+        "Vendor address is missing.",
+        "Payment method is missing.",
+        "Card last four digits are missing.",
+        "Line items are empty."
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 45,
+        "validation_errors": [
+          {
+            "field": "vendor_name",
+            "issue": "Vendor name appears incomplete or unclear based on raw text.",
+            "severity": "MEDIUM",
+            "current_value": "Caf\u00c3\u00a9 unclear",
+            "expected": "Vendor name should match raw text or be corrected based on evidence."
+          },
+          {
+            "field": "date",
+            "issue": "Date is in the past but appears valid.",
+            "severity": "LOW",
+            "current_value": "2024-11-25",
+            "expected": "Date should not be in the future or excessively old."
+          },
+          {
+            "field": "subtotal",
+            "issue": "Subtotal does not align with total_amount based on missing tax/tip fields.",
+            "severity": "CRITICAL",
+            "current_value": 12.0,
+            "expected": "Subtotal + tax_amount + tip_amount should equal total_amount."
+          },
+          {
+            "field": "tax_amount",
+            "issue": "Tax amount is missing but may be relevant based on total_amount discrepancy.",
+            "severity": "HIGH",
+            "current_value": null,
+            "expected": "Tax amount should be provided if applicable."
+          },
+          {
+            "field": "tip_amount",
+            "issue": "Tip amount is missing but may be relevant based on total_amount discrepancy.",
+            "severity": "HIGH",
+            "current_value": null,
+            "expected": "Tip amount should be provided if applicable."
+          },
+          {
+            "field": "confidence_score",
+            "issue": "Confidence score is very low, indicating poor data extraction quality.",
+            "severity": "CRITICAL",
+            "current_value": 35,
+            "expected": "Confidence score should ideally be above 70 for reliable data."
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "vendor_address",
+            "issue": "Vendor address is missing.",
+            "recommendation": "Consider adding vendor address if available from the receipt or other sources."
+          },
+          {
+            "field": "payment_method",
+            "issue": "Payment method is missing.",
+            "recommendation": "Consider adding payment method if available from the receipt or other sources."
+          },
+          {
+            "field": "card_last_four",
+            "issue": "Card last four digits are missing.",
+            "recommendation": "Consider adding card last four digits if available from the receipt or other sources."
+          },
+          {
+            "field": "line_items",
+            "issue": "Line items are empty.",
+            "recommendation": "Consider adding line items if available from the receipt or other sources."
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Caf\u00c3\u00a9",
+          "vendor_address": null,
+          "date": "2024-11-25",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 12.0,
+          "tax_amount": 0.0,
+          "tip_amount": 2.5,
+          "total_amount": 14.5,
+          "payment_method": null,
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "meals",
+          "confidence_score": 35,
+          "raw_text_extracted": "...f\u00c3\u00a9...\n...coffee... $12...\n...Total... $14.50...",
+          "notes": "Receipt water damaged, most text unreadable"
+        },
+        "corrections_made": [
+          {
+            "field": "vendor_name",
+            "original_value": "Caf\u00c3\u00a9 unclear",
+            "corrected_value": "Caf\u00c3\u00a9",
+            "reason": "Raw text suggests vendor name is 'Caf\u00c3\u00a9' without 'unclear'."
+          },
+          {
+            "field": "tax_amount",
+            "original_value": null,
+            "corrected_value": 0.0,
+            "reason": "Assumed no tax based on subtotal and total_amount discrepancy."
+          },
+          {
+            "field": "tip_amount",
+            "original_value": null,
+            "corrected_value": 2.5,
+            "reason": "Corrected tip amount to align subtotal and total_amount."
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 6,
+          "critical_errors": 2,
+          "total_warnings": 4,
+          "fields_corrected": 3,
+          "data_completeness_score": 60,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "Confidence score is very low, indicating poor OCR extraction quality.",
+          "Vendor name correction was made based on raw text evidence.",
+          "Tax and tip amounts were inferred to align subtotal and total_amount.",
+          "Receipt appears water damaged, which may have impacted data extraction accuracy."
+        ]
+      },
+      "data_quality": {
+        "score": 45,
+        "summary": {
+          "total_errors": 6,
+          "critical_errors": 2,
+          "total_warnings": 4,
+          "fields_corrected": 3,
+          "data_completeness_score": 60,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 11: Invalid Currency Code",
+    "passed": true,
+    "status_match": true,
+    "field_match": true,
+    "expected_status": "FAIL",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [
+      "currency"
+    ],
+    "actual_error_fields": [
+      "currency",
+      "date",
+      "confidence_score"
+    ],
+    "errors": [
+      {
+        "field": "currency",
+        "issue": "Invalid currency code",
+        "severity": "CRITICAL",
+        "current_value": "XYZ",
+        "expected": "Valid ISO currency code (e.g., USD, EUR, GBP)"
+      },
+      {
+        "field": "date",
+        "issue": "Date is in the past but within a reasonable range",
+        "severity": "LOW",
+        "current_value": "2024-12-02",
+        "expected": "A date closer to the current date (2025-12-05)"
+      },
+      {
+        "field": "confidence_score",
+        "issue": "Low confidence score for extracted data",
+        "severity": "MEDIUM",
+        "current_value": 80,
+        "expected": "Confidence score closer to 90 or above for high-quality data"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "notes",
+        "issue": "Currency symbol unclear in raw text",
+        "recommendation": "Verify the correct currency based on the receipt or additional context"
+      }
+    ],
+    "data_quality_score": 75,
+    "quality_summary": {
+      "total_errors": 3,
+      "critical_errors": 1,
+      "total_warnings": 1,
+      "fields_corrected": 1,
+      "data_completeness_score": 95,
+      "calculation_accuracy": "VERIFIED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "International Store",
+        "vendor_address": "123 Global St, Boston MA 02101",
+        "date": "2024-12-02",
+        "time": "14:00",
+        "currency": "USD",
+        "subtotal": 100.0,
+        "tax_amount": 10.0,
+        "tip_amount": null,
+        "total_amount": 110.0,
+        "payment_method": "credit",
+        "card_last_four": "6666",
+        "line_items": [
+          {
+            "description": "Product A",
+            "quantity": 1,
+            "unit_price": 100.0,
+            "total": 100.0
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 80,
+        "raw_text_extracted": "International Store\n123 Global St Boston\nProduct A 100.00 XYZ\nSubtotal 100.00\nTax 10.00\nTotal 110.00",
+        "notes": "Currency symbol unclear"
+      },
+      "validation_errors": [
+        "Invalid currency code",
+        "Date is in the past but within a reasonable range",
+        "Low confidence score for extracted data"
+      ],
+      "validation_warnings": [
+        "Currency symbol unclear in raw text"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 75,
+        "validation_errors": [
+          {
+            "field": "currency",
+            "issue": "Invalid currency code",
+            "severity": "CRITICAL",
+            "current_value": "XYZ",
+            "expected": "Valid ISO currency code (e.g., USD, EUR, GBP)"
+          },
+          {
+            "field": "date",
+            "issue": "Date is in the past but within a reasonable range",
+            "severity": "LOW",
+            "current_value": "2024-12-02",
+            "expected": "A date closer to the current date (2025-12-05)"
+          },
+          {
+            "field": "confidence_score",
+            "issue": "Low confidence score for extracted data",
+            "severity": "MEDIUM",
+            "current_value": 80,
+            "expected": "Confidence score closer to 90 or above for high-quality data"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "notes",
+            "issue": "Currency symbol unclear in raw text",
+            "recommendation": "Verify the correct currency based on the receipt or additional context"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "International Store",
+          "vendor_address": "123 Global St, Boston MA 02101",
+          "date": "2024-12-02",
+          "time": "14:00",
+          "currency": "USD",
+          "subtotal": 100.0,
+          "tax_amount": 10.0,
+          "tip_amount": null,
+          "total_amount": 110.0,
+          "payment_method": "credit",
+          "card_last_four": "6666",
+          "line_items": [
+            {
+              "description": "Product A",
+              "quantity": 1,
+              "unit_price": 100.0,
+              "total": 100.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 80,
+          "raw_text_extracted": "International Store\n123 Global St Boston\nProduct A 100.00 XYZ\nSubtotal 100.00\nTax 10.00\nTotal 110.00",
+          "notes": "Currency symbol unclear"
+        },
+        "corrections_made": [
+          {
+            "field": "currency",
+            "original_value": "XYZ",
+            "corrected_value": "USD",
+            "reason": "XYZ is not a valid ISO currency code; USD is a reasonable default based on the context"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 3,
+          "critical_errors": 1,
+          "total_warnings": 1,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "VERIFIED"
+        },
+        "data_quality_notes": [
+          "The currency code 'XYZ' is invalid and was corrected to 'USD' based on reasonable assumptions.",
+          "The confidence score of 80 indicates potential OCR errors or low-quality extraction.",
+          "The date is valid but is from the past, which is acceptable but worth noting.",
+          "The raw text mentions 'XYZ' as the currency, which is not a valid ISO code. This may be an OCR error or a non-standard currency."
+        ]
+      },
+      "data_quality": {
+        "score": 75,
+        "summary": {
+          "total_errors": 3,
+          "critical_errors": 1,
+          "total_warnings": 1,
+          "fields_corrected": 1,
+          "data_completeness_score": 95,
+          "calculation_accuracy": "VERIFIED"
+        }
+      }
+    }
+  },
+  {
+    "test_name": "Test 12: Large Expense Amount",
+    "passed": false,
+    "status_match": false,
+    "field_match": true,
+    "expected_status": "PASS",
+    "actual_status": "FAIL",
+    "actual_status_raw": "needs_correction",
+    "expected_error_fields": [],
+    "actual_error_fields": [
+      "date",
+      "subtotal",
+      "total_amount"
+    ],
+    "errors": [
+      {
+        "field": "date",
+        "issue": "Date is in the future",
+        "severity": "CRITICAL",
+        "current_value": "2024-12-01",
+        "expected": "Date must not be after 2025-12-05"
+      },
+      {
+        "field": "subtotal",
+        "issue": "Subtotal does not match sum of line items",
+        "severity": "CRITICAL",
+        "current_value": 45000.0,
+        "expected": "Sum of line items totals should match subtotal"
+      },
+      {
+        "field": "total_amount",
+        "issue": "Total amount calculation failed",
+        "severity": "CRITICAL",
+        "current_value": 49050.0,
+        "expected": "subtotal + tax_amount + tip_amount should equal total_amount"
+      }
+    ],
+    "warnings": [
+      {
+        "field": "vendor_address",
+        "issue": "Address formatting may be inconsistent",
+        "recommendation": "Verify address formatting against vendor standards"
+      },
+      {
+        "field": "payment_method",
+        "issue": "Payment method is 'check', but card_last_four is null",
+        "recommendation": "Ensure payment method details are complete"
+      }
+    ],
+    "data_quality_score": 85,
+    "quality_summary": {
+      "total_errors": 3,
+      "critical_errors": 3,
+      "total_warnings": 2,
+      "fields_corrected": 0,
+      "data_completeness_score": 90,
+      "calculation_accuracy": "FAILED"
+    },
+    "full_result": {
+      "success": false,
+      "status": "needs_correction",
+      "validated_data": {
+        "vendor_name": "Electronics Wholesale",
+        "vendor_address": "500 Commerce Dr, Miami FL 33101",
+        "date": "2024-12-01",
+        "time": "11:30",
+        "currency": "USD",
+        "subtotal": 45000.0,
+        "tax_amount": 4050.0,
+        "tip_amount": null,
+        "total_amount": 49050.0,
+        "payment_method": "check",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Laptops (Bulk Order)",
+            "quantity": 50,
+            "unit_price": 900.0,
+            "total": 45000.0
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 95,
+        "raw_text_extracted": "Electronics Wholesale\n500 Commerce Dr Miami\nLaptops (Bulk) 50 @ $900 = $45,000.00\nSubtotal $45,000.00\nTax $4,050.00\nTotal $49,050.00\nCheck Payment",
+        "notes": "Large bulk purchase"
+      },
+      "validation_errors": [
+        "Date is in the future",
+        "Subtotal does not match sum of line items",
+        "Total amount calculation failed"
+      ],
+      "validation_warnings": [
+        "Address formatting may be inconsistent",
+        "Payment method is 'check', but card_last_four is null"
+      ],
+      "validation_details": {
+        "validation_status": "needs_correction",
+        "is_valid": false,
+        "data_quality_score": 85,
+        "validation_errors": [
+          {
+            "field": "date",
+            "issue": "Date is in the future",
+            "severity": "CRITICAL",
+            "current_value": "2024-12-01",
+            "expected": "Date must not be after 2025-12-05"
+          },
+          {
+            "field": "subtotal",
+            "issue": "Subtotal does not match sum of line items",
+            "severity": "CRITICAL",
+            "current_value": 45000.0,
+            "expected": "Sum of line items totals should match subtotal"
+          },
+          {
+            "field": "total_amount",
+            "issue": "Total amount calculation failed",
+            "severity": "CRITICAL",
+            "current_value": 49050.0,
+            "expected": "subtotal + tax_amount + tip_amount should equal total_amount"
+          }
+        ],
+        "validation_warnings": [
+          {
+            "field": "vendor_address",
+            "issue": "Address formatting may be inconsistent",
+            "recommendation": "Verify address formatting against vendor standards"
+          },
+          {
+            "field": "payment_method",
+            "issue": "Payment method is 'check', but card_last_four is null",
+            "recommendation": "Ensure payment method details are complete"
+          }
+        ],
+        "corrected_data": {
+          "vendor_name": "Electronics Wholesale",
+          "vendor_address": "500 Commerce Dr, Miami FL 33101",
+          "date": "2024-12-01",
+          "time": "11:30",
+          "currency": "USD",
+          "subtotal": 45000.0,
+          "tax_amount": 4050.0,
+          "tip_amount": null,
+          "total_amount": 49050.0,
+          "payment_method": "check",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Laptops (Bulk Order)",
+              "quantity": 50,
+              "unit_price": 900.0,
+              "total": 45000.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 95,
+          "raw_text_extracted": "Electronics Wholesale\n500 Commerce Dr Miami\nLaptops (Bulk) 50 @ $900 = $45,000.00\nSubtotal $45,000.00\nTax $4,050.00\nTotal $49,050.00\nCheck Payment",
+          "notes": "Large bulk purchase"
+        },
+        "corrections_made": [
+          {
+            "field": "date",
+            "original_value": "2024-12-01",
+            "corrected_value": "2024-12-01",
+            "reason": "Date is in the future but cannot be corrected without user input"
+          },
+          {
+            "field": "subtotal",
+            "original_value": 45000.0,
+            "corrected_value": 45000.0,
+            "reason": "Subtotal matches line items but calculation discrepancy flagged"
+          },
+          {
+            "field": "total_amount",
+            "original_value": 49050.0,
+            "corrected_value": 49050.0,
+            "reason": "Total amount calculation discrepancy flagged but cannot be corrected without user input"
+          }
+        ],
+        "validation_summary": {
+          "total_errors": 3,
+          "critical_errors": 3,
+          "total_warnings": 2,
+          "fields_corrected": 0,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        },
+        "data_quality_notes": [
+          "Date is in the future, which violates validation rules.",
+          "Subtotal and total amount calculations failed verification.",
+          "Vendor address formatting appears consistent but should be reviewed for accuracy.",
+          "Confidence score of 95 suggests high OCR accuracy, but manual review is recommended for flagged fields."
+        ]
+      },
+      "data_quality": {
+        "score": 85,
+        "summary": {
+          "total_errors": 3,
+          "critical_errors": 3,
+          "total_warnings": 2,
+          "fields_corrected": 0,
+          "data_completeness_score": 90,
+          "calculation_accuracy": "FAILED"
+        }
+      }
+    }
+  }
+]

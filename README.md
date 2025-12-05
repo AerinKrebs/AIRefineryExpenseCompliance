@@ -23,5 +23,10 @@ streamlit run expense_compliance_app.py
 * ```create_air_project.py```:  creates a new project or version of a project in AI Refinery (needs to be run when changes are made to config or agents(?)).
 * ```expense_compliance_app.py```:  contains Streamlit UI for the project.
 
+## Testing For Devs
+* Image Agent : move test_image_agent.py to the root and one of the test files invoice.png or receipt.jpg. Run 'python test_local_receipt.py receipt.jpg'
+
+* Validation Agent :  move test_validation_agent.py to the root and run 'python test_validation_agent.py'
+
 ## Contributors
-* xxx MM/dd/YYY
+* xxx MM/dd/YYYY
