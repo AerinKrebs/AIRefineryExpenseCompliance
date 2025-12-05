@@ -1,110 +1,55 @@
 {
   "entries": [
     {
-      "timestamp": "2025-12-03T10:04:44.214480",
-      "agent": "Image Understanding Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "vendor_name": "Craigs’ Landscaping",
-        "vendor_address": "123 Sierra Dr, Mountain View 94039",
-        "date": "2020-08-01",
-        "time": null,
-        "currency": "USD",
-        "subtotal": 650.0,
-        "tax_amount": 55.25,
-        "tip_amount": null,
-        "total_amount": 640.25,
-        "payment_method": null,
-        "card_last_four": null,
-        "line_items": [
-          {
-            "description": "Stone Work",
-            "quantity": 3.4,
-            "unit_price": 125.0,
-            "total": 425.0
-          },
-          {
-            "description": "Mulching, weeding, planting",
-            "quantity": 3,
-            "unit_price": 75.0,
-            "total": 225.0
-          }
-        ],
-        "expense_category": "supplies",
-        "confidence_score": 95,
-        "raw_text_extracted": "Invoice\nCraigs’ Landscaping\n123 Sierra Dr.\nMountain View 94039\n123-456-7890\ncraigslandscaping@email.com\ncraigslandscaping.com\nBill To\nSmith Enterprises\n456 Sierra Dr\nMountain View 94039\nInvoice Details\nInvoice # 12345\nTerms: Net 30\nInvoice Date: 8/1/2020\nTerms Due: 8/30/2020\nProducts/Services Qty/Hrs Rate Amount\nStone Work 3.4 $125 $425\nMulching, weeding, planting 3 $75 $225\nSubtotal $650.00\nDiscount -$65.00\nTax 8.5% $55.25\nTotal $640.25",
-        "notes": "Discount applied. No payment method or card details mentioned. Text is clear and legible."
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-03T10:05:52.751213",
-      "agent": "Image Understanding Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "vendor_name": "Craigs’ Landscaping",
-        "vendor_address": "123 Sierra Dr, Mountain View 94039",
-        "date": "2020-08-01",
-        "time": null,
-        "currency": "USD",
-        "subtotal": 650.0,
-        "tax_amount": 55.25,
-        "tip_amount": null,
-        "total_amount": 640.25,
-        "payment_method": null,
-        "card_last_four": null,
-        "line_items": [
-          {
-            "description": "Stone Work",
-            "quantity": 3.4,
-            "unit_price": 125.0,
-            "total": 425.0
-          },
-          {
-            "description": "Mulching, weeding, planting",
-            "quantity": 3,
-            "unit_price": 75.0,
-            "total": 225.0
-          }
-        ],
-        "expense_category": "supplies",
-        "confidence_score": 95,
-        "raw_text_extracted": "Invoice\nCraigs’ Landscaping\n123 Sierra Dr.\nMountain View 94039\n123-456-7890\ncraigslandscaping@email.com\ncraigslandscaping.com\nBill To\nSmith Enterprises\n456 Sierra Dr\nMountain View 94039\nInvoice Details\nInvoice # 12345\nTerms: Net 30\nInvoice Date: 8/1/2020\nTerms Due: 8/30/2020\nProducts/Services Qty/Hrs Rate Amount\nStone Work 3.4 $125 $425\nMulching, weeding, planting 3 $75 $225\nSubtotal $650.00\nDiscount -$65.00\nTax 8.5% $55.25\nTotal $640.25",
-        "notes": "Discount applied. No payment method information provided."
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:35:18.633544",
+      "timestamp": "2025-12-05T09:33:41.929404",
       "agent": "Validation Agent",
-      "user_id": "unknown",
+      "user_id": "test_user",
       "success": true,
       "data": {
         "success": true,
-        "status": "requires_higher_approval",
-        "total_amount": 300.0,
-        "category": "lodging",
+        "status": "needs_correction",
+        "total_amount": 19.9,
+        "category": "meals",
         "issues": [
-          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
+          "Missing receipt(s) for claimed amount"
         ],
         "flags": [
-          "lodging_limit_exceeded"
+          "missing_receipt"
         ],
         "suggested_actions": [
-          "Provide justification or adjust lodging to policy-compliant rate"
+          "Attach receipt image(s) before submission"
         ],
         "auto_approved": false,
         "raw_expense": {
-          "vendor_name": "Hotel Simple",
-          "date": "2025-12-01",
-          "total_amount": 300,
-          "expense_category": "lodging"
+          "vendor_name": "Starbucks Coffee",
+          "vendor_address": "123 Main St, Seattle WA 98101",
+          "date": "2024-12-01",
+          "time": "14:30",
+          "currency": "USD",
+          "subtotal": 15.5,
+          "tax_amount": 1.4,
+          "tip_amount": 3.0,
+          "total_amount": 19.9,
+          "payment_method": "credit",
+          "card_last_four": "4242",
+          "line_items": [
+            {
+              "description": "Grande Latte",
+              "quantity": 2,
+              "unit_price": 5.75,
+              "total": 11.5
+            },
+            {
+              "description": "Blueberry Muffin",
+              "quantity": 1,
+              "unit_price": 4.0,
+              "total": 4.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+          "notes": "Clear receipt, all fields legible"
         }
       },
       "error": null,
@@ -112,17 +57,16 @@
       "metadata": {}
     },
     {
-      "timestamp": "2025-12-04T10:35:18.936736",
+      "timestamp": "2025-12-05T09:33:41.930862",
       "agent": "Validation Agent",
-      "user_id": "unknown",
+      "user_id": "test_user",
       "success": true,
       "data": {
         "success": true,
         "status": "needs_correction",
         "total_amount": null,
-        "category": "meals",
+        "category": "supplies",
         "issues": [
-          "Missing required fields: date",
           "Incomplete reporting: date or total amount missing or unparsed"
         ],
         "flags": [
@@ -133,8 +77,35 @@
         ],
         "auto_approved": false,
         "raw_expense": {
-          "vendor_name": "Vendor X",
-          "expense_category": "meals"
+          "vendor_name": "Bob's Hardware",
+          "vendor_address": "456 Oak Ave, Portland OR 97201",
+          "date": "2024-11-28",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 45.99,
+          "tax_amount": 4.14,
+          "tip_amount": null,
+          "total_amount": null,
+          "payment_method": "debit",
+          "card_last_four": "8765",
+          "line_items": [
+            {
+              "description": "Paint Roller Set",
+              "quantity": 1,
+              "unit_price": 25.99,
+              "total": 25.99
+            },
+            {
+              "description": "Masking Tape",
+              "quantity": 2,
+              "unit_price": 10.0,
+              "total": 20.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 85,
+          "raw_text_extracted": "Bob's Hardware\n456 Oak Ave Portland OR\nPaint Roller Set $25.99\nMasking Tape x2 $20.00\nSubtotal $45.99\nTax $4.14",
+          "notes": "Bottom of receipt cut off"
         }
       },
       "error": null,
@@ -142,15 +113,470 @@
       "metadata": {}
     },
     {
-      "timestamp": "2025-12-04T10:35:18.976675",
+      "timestamp": "2025-12-05T09:33:41.952859",
       "agent": "Validation Agent",
-      "user_id": "unknown",
+      "user_id": "test_user",
       "success": true,
       "data": {
         "success": true,
         "status": "needs_correction",
-        "total_amount": 2500.0,
+        "total_amount": 42.0,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Pizza Palace",
+          "vendor_address": "789 Broadway, New York NY 10003",
+          "date": "2024-12-02",
+          "time": "19:45",
+          "currency": "USD",
+          "subtotal": 30.0,
+          "tax_amount": 2.7,
+          "tip_amount": 5.0,
+          "total_amount": 42.0,
+          "payment_method": "credit",
+          "card_last_four": "1234",
+          "line_items": [
+            {
+              "description": "Large Pepperoni Pizza",
+              "quantity": 1,
+              "unit_price": 18.0,
+              "total": 18.0
+            },
+            {
+              "description": "Caesar Salad",
+              "quantity": 1,
+              "unit_price": 12.0,
+              "total": 12.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+          "notes": "Receipt slightly blurry"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:41.967663",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 136.25,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Office Supplies Co",
+          "vendor_address": "321 Market St, San Francisco CA 94102",
+          "date": "12/03/24",
+          "time": "10:15",
+          "currency": "USD",
+          "subtotal": 125.0,
+          "tax_amount": 11.25,
+          "tip_amount": null,
+          "total_amount": 136.25,
+          "payment_method": "credit",
+          "card_last_four": "9999",
+          "line_items": [
+            {
+              "description": "Paper Reams (10)",
+              "quantity": 10,
+              "unit_price": 8.5,
+              "total": 85.0
+            },
+            {
+              "description": "Stapler Heavy Duty",
+              "quantity": 2,
+              "unit_price": 20.0,
+              "total": 40.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 90,
+          "raw_text_extracted": "Office Supplies Co\n321 Market St SF CA\n12/03/24 10:15 AM\n\nPaper Reams x10 $85.00\nHeavy Duty Stapler x2 $40.00\n\nSubtotal $125.00\nTax $11.25\nTotal $136.25",
+          "notes": "Clean scan"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:41.993586",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 323.99,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Tech Store",
+          "vendor_address": "555 Tech Blvd, Austin TX 78701",
+          "date": "2024-11-30",
+          "time": "16:20",
+          "currency": "USD",
+          "subtotal": 299.99,
+          "tax_amount": 24.0,
+          "tip_amount": null,
+          "total_amount": 323.99,
+          "payment_method": "credit",
+          "card_last_four": "5555",
+          "line_items": [
+            {
+              "description": "Wireless Mouse",
+              "quantity": 1,
+              "unit_price": 49.99,
+              "total": 49.99
+            },
+            {
+              "description": "USB-C Cable",
+              "quantity": 2,
+              "unit_price": 19.99,
+              "total": 39.98
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 75,
+          "raw_text_extracted": "Tech Store\n555 Tech Blvd Austin\nWireless Mouse $49.99\nUSB-C Cable x2 $39.98\n[RECEIPT TORN]\nSubtotal $299.99\nTax $24.00\nTotal $323.99",
+          "notes": "Middle section of receipt torn/unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.024046",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 71.5,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Restaurant XYZ",
+          "vendor_address": "100 Food St, Chicago IL 60601",
+          "date": "2026-01-04",
+          "time": "12:00",
+          "currency": "USD",
+          "subtotal": 55.0,
+          "tax_amount": 5.5,
+          "tip_amount": 11.0,
+          "total_amount": 71.5,
+          "payment_method": "credit",
+          "card_last_four": "7777",
+          "line_items": [
+            {
+              "description": "Lunch Special",
+              "quantity": 2,
+              "unit_price": 27.5,
+              "total": 55.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 85,
+          "raw_text_extracted": "Restaurant XYZ\n100 Food St Chicago\n2026-01-04 12:00\nLunch Special x2 $55.00\nSubtotal $55.00\nTax $5.50\nTip $11.00\nTotal $71.50",
+          "notes": "Date seems incorrect"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.052005",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 45.0,
+        "category": "travel",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Gas Station",
+          "vendor_address": "999 Highway 1, Los Angeles CA 90001",
+          "date": "2024-12-01",
+          "time": "08:30",
+          "currency": "USD",
+          "subtotal": 50.0,
+          "tax_amount": -5.0,
+          "tip_amount": null,
+          "total_amount": 45.0,
+          "payment_method": "credit",
+          "card_last_four": "3333",
+          "line_items": [
+            {
+              "description": "Gasoline",
+              "quantity": 12.5,
+              "unit_price": 4.0,
+              "total": 50.0
+            }
+          ],
+          "expense_category": "travel",
+          "confidence_score": 70,
+          "raw_text_extracted": "Gas Station\n999 Highway 1 LA\nGasoline 12.5 gal @ $4.00\nSubtotal $50.00\nTax -$5.00\nTotal $45.00",
+          "notes": "OCR may have misread refund as negative"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.080878",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 95.38,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Grocery Store",
+          "vendor_address": "200 Main St, Denver CO 80201",
+          "date": "2024-12-03",
+          "time": "17:00",
+          "currency": "USD",
+          "subtotal": 87.5,
+          "tax_amount": 7.88,
+          "tip_amount": null,
+          "total_amount": 95.38,
+          "payment_method": "credit",
+          "card_last_four": "12",
+          "line_items": [
+            {
+              "description": "Groceries",
+              "quantity": 1,
+              "unit_price": 87.5,
+              "total": 87.5
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "Grocery Store\n200 Main St Denver\nGroceries $87.50\nSubtotal $87.50\nTax $7.88\nTotal $95.38\nCard **12",
+          "notes": "Card number partially readable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.110153",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 27.25,
         "category": "other",
+        "issues": [
+          "Missing required fields: vendor_name",
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": null,
+          "vendor_address": "Unknown",
+          "date": "2024-12-01",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 25.0,
+          "tax_amount": 2.25,
+          "tip_amount": null,
+          "total_amount": 27.25,
+          "payment_method": "cash",
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "other",
+          "confidence_score": 45,
+          "raw_text_extracted": "[FADED RECEIPT]\n...some items...\nSubtotal $25.00\nTax $2.25\nTotal $27.25\nCash",
+          "notes": "Receipt heavily faded, vendor info unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.139876",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 14.5,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Café unclear",
+          "vendor_address": null,
+          "date": "2024-11-25",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 12.0,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": 14.5,
+          "payment_method": null,
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "meals",
+          "confidence_score": 35,
+          "raw_text_extracted": "...fé...\n...coffee... $12...\n...Total... $14.50...",
+          "notes": "Receipt water damaged, most text unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.160969",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 110.0,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "International Store",
+          "vendor_address": "123 Global St, Boston MA 02101",
+          "date": "2024-12-02",
+          "time": "14:00",
+          "currency": "XYZ",
+          "subtotal": 100.0,
+          "tax_amount": 10.0,
+          "tip_amount": null,
+          "total_amount": 110.0,
+          "payment_method": "credit",
+          "card_last_four": "6666",
+          "line_items": [
+            {
+              "description": "Product A",
+              "quantity": 1,
+              "unit_price": 100.0,
+              "total": 100.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 80,
+          "raw_text_extracted": "International Store\n123 Global St Boston\nProduct A 100.00 XYZ\nSubtotal 100.00\nTax 10.00\nTotal 110.00",
+          "notes": "Currency symbol unclear"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:33:42.191110",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_higher_approval",
+        "total_amount": 49050.0,
+        "category": "supplies",
         "issues": [
           "Missing receipt(s) for claimed amount",
           "High-value expense requires a justification",
@@ -172,10 +598,29 @@
         ],
         "auto_approved": false,
         "raw_expense": {
-          "vendor_name": "Consulting Co",
-          "date": "2025-12-01",
-          "total_amount": 2500,
-          "expense_category": "other"
+          "vendor_name": "Electronics Wholesale",
+          "vendor_address": "500 Commerce Dr, Miami FL 33101",
+          "date": "2024-12-01",
+          "time": "11:30",
+          "currency": "USD",
+          "subtotal": 45000.0,
+          "tax_amount": 4050.0,
+          "tip_amount": null,
+          "total_amount": 49050.0,
+          "payment_method": "check",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Laptops (Bulk Order)",
+              "quantity": 50,
+              "unit_price": 900.0,
+              "total": 45000.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 95,
+          "raw_text_extracted": "Electronics Wholesale\n500 Commerce Dr Miami\nLaptops (Bulk) 50 @ $900 = $45,000.00\nSubtotal $45,000.00\nTax $4,050.00\nTotal $49,050.00\nCheck Payment",
+          "notes": "Large bulk purchase"
         }
       },
       "error": null,
@@ -183,46 +628,182 @@
       "metadata": {}
     },
     {
-      "timestamp": "2025-12-04T10:35:19.022769",
+      "timestamp": "2025-12-05T09:46:12.902214",
       "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "requires_higher_approval",
-        "total_amount": 900.0,
-        "category": "lodging",
-        "issues": [
-          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
-        ],
-        "flags": [
-          "lodging_limit_exceeded"
-        ],
-        "suggested_actions": [
-          "Provide justification or adjust lodging to policy-compliant rate"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Hotel Lux",
-          "date": "2025-12-01",
-          "total_amount": 900,
-          "expense_category": "lodging",
-          "nights": 3
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:35:19.061451",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
+      "user_id": "test_user",
       "success": true,
       "data": {
         "success": true,
         "status": "needs_correction",
-        "total_amount": 45.0,
+        "total_amount": 19.9,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Starbucks Coffee",
+          "vendor_address": "123 Main St, Seattle WA 98101",
+          "date": "2024-12-01",
+          "time": "14:30",
+          "currency": "USD",
+          "subtotal": 15.5,
+          "tax_amount": 1.4,
+          "tip_amount": 3.0,
+          "total_amount": 19.9,
+          "payment_method": "credit",
+          "card_last_four": "4242",
+          "line_items": [
+            {
+              "description": "Grande Latte",
+              "quantity": 2,
+              "unit_price": 5.75,
+              "total": 11.5
+            },
+            {
+              "description": "Blueberry Muffin",
+              "quantity": 1,
+              "unit_price": 4.0,
+              "total": 4.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "STARBUCKS\n123 Main St\nSeattle WA 98101\n\nGrande Latte x2 $11.50\nBlueberry Muffin x1 $4.00\n\nSubtotal: $15.50\nTax: $1.40\nTip: $3.00\nTotal: $19.90\n\nVisa ****4242",
+          "notes": "Clear receipt, all fields legible"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:12.947876",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": null,
+        "category": "supplies",
+        "issues": [
+          "Incomplete reporting: date or total amount missing or unparsed"
+        ],
+        "flags": [
+          "incomplete_reporting"
+        ],
+        "suggested_actions": [
+          "Provide the transaction date and total amount"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Bob's Hardware",
+          "vendor_address": "456 Oak Ave, Portland OR 97201",
+          "date": "2024-11-28",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 45.99,
+          "tax_amount": 4.14,
+          "tip_amount": null,
+          "total_amount": null,
+          "payment_method": "debit",
+          "card_last_four": "8765",
+          "line_items": [
+            {
+              "description": "Paint Roller Set",
+              "quantity": 1,
+              "unit_price": 25.99,
+              "total": 25.99
+            },
+            {
+              "description": "Masking Tape",
+              "quantity": 2,
+              "unit_price": 10.0,
+              "total": 20.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 85,
+          "raw_text_extracted": "Bob's Hardware\n456 Oak Ave Portland OR\nPaint Roller Set $25.99\nMasking Tape x2 $20.00\nSubtotal $45.99\nTax $4.14",
+          "notes": "Bottom of receipt cut off"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:12.973795",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 42.0,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Pizza Palace",
+          "vendor_address": "789 Broadway, New York NY 10003",
+          "date": "2024-12-02",
+          "time": "19:45",
+          "currency": "USD",
+          "subtotal": 30.0,
+          "tax_amount": 2.7,
+          "tip_amount": 5.0,
+          "total_amount": 42.0,
+          "payment_method": "credit",
+          "card_last_four": "1234",
+          "line_items": [
+            {
+              "description": "Large Pepperoni Pizza",
+              "quantity": 1,
+              "unit_price": 18.0,
+              "total": 18.0
+            },
+            {
+              "description": "Caesar Salad",
+              "quantity": 1,
+              "unit_price": 12.0,
+              "total": 12.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "PIZZA PALACE\n789 Broadway NYC\n\nLarge Pepperoni $18.00\nCaesar Salad $12.00\n\nSubtotal: $30.00\nTax: $2.70\nTip: $5.00\nTOTAL: $42.00",
+          "notes": "Receipt slightly blurry"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.000460",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 136.25,
         "category": "supplies",
         "issues": [
           "Missing receipt(s) for claimed amount"
@@ -235,10 +816,35 @@
         ],
         "auto_approved": false,
         "raw_expense": {
-          "vendor_name": "Office Supplies",
-          "date": "2025-12-02",
-          "total_amount": 45,
-          "expense_category": "supplies"
+          "vendor_name": "Office Supplies Co",
+          "vendor_address": "321 Market St, San Francisco CA 94102",
+          "date": "12/03/24",
+          "time": "10:15",
+          "currency": "USD",
+          "subtotal": 125.0,
+          "tax_amount": 11.25,
+          "tip_amount": null,
+          "total_amount": 136.25,
+          "payment_method": "credit",
+          "card_last_four": "9999",
+          "line_items": [
+            {
+              "description": "Paper Reams (10)",
+              "quantity": 10,
+              "unit_price": 8.5,
+              "total": 85.0
+            },
+            {
+              "description": "Stapler Heavy Duty",
+              "quantity": 2,
+              "unit_price": 20.0,
+              "total": 40.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 90,
+          "raw_text_extracted": "Office Supplies Co\n321 Market St SF CA\n12/03/24 10:15 AM\n\nPaper Reams x10 $85.00\nHeavy Duty Stapler x2 $40.00\n\nSubtotal $125.00\nTax $11.25\nTotal $136.25",
+          "notes": "Clean scan"
         }
       },
       "error": null,
@@ -246,76 +852,358 @@
       "metadata": {}
     },
     {
-      "timestamp": "2025-12-04T10:39:05.289334",
+      "timestamp": "2025-12-05T09:46:13.030032",
       "agent": "Validation Agent",
-      "user_id": "unknown",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 323.99,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Tech Store",
+          "vendor_address": "555 Tech Blvd, Austin TX 78701",
+          "date": "2024-11-30",
+          "time": "16:20",
+          "currency": "USD",
+          "subtotal": 299.99,
+          "tax_amount": 24.0,
+          "tip_amount": null,
+          "total_amount": 323.99,
+          "payment_method": "credit",
+          "card_last_four": "5555",
+          "line_items": [
+            {
+              "description": "Wireless Mouse",
+              "quantity": 1,
+              "unit_price": 49.99,
+              "total": 49.99
+            },
+            {
+              "description": "USB-C Cable",
+              "quantity": 2,
+              "unit_price": 19.99,
+              "total": 39.98
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 75,
+          "raw_text_extracted": "Tech Store\n555 Tech Blvd Austin\nWireless Mouse $49.99\nUSB-C Cable x2 $39.98\n[RECEIPT TORN]\nSubtotal $299.99\nTax $24.00\nTotal $323.99",
+          "notes": "Middle section of receipt torn/unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.058483",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 71.5,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Restaurant XYZ",
+          "vendor_address": "100 Food St, Chicago IL 60601",
+          "date": "2026-01-04",
+          "time": "12:00",
+          "currency": "USD",
+          "subtotal": 55.0,
+          "tax_amount": 5.5,
+          "tip_amount": 11.0,
+          "total_amount": 71.5,
+          "payment_method": "credit",
+          "card_last_four": "7777",
+          "line_items": [
+            {
+              "description": "Lunch Special",
+              "quantity": 2,
+              "unit_price": 27.5,
+              "total": 55.0
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 85,
+          "raw_text_extracted": "Restaurant XYZ\n100 Food St Chicago\n2026-01-04 12:00\nLunch Special x2 $55.00\nSubtotal $55.00\nTax $5.50\nTip $11.00\nTotal $71.50",
+          "notes": "Date seems incorrect"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.086121",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 45.0,
+        "category": "travel",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Gas Station",
+          "vendor_address": "999 Highway 1, Los Angeles CA 90001",
+          "date": "2024-12-01",
+          "time": "08:30",
+          "currency": "USD",
+          "subtotal": 50.0,
+          "tax_amount": -5.0,
+          "tip_amount": null,
+          "total_amount": 45.0,
+          "payment_method": "credit",
+          "card_last_four": "3333",
+          "line_items": [
+            {
+              "description": "Gasoline",
+              "quantity": 12.5,
+              "unit_price": 4.0,
+              "total": 50.0
+            }
+          ],
+          "expense_category": "travel",
+          "confidence_score": 70,
+          "raw_text_extracted": "Gas Station\n999 Highway 1 LA\nGasoline 12.5 gal @ $4.00\nSubtotal $50.00\nTax -$5.00\nTotal $45.00",
+          "notes": "OCR may have misread refund as negative"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.112791",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 95.38,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Grocery Store",
+          "vendor_address": "200 Main St, Denver CO 80201",
+          "date": "2024-12-03",
+          "time": "17:00",
+          "currency": "USD",
+          "subtotal": 87.5,
+          "tax_amount": 7.88,
+          "tip_amount": null,
+          "total_amount": 95.38,
+          "payment_method": "credit",
+          "card_last_four": "12",
+          "line_items": [
+            {
+              "description": "Groceries",
+              "quantity": 1,
+              "unit_price": 87.5,
+              "total": 87.5
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 80,
+          "raw_text_extracted": "Grocery Store\n200 Main St Denver\nGroceries $87.50\nSubtotal $87.50\nTax $7.88\nTotal $95.38\nCard **12",
+          "notes": "Card number partially readable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.139392",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 27.25,
+        "category": "other",
+        "issues": [
+          "Missing required fields: vendor_name",
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": null,
+          "vendor_address": "Unknown",
+          "date": "2024-12-01",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 25.0,
+          "tax_amount": 2.25,
+          "tip_amount": null,
+          "total_amount": 27.25,
+          "payment_method": "cash",
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "other",
+          "confidence_score": 45,
+          "raw_text_extracted": "[FADED RECEIPT]\n...some items...\nSubtotal $25.00\nTax $2.25\nTotal $27.25\nCash",
+          "notes": "Receipt heavily faded, vendor info unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.170651",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 14.5,
+        "category": "meals",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "Café unclear",
+          "vendor_address": null,
+          "date": "2024-11-25",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 12.0,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": 14.5,
+          "payment_method": null,
+          "card_last_four": null,
+          "line_items": [],
+          "expense_category": "meals",
+          "confidence_score": 35,
+          "raw_text_extracted": "...fé...\n...coffee... $12...\n...Total... $14.50...",
+          "notes": "Receipt water damaged, most text unreadable"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.199315",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "needs_correction",
+        "total_amount": 110.0,
+        "category": "supplies",
+        "issues": [
+          "Missing receipt(s) for claimed amount"
+        ],
+        "flags": [
+          "missing_receipt"
+        ],
+        "suggested_actions": [
+          "Attach receipt image(s) before submission"
+        ],
+        "auto_approved": false,
+        "raw_expense": {
+          "vendor_name": "International Store",
+          "vendor_address": "123 Global St, Boston MA 02101",
+          "date": "2024-12-02",
+          "time": "14:00",
+          "currency": "XYZ",
+          "subtotal": 100.0,
+          "tax_amount": 10.0,
+          "tip_amount": null,
+          "total_amount": 110.0,
+          "payment_method": "credit",
+          "card_last_four": "6666",
+          "line_items": [
+            {
+              "description": "Product A",
+              "quantity": 1,
+              "unit_price": 100.0,
+              "total": 100.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 80,
+          "raw_text_extracted": "International Store\n123 Global St Boston\nProduct A 100.00 XYZ\nSubtotal 100.00\nTax 10.00\nTotal 110.00",
+          "notes": "Currency symbol unclear"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2025-12-05T09:46:13.225884",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
       "success": true,
       "data": {
         "success": true,
         "status": "requires_higher_approval",
-        "total_amount": 300.0,
-        "category": "lodging",
-        "issues": [
-          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
-        ],
-        "flags": [
-          "lodging_limit_exceeded"
-        ],
-        "suggested_actions": [
-          "Provide justification or adjust lodging to policy-compliant rate"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Hotel Simple",
-          "date": "2025-12-01",
-          "total_amount": 300,
-          "expense_category": "lodging"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:39:05.329807",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "needs_correction",
-        "total_amount": null,
-        "category": "meals",
-        "issues": [
-          "Missing required fields: date",
-          "Incomplete reporting: date or total amount missing or unparsed"
-        ],
-        "flags": [
-          "incomplete_reporting"
-        ],
-        "suggested_actions": [
-          "Provide the transaction date and total amount"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Vendor X",
-          "expense_category": "meals"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:39:05.366602",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "needs_correction",
-        "total_amount": 2500.0,
-        "category": "other",
+        "total_amount": 49050.0,
+        "category": "supplies",
         "issues": [
           "Missing receipt(s) for claimed amount",
           "High-value expense requires a justification",
@@ -337,234 +1225,29 @@
         ],
         "auto_approved": false,
         "raw_expense": {
-          "vendor_name": "Consulting Co",
-          "date": "2025-12-01",
-          "total_amount": 2500,
-          "expense_category": "other"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:39:05.404869",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "requires_higher_approval",
-        "total_amount": 900.0,
-        "category": "lodging",
-        "issues": [
-          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
-        ],
-        "flags": [
-          "lodging_limit_exceeded"
-        ],
-        "suggested_actions": [
-          "Provide justification or adjust lodging to policy-compliant rate"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Hotel Lux",
-          "date": "2025-12-01",
-          "total_amount": 900,
-          "expense_category": "lodging",
-          "nights": 3
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:39:05.491494",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "needs_correction",
-        "total_amount": 45.0,
-        "category": "supplies",
-        "issues": [
-          "Missing receipt(s) for claimed amount"
-        ],
-        "flags": [
-          "missing_receipt"
-        ],
-        "suggested_actions": [
-          "Attach receipt image(s) before submission"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Office Supplies",
-          "date": "2025-12-02",
-          "total_amount": 45,
-          "expense_category": "supplies"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:42:56.758999",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "auto_approved",
-        "total_amount": 300.0,
-        "category": "lodging",
-        "issues": [],
-        "flags": [
-          "auto_approved_routine"
-        ],
-        "suggested_actions": [],
-        "auto_approved": true,
-        "raw_expense": {
-          "vendor_name": "Hotel Simple",
-          "date": "2025-12-01",
-          "total_amount": 300,
-          "expense_category": "lodging"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:42:56.793645",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "needs_correction",
-        "total_amount": null,
-        "category": "meals",
-        "issues": [
-          "Missing required fields: date",
-          "Incomplete reporting: date or total amount missing or unparsed"
-        ],
-        "flags": [
-          "incomplete_reporting"
-        ],
-        "suggested_actions": [
-          "Provide the transaction date and total amount"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Vendor X",
-          "expense_category": "meals"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:42:56.830463",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "requires_higher_approval",
-        "total_amount": 2500.0,
-        "category": "other",
-        "issues": [
-          "Missing receipt(s) for claimed amount",
-          "High-value expense requires a justification",
-          "High-value expense must include receipts",
-          "High-value expense requires cost center or designated approver information"
-        ],
-        "flags": [
-          "missing_receipt",
-          "high_value_missing_justification",
-          "high_value_missing_receipt",
-          "high_value_missing_approval_info",
-          "route_for_higher_approval"
-        ],
-        "suggested_actions": [
-          "Attach receipt image(s) before submission",
-          "Add a justification explaining the business need",
-          "Attach all supporting receipts/documents",
-          "Provide cost center or approver to route for higher approval"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Consulting Co",
-          "date": "2025-12-01",
-          "total_amount": 2500,
-          "expense_category": "other"
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:42:56.865943",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "requires_higher_approval",
-        "total_amount": 900.0,
-        "category": "lodging",
-        "issues": [
-          "Lodging per-night cost $300.00 exceeds policy limit $200.00"
-        ],
-        "flags": [
-          "lodging_limit_exceeded"
-        ],
-        "suggested_actions": [
-          "Provide justification or adjust lodging to policy-compliant rate"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Hotel Lux",
-          "date": "2025-12-01",
-          "total_amount": 900,
-          "expense_category": "lodging",
-          "nights": 3
-        }
-      },
-      "error": null,
-      "notes": [],
-      "metadata": {}
-    },
-    {
-      "timestamp": "2025-12-04T10:42:56.901106",
-      "agent": "Validation Agent",
-      "user_id": "unknown",
-      "success": true,
-      "data": {
-        "success": true,
-        "status": "needs_correction",
-        "total_amount": 45.0,
-        "category": "supplies",
-        "issues": [
-          "Missing receipt(s) for claimed amount"
-        ],
-        "flags": [
-          "missing_receipt"
-        ],
-        "suggested_actions": [
-          "Attach receipt image(s) before submission"
-        ],
-        "auto_approved": false,
-        "raw_expense": {
-          "vendor_name": "Office Supplies",
-          "date": "2025-12-02",
-          "total_amount": 45,
-          "expense_category": "supplies"
+          "vendor_name": "Electronics Wholesale",
+          "vendor_address": "500 Commerce Dr, Miami FL 33101",
+          "date": "2024-12-01",
+          "time": "11:30",
+          "currency": "USD",
+          "subtotal": 45000.0,
+          "tax_amount": 4050.0,
+          "tip_amount": null,
+          "total_amount": 49050.0,
+          "payment_method": "check",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Laptops (Bulk Order)",
+              "quantity": 50,
+              "unit_price": 900.0,
+              "total": 45000.0
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 95,
+          "raw_text_extracted": "Electronics Wholesale\n500 Commerce Dr Miami\nLaptops (Bulk) 50 @ $900 = $45,000.00\nSubtotal $45,000.00\nTax $4,050.00\nTotal $49,050.00\nCheck Payment",
+          "notes": "Large bulk purchase"
         }
       },
       "error": null,
