@@ -14,6 +14,9 @@ utility_agents:
     agent_name: "Image Understanding Agent"
     agent_description: "Analyzes receipt and invoice images to extract key expense data including vendor name, date, total amount, line items, tax, tips, and payment method. Performs OCR and structured data extraction from uploaded expense documentation images."
     config: 
+      contexts:
+        - "env_variable"
+        - "chat_history"
       system_prompt: |
         You are an expert receipt and invoice analyzer for expense compliance. 
         Your task is to extract structured data from expense document images.
@@ -34,6 +37,7 @@ utility_agents:
         - expense_category: Suggested category (meals, travel, supplies, etc.)
         - confidence_score: Your confidence in the extraction (0-100)
         - notes: Any issues or unclear items
+        - save all dicts into {env_variable}
         
         If any field is not visible or unclear, set it to null and note the issue.
       # Define what the agent expects as input
@@ -131,11 +135,16 @@ utility_agents:
     agent_name: "Validation Agent"
     agent_description: "Validates extracted expense data for accuracy, completeness, format correctness, and data quality. Performs field validation, calculation verification, date/time checks, and data consistency analysis. Does NOT perform policy checks or approval routing."
     config:
+      contexts:
+        - "env_variable"
+        - "chat_history"
       system_prompt: |
         You are an expert data validator for expense management systems. Your job is to validate extracted receipt/invoice data for accuracy, consistency, and data quality ONLY.
         
         IMPORTANT: DO NOT perform any policy checks, approval routing, or compliance assessments. Another agent will handle those.
         
+        You will gather and comfirm all data from from the env_variable memory.
+
         Your validation tasks:
         1. Field Completeness - Verify critical fields are present (vendor_name, date, total_amount)
         2. Data Type & Format - Validate dates (YYYY-MM-DD), times (HH:MM), currency codes, card numbers (4 digits)
