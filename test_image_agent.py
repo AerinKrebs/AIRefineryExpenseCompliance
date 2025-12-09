@@ -7,6 +7,8 @@ import asyncio
 import json
 import os
 import sys
+import base64
+from pathlib import Path
 
 # Import only what exists in your agents.py
 from agents import image_understanding_agent
@@ -172,5 +174,81 @@ async def run_all_tests():
 
 
 if __name__ == "__main__":
-    success = asyncio.run(run_all_tests())
-    sys.exit(0 if success else 1)
+    # Helper to export extracted JSON from a test image into tests/extracted_outputs.json
+    async def export_extracted():
+        candidates = [
+            Path("tests/receipt.jpg"),
+            Path("tests/invoice.png"),
+            Path("tests/receipt.png")
+        ]
+
+        img_path = None
+        for c in candidates:
+            if c.exists():
+                img_path = c
+                break
+
+        if not img_path:
+            print("No test image found in tests/. Please place an image at tests/receipt.jpg or tests/invoice.png")
+            return False
+
+        # Read and base64 encode the image
+        raw = img_path.read_bytes()
+        b64 = base64.b64encode(raw).decode("utf-8")
+
+        try:
+            result = await image_understanding_agent(
+                query="Export extracted data for validation tests",
+                env_variable={"image_data": b64, "image_type": img_path.suffix.replace('.', '')},
+                chat_history=None
+            )
+
+            parsed = json.loads(result)
+
+            out_dir = Path("tests")
+            out_dir.mkdir(exist_ok=True)
+            out_file = out_dir / "extracted_outputs.json"
+
+            # If the model returns wrapper with success+extracted_data, save only extracted_data
+            to_save = None
+            if isinstance(parsed, dict) and parsed.get("success") is True and parsed.get("extracted_data"):
+                to_save = parsed.get("extracted_data")
+            else:
+                # Save the whole response as a fallback
+                to_save = parsed
+
+            with open(out_file, "w", encoding="utf-8") as f:
+                json.dump(to_save, f, indent=2)
+
+            print(f"Exported extracted data to: {out_file}")
+            return True
+
+        except Exception as e:
+            print(f"Failed to export extracted data: {e}")
+            return False
+
+    # Combined flow: export extracted JSON then run validation tests
+    if "--export-and-validate" in sys.argv:
+        ok = asyncio.run(export_extracted())
+        if not ok:
+            sys.exit(1)
+
+        print("Running validation tests using exported extracted JSON...")
+        try:
+            import test_validation_agent
+            tester = asyncio.run(test_validation_agent.run_all_tests())
+            failed = getattr(tester, "failed", None)
+            sys.exit(0 if failed == 0 else 1)
+        except Exception as e:
+            print(f"Failed to run validation tests: {e}")
+            sys.exit(1)
+
+    # Export-only flow
+    if "--export-extracted" in sys.argv:
+        success = asyncio.run(export_extracted())
+        sys.exit(0 if success else 1)
+
+    # Default: run image unit tests
+    else:
+        success = asyncio.run(run_all_tests())
+        sys.exit(0 if success else 1)

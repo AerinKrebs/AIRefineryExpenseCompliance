@@ -275,6 +275,66 @@ class ValidationAgentTester:
                             print(f"       Unexpected: {', '.join(unexpected)}")
 
 
+def load_external_test_cases() -> list:
+    """Load external test cases if present in tests/extracted_outputs.json or tests/validation_test_cases.json.
+    Supported shapes:
+      - a single object representing extracted_data
+      - a list of objects where each object is either the extracted_data dict or
+        an envelope {"extracted_data": {...}, "expected_status": "PASS", "expected_error_fields": [...]}.
+    Returns a list of envelopes with keys: extracted_data, expected_status, expected_error_fields
+    """
+    candidates = [
+        Path("tests/extracted_outputs.json"),
+        Path("tests/validation_test_cases.json"),
+        Path("validation_test_cases.json")
+    ]
+
+    for p in candidates:
+        if p.exists():
+            try:
+                raw = json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+
+            cases = []
+            if isinstance(raw, dict):
+                # If the dict looks like an envelope
+                if raw.get("extracted_data"):
+                    envelope = {
+                        "extracted_data": raw.get("extracted_data"),
+                        "expected_status": raw.get("expected_status", "PASS"),
+                        "expected_error_fields": raw.get("expected_error_fields", [])
+                    }
+                    cases.append(envelope)
+                else:
+                    # Treat the whole dict as extracted_data
+                    cases.append({
+                        "extracted_data": raw,
+                        "expected_status": "PASS",
+                        "expected_error_fields": []
+                    })
+
+            elif isinstance(raw, list):
+                for item in raw:
+                    if isinstance(item, dict) and item.get("extracted_data"):
+                        cases.append({
+                            "extracted_data": item.get("extracted_data"),
+                            "expected_status": item.get("expected_status", "PASS"),
+                            "expected_error_fields": item.get("expected_error_fields", [])
+                        })
+                    elif isinstance(item, dict):
+                        cases.append({
+                            "extracted_data": item,
+                            "expected_status": "PASS",
+                            "expected_error_fields": []
+                        })
+            if cases:
+                print(f"Loaded {len(cases)} external test case(s) from {p}")
+                return cases
+
+    return []
+
+
 # ========================================== TEST CASES ===========================================
 
 async def test_valid_receipt():
@@ -653,14 +713,29 @@ async def run_all_tests():
     print("\n" + "="*80)
     print("VALIDATION AGENT TEST SUITE - DATA VALIDATION ONLY")
     print("="*80)
-    
-    # Test 1: Valid receipt (should PASS - no data errors)
-    await tester.run_validation_test(
-        "Test 1: Valid Receipt",
-        await test_valid_receipt(),
-        expected_status="PASS",
-        expected_error_fields=[]
-    )
+    # If external extracted test cases are present, use them instead of hardcoded cases.
+    external_cases = load_external_test_cases()
+    if external_cases:
+        for i, case in enumerate(external_cases, start=1):
+            name = case.get("name") or f"External Case {i}"
+            extracted = case.get("extracted_data")
+            expected_status = case.get("expected_status", "PASS")
+            expected_error_fields = case.get("expected_error_fields", [])
+
+            await tester.run_validation_test(
+                name,
+                extracted,
+                expected_status=expected_status,
+                expected_error_fields=expected_error_fields
+            )
+    else:
+        # Test 1: Valid receipt (should PASS - no data errors)
+        await tester.run_validation_test(
+            "Test 1: Valid Receipt",
+            await test_valid_receipt(),
+            expected_status="PASS",
+            expected_error_fields=[]
+        )
     
     # Test 2: Missing total (should FAIL with total_amount error)
     await tester.run_validation_test(
