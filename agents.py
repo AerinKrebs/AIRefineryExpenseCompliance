@@ -472,9 +472,10 @@ Perform the validation now.
             "validation_errors": [str(e)],
             "validation_warnings": []
         }, indent=2)
+#=========================================== END AGENTS ================================================
+#=========================================== DRIVER FUNCTION ===========================================
 
-
-# TODO: Driver that gets called by UI to send query to agentic system
+# Driver that gets called by UI to send query to agentic system
 async def get_expense_compliance_response(user_id: str, query: str) -> str:
     """
     Driver that sets up memory and sends a query to the orchestrator agent.
@@ -489,6 +490,7 @@ async def get_expense_compliance_response(user_id: str, query: str) -> str:
     # Logging
     print(f"get_expense_compliance_response() was called. Query: {query[:20]}...")
 
+    #this is a placeholder for future implementation of the orchestrator if memory is not working
     # distiller_client = DistillerClient(api_key=API_KEY)
 
     # # Container for async functions
