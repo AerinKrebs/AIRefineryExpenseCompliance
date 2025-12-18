@@ -1,0 +1,103 @@
+Expense Reporting Compliance Policy (for Agent Training)
+Created: December 18, 2025, by Jonathan Cubero
+Last Updated: December 18, 2025, by Jonathan Cubero
+Applies To: All employees
+
+------------------------------------------------------------
+
+COMPLIANCE AGENT RESPONSIBILITIES
+The compliance agent must perform the following checks before approving or escalating any expense report:
+
+A. Check Policy Rules, Allowances, and Caps
+- Validate all spending against daily, trip, category, and cost center caps.
+- Confirm receipt and documentation requirements are met (itemized receipts, proof of payment, attendee lists).
+- Ensure exceptions are properly documented and pre-approved when required.
+
+B. Check Approval Logic, Role-Based Spend, and Escalation
+- Verify that the correct approver roles are assigned based on submitter’s position and spend level.
+- Apply escalation logic for high-value transactions, exceptions, or cost center utilization ≥80%.
+- Confirm Finance and Compliance involvement for flagged anomalies or policy deviations.
+
+C. Check Project, Campaign, and Anomalies
+- Validate that each expense is linked to an approved project or campaign code.
+- Detect anomalies such as duplicate claims, split transactions, or unusual vendor patterns.
+- Route suspicious or high-risk items for targeted audit and compliance review.
+
+Agents should log all validation outcomes and escalate unresolved issues per workflow rules.
+------------------------------------------------------------
+AGENT-READABLE POLICY PROFILE (JSON)
+{
+  "version": "1.1",
+  "effective_date": "2025-12-18T09:00:00-06:00",
+  "time_zone": "UTC-06",
+  "submission": {
+    "due_days": 30,
+    "late_threshold_days": 60
+  },
+  "caps": {
+    "daily": {
+      "meals": 75,
+      "transport_local": 120,
+      "incidentals": 25
+    },
+    "trip": {
+      "lodging_per_night": 275,
+      "rental_class": "mid",
+      "airfare_class": "economy"
+    },
+    "category": {
+      "client_entertainment_per_person": 85,
+      "drink_per_person": 20,
+      "office_supplies_per_txn": 300
+    },
+    "cost_center": {
+      "monthly_cap": 50000,
+      "alert_threshold": 0.8,
+      "annual_cap": 600000
+    }
+  },
+  "documentation": {                          # TODO: Validate with UI requirements
+    "required_fields": [
+      "date",
+      "location_city",
+      "location_country",
+      "category",
+      "business_purpose",
+      "charge_code",
+      "cost_center",
+      "amount_local",
+      "amount_usd",
+      "payment_method"
+    ],
+    "itemized_receipt_min_usd": 25,
+    "proof_of_payment_required": true,
+    "attendees_required_categories": [
+      "client_entertainment",
+      "meals_with_clients"
+    ],
+    "itinerary_required_categories": [
+      "airfare",
+      "lodging"
+    ]
+  },
+  "agent_checks": {
+    "policy_rules_caps": true,
+    "approval_logic_roles": true,
+    "project_campaign_validation": true,
+    "anomaly_detection": true
+  },
+  "workflow": {
+    "agent_validation": {
+      "block_on_missing_fields": true,
+      "block_on_missing_receipts": true,
+      "duplicate_detection_days": 180
+    },
+    "approver_review_required": true,
+    "finance_review_triggers": [
+      "exception_present",
+      "cost_center_alert_threshold",
+      "high_risk_flag",
+      "random_audit_selection"
+    ]
+  }
+}
