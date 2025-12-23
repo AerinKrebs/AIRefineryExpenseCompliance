@@ -74,6 +74,7 @@ with col1:
                     st.session_state.messages.append({"role": "assistant", "content": response})
                     
                     # TODO: comment out - echo's user's message
+                    # call driver function to get response and render the message
                     temp_message = f"YOUR QUERY WAS: {prompt}"
                     st.markdown(temp_message)
                     st.session_state.messages.append({"role": "assistant", "content": temp_message})
