@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # Load API key from .env
 load_dotenv() 
 API_KEY = str(os.getenv("API_KEY"))
-USER_ID = ""  # TODO
+USER_ID = "randomSignin"  # Can be anthing unique to the user
 
 # ==================================== STREAMLIT APP LOGIC ====================================
 
@@ -42,6 +42,10 @@ if "messages" not in st.session_state:
     # Add message to chat
     st.session_state.messages.append({"role": "assistant", "content": welcome_msg})
 
+# Initialize form data in session state
+if "form_data" not in st.session_state:
+    st.session_state.form_data = {}
+
 with col1:
     st.header("Compliance Chat Assistant")
     
@@ -67,17 +71,17 @@ with col1:
         with chat_container:
             with st.chat_message("assistant"):
                 with st.spinner("Finding the best results for your query..."):
-                    response = asyncio.run(get_expense_compliance_response(USER_ID, prompt))
-                    
-                    # TODO: comment back in
+                    # Pass form data to the distiller client
+                    response = asyncio.run(
+                        get_expense_compliance_response(
+                            USER_ID, 
+                            prompt, 
+                            form_data=st.session_state.form_data
+                        )
+                    )
+
                     st.markdown(response)
                     st.session_state.messages.append({"role": "assistant", "content": response})
-                    
-                    # TODO: comment out - echo's user's message
-                    # call driver function to get response and render the message
-                    temp_message = f"YOUR QUERY WAS: {prompt}"
-                    st.markdown(temp_message)
-                    st.session_state.messages.append({"role": "assistant", "content": temp_message})
         
         st.rerun()
     

@@ -10,7 +10,18 @@ from datetime import datetime
 # Load API Key & set other state variables
 load_dotenv()
 API_KEY = str(os.getenv("API_KEY"))
+# PROJECT_NAME = "ExpenseCompliance_AIRefinery_Project"
+
+# Create the client
+client = DistillerClient(api_key=API_KEY)
+
+# Create the project - DO THIS ONCE
+client.create_project(
+    config_path="config.yaml",
+    project="ExpenseCompliance_AIRefinery_Project"
+)
 PROJECT_NAME = "ExpenseCompliance_AIRefinery_Project"
+print("✅ Project created successfully!")
 
 # Helper function that sends a prompt to a model hosted on AIR
 async def get_model_response(prompt: str, model: str="openai/gpt-4o-mini") -> str:
@@ -84,15 +95,16 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
 
     Parameters:
         query (str): The user's query or instructions.
-        env_variable (dict): Environment variables containing image data and form info.
+        env_variable (dict): Environment variables containing image data.
         chat_history (list): Previous conversation history.
 
     Returns:
         str: JSON string containing extracted expense data.
     """
     # Extract image data from environment variables
+    print(env_variable)
     image_data = env_variable.get("image_data", "") if env_variable else ""
-    image_type = env_variable.get("image_type", "unknown") if env_variable else "unknown"
+    # image_type = env_variable.get("image_type", "unknown") if env_variable else "unknown"
     
     if not image_data:
         return json.dumps({
@@ -476,7 +488,7 @@ Perform the validation now.
 #=========================================== DRIVER FUNCTION ===========================================
 
 # Driver that gets called by UI to send query to agentic system
-async def get_expense_compliance_response(user_id: str, query: str) -> str:
+async def get_expense_compliance_response(user_id: str, query: str, form_data: dict = None) -> str:
     """
     Driver that sets up memory and sends a query to the orchestrator agent.
 
@@ -490,38 +502,36 @@ async def get_expense_compliance_response(user_id: str, query: str) -> str:
     # Logging
     print(f"get_expense_compliance_response() was called. Query: {query[:20]}...")
 
-    #this is a placeholder for future implementation of the orchestrator if memory is not working
-    # distiller_client = DistillerClient(api_key=API_KEY)
+    distiller_client = DistillerClient(api_key=API_KEY)
 
-    # # Container for async functions
-    # async with distiller_client(
-    #     project=PROJECT_NAME,
-    #     uuid=user_id,
-    #     executor_dict={
-            # "Image Understanding Agent": image_understanding_agent,
-            # "Validation Agent": validation_agent
-    #     },
-    # ) as dc:
+    # Container for async functions
+    async with distiller_client(
+        project=PROJECT_NAME,
+        uuid=user_id,
+        executor_dict={
+            "Image Understanding Agent": image_understanding_agent,
+            "Validation Agent": validation_agent
+        },
+    ) as dc:
         
-    #     # Add expense form data to memory
-    #     await dc.add_memory(
-    #         source="env_variable",
-    #         variables_dict=None # TODO: add form data here
-    #     )
+        # Add expense form data to memory
+        await dc.add_memory(
+            source="env_variable",
+            variables_dict= form_data if form_data else {}
+        )
+        # Send the query to the agentic system
+        responses = await dc.query(query=query)
+        response_list = []
+        i = 0
+        async for res in responses:
+            message = res.get("content", "")
+            response_list.append(message)
+            if i % 2 == 0:
+                print(f"ORCHESTRATOR: ===========================================\n{message}")
+            else:
+                print(f"UTILITY AGENT: ==========================================\n{message}")
+            i += 1
 
-    #     # Send the query to the agentic system
-    #     responses = await dc.query(query=query)
-    #     response_list = []
-    #     i = 0
-    #     async for res in responses:
-    #         message = res.get("content", "")
-    #         response_list.append(message)
-    #         if i % 2 == 0:
-    #             print(f"ORCHESTRATOR: ===========================================\n{message}")
-    #         else:
-    #             print(f"UTILITY AGENT: ==========================================\n{message}")
-    #         i += 1
-
-    #     return [response_list[-1]] if len(response_list) > 0 else ""
+        return [response_list[-1]] if len(response_list) > 0 else ""
 
     return ""

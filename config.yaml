@@ -324,3 +324,8 @@ super_agents:
 orchestrator:
   agent_list:
     - agent_name: "Flow Agent"
+
+# Base configuration
+base_config:
+  max_round: 15
+  query_timeout: 300
