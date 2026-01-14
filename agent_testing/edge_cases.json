@@ -1,0 +1,352 @@
+[
+  {
+    "category": "Documentation",
+    "edge_case": "Missing Receipt",
+    "description": "Receipt not attached to an expense requiring one",
+    "expected_agent_behavior": "Flag as incomplete and block submission",
+    "image_number": 1
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Unreadable Receipt",
+    "description": "Receipt image is blurry",
+    "expected_agent_behavior": "Flag for re-upload",
+    "image_number": 2
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Wrong Receipt Attached",
+    "description": "Receipt does not match the expense line",
+    "expected_agent_behavior": "Flag mismatch",
+    "image_number": 3
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Multi-Item Receipt Without Itemization",
+    "description": "Receipt lists multiple purchases but traveler didn't itemize",
+    "expected_agent_behavior": "Request itemization",
+    "image_number": 4
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Foreign Language Receipt Without Translation",
+    "description": "Non-English receipt submitted with no translation",
+    "expected_agent_behavior": "Request translation",
+    "image_number": 5
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Receipt File Format Not Supported",
+    "description": "User uploads unsupported file format",
+    "expected_agent_behavior": "Reject upload",
+    "image_number": 6
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Missing Mandatory Documents",
+    "description": "Required documents (e.g.",
+    "expected_agent_behavior": "Flag report",
+    "image_number": 7
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Duplicate Receipts",
+    "description": "Same receipt used for two expenses",
+    "expected_agent_behavior": "Flag duplicate",
+    "image_number": 8
+  },
+  {
+    "category": "Documentation",
+    "edge_case": "Handwritten Receipt",
+    "description": "Handwritten receipt requiring additional verification",
+    "expected_agent_behavior": "Request justification or alternate proof",
+    "image_number": 9
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Lodging Over Limit",
+    "description": "Lodging cost exceeds nightly policy cap",
+    "expected_agent_behavior": "Flag for justification or additional approval",
+    "image_number": 10
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Airfare Upgrades",
+    "description": "Non-economy airfare submitted without justification",
+    "expected_agent_behavior": "Flag for review",
+    "image_number": 11
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Expense Category Mismatch",
+    "description": "Expense category selected doesn't match receipt (e.g.",
+    "expected_agent_behavior": "Flag correction",
+    "image_number": 12
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Unallowed Expense Type",
+    "description": "Expense violates policy (e.g.",
+    "expected_agent_behavior": "Reject or flag",
+    "image_number": 13
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Meal Over Daily Per Diem",
+    "description": "Meal cost exceeds per diem limit",
+    "expected_agent_behavior": "Flag overage",
+    "image_number": 14
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Alcohol Claimed Without Policy Exception",
+    "description": "Receipt contains alcohol not allowed",
+    "expected_agent_behavior": "Reject or request separation",
+    "image_number": 15
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Mileage Over Policy Limit",
+    "description": "Mileage claimed exceeds route distance by large margin",
+    "expected_agent_behavior": "Flag anomaly",
+    "image_number": 16
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Incorrect Currency Conversion",
+    "description": "Currency conversion or exchange rate missing or incorrect",
+    "expected_agent_behavior": "Request correction",
+    "image_number": 17
+  },
+  {
+    "category": "Policy Compliance",
+    "edge_case": "Travel Dates Not Matching Purpose",
+    "description": "Expense date outside approved travel period",
+    "expected_agent_behavior": "Flag discrepancy",
+    "image_number": 18
+  },
+  {
+    "category": "High-Value Expenses",
+    "edge_case": "Missing Justification",
+    "description": "High-value expense submitted without mandatory explanation",
+    "expected_agent_behavior": "Block until provided",
+    "image_number": 19
+  },
+  {
+    "category": "High-Value Expenses",
+    "edge_case": "Missing Approval Route",
+    "description": "High-value threshold met but higher-level approver not assigned",
+    "expected_agent_behavior": "Prevent submission",
+    "image_number": 20
+  },
+  {
+    "category": "High-Value Expenses",
+    "edge_case": "Split Expenses to Avoid Threshold",
+    "description": "User splits one large expense into smaller ones",
+    "expected_agent_behavior": "Detect pattern and flag",
+    "image_number": 21
+  },
+  {
+    "category": "High-Value Expenses",
+    "edge_case": "High-Value Receipt Missing Details",
+    "description": "Receipt lacks vendor",
+    "expected_agent_behavior": "Flag incomplete documentation",
+    "image_number": 22
+  },
+  {
+    "category": "High-Value Expenses",
+    "edge_case": "Unsupported High-Value Category",
+    "description": "Expense category not allowed regardless of justification",
+    "expected_agent_behavior": "Reject",
+    "image_number": 23
+  },
+  {
+    "category": "Routine Expenses",
+    "edge_case": "Low-Value Expense Missing Receipt",
+    "description": "Low-value expense still requires receipt (policy varies)",
+    "expected_agent_behavior": "Flag receipt requirement",
+    "image_number": 24
+  },
+  {
+    "category": "Routine Expenses",
+    "edge_case": "Auto-Approved Expenses Above Threshold",
+    "description": "Agent incorrectly marks over-threshold expense as routine",
+    "expected_agent_behavior": "Override to manual approval",
+    "image_number": 25
+  },
+  {
+    "category": "Routine Expenses",
+    "edge_case": "Repeated Routine Claims Suggest Abuse",
+    "description": "Frequent repetitive claims of small amounts",
+    "expected_agent_behavior": "Flag pattern (optional)",
+    "image_number": 26
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Date Before Trip Start",
+    "description": "Expense date before trip start date",
+    "expected_agent_behavior": "Flag inconsistency",
+    "image_number": 27
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Date After Trip End",
+    "description": "Expense date after trip ends",
+    "expected_agent_behavior": "Flag inconsistency",
+    "image_number": 28
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Negative Amount",
+    "description": "Expense amount is negative",
+    "expected_agent_behavior": "Reject",
+    "image_number": 29
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Zero Amount",
+    "description": "Expense amount is zero",
+    "expected_agent_behavior": "Flag as invalid",
+    "image_number": 30
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Future Dates",
+    "description": "Expense date is in the future",
+    "expected_agent_behavior": "Flag anomaly",
+    "image_number": 31
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Missing Vendor Name",
+    "description": "Receipt lacks merchant/vendor",
+    "expected_agent_behavior": "Flag missing required field",
+    "image_number": 32
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Wrong Currency Code",
+    "description": "User selects currency not matching receipt",
+    "expected_agent_behavior": "Flag discrepancy",
+    "image_number": 33
+  },
+  {
+    "category": "Data Consistency",
+    "edge_case": "Inconsistent Time Zones",
+    "description": "Red flags with booking timings (e.g.",
+    "expected_agent_behavior": "Flag anomaly",
+    "image_number": 34
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Airfare Duplicate Booking",
+    "description": "Two overlapping flights claimed",
+    "expected_agent_behavior": "Flag duplicate",
+    "image_number": 35
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Hotel Nights Don't Match Trip",
+    "description": "Claims exceed or do not cover actual travel nights",
+    "expected_agent_behavior": "Flag mismatch",
+    "image_number": 36
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Meals Claimed During Provided Catering",
+    "description": "Meals charged on days when meals were provided by event",
+    "expected_agent_behavior": "Flag over-claim",
+    "image_number": 37
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Lodging Location Mismatch",
+    "description": "Hotel booked in a different city than the event",
+    "expected_agent_behavior": "Flag anomaly",
+    "image_number": 38
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Personal Travel Mixed With Business",
+    "description": "Must separate personal portion",
+    "expected_agent_behavior": "Flag and request breakdown",
+    "image_number": 39
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Car Rental Insurance Double Coverage",
+    "description": "Insurance purchased when already covered by policy",
+    "expected_agent_behavior": "Flag unallowed cost",
+    "image_number": 40
+  },
+  {
+    "category": "Travel-Specific",
+    "edge_case": "Parking/Toll Charges Missing Details",
+    "description": "Parking or tolls without time/location info",
+    "expected_agent_behavior": "Request details",
+    "image_number": 41
+  },
+  {
+    "category": "Financial Validation",
+    "edge_case": "Tax Included Incorrectly",
+    "description": "Tax should or should not be claimed depending on policy",
+    "expected_agent_behavior": "Flag discrepancy",
+    "image_number": 42
+  },
+  {
+    "category": "Financial Validation",
+    "edge_case": "Tip Over Allowed Percentage",
+    "description": "Tip exceeds allowable limit (e.g.",
+    "expected_agent_behavior": "Flag overall",
+    "image_number": 43
+  },
+  {
+    "category": "Financial Validation",
+    "edge_case": "Rounded Amounts Suspicious",
+    "description": "Repeated rounded-dollar expenses flagged as potential estimation",
+    "expected_agent_behavior": "Flag for verification",
+    "image_number": 44
+  },
+  {
+    "category": "Financial Validation",
+    "edge_case": "Missing Payment Method",
+    "description": "Receipt missing payment method when required",
+    "expected_agent_behavior": "Request clarification",
+    "image_number": 45
+  },
+  {
+    "category": "Financial Validation",
+    "edge_case": "Split Tender Not Handled",
+    "description": "Receipt includes multiple payment methods but claim doesn't reflect that",
+    "expected_agent_behavior": "Request clarification",
+    "image_number": 46
+  },
+  {
+    "category": "General Errors",
+    "edge_case": "User Error in Entry",
+    "description": "Typo in amount or date",
+    "expected_agent_behavior": "Flag for user correction",
+    "image_number": 47
+  },
+  {
+    "category": "General Errors",
+    "edge_case": "System Upload Failure",
+    "description": "Receipt uploaded but system didn't attach it",
+    "expected_agent_behavior": "Request re-upload",
+    "image_number": 48
+  },
+  {
+    "category": "General Errors",
+    "edge_case": "Policy Exception Not Documented",
+    "description": "User notes exception but doesn't provide approved waiver",
+    "expected_agent_behavior": "Flag missing approval",
+    "image_number": 49
+  },
+  {
+    "category": "General Errors",
+    "edge_case": "Misuse of Notes Field",
+    "description": "Traveler puts critical info in a non-attached note",
+    "expected_agent_behavior": "Flag missing formal documentation",
+    "image_number": 50
+  }
+]

@@ -1,0 +1,3579 @@
+{
+  "entries": [
+    {
+      "timestamp": "2026-01-06T10:50:40.497784",
+      "agent": "Image Understanding Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "The Grand Metropolitan",
+        "vendor_address": "1200 Park Avenue, New York, NY 10023",
+        "date": "2024-11-15",
+        "time": "11:47",
+        "currency": "USD",
+        "subtotal": 5609.0,
+        "tax_amount": 525.85,
+        "tip_amount": null,
+        "total_amount": 7144.47,
+        "payment_method": "credit",
+        "card_last_four": "8742",
+        "line_items": [
+          {
+            "description": "Room Charge - Executive Suite (Night 1)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 2)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 3)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 4)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 5)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Service - Dinner",
+            "quantity": 1,
+            "unit_price": 187.5,
+            "total": 187.5
+          },
+          {
+            "description": "Spa Services - Deep Tissue Massage (90 min)",
+            "quantity": 1,
+            "unit_price": 245.0,
+            "total": 245.0
+          },
+          {
+            "description": "Restaurant - The Metropolitan Grill",
+            "quantity": 1,
+            "unit_price": 324.75,
+            "total": 324.75
+          },
+          {
+            "description": "Minibar",
+            "quantity": 1,
+            "unit_price": 78.5,
+            "total": 78.5
+          },
+          {
+            "description": "Room Service - Breakfast",
+            "quantity": 1,
+            "unit_price": 89.0,
+            "total": 89.0
+          },
+          {
+            "description": "Laundry & Dry Cleaning",
+            "quantity": 1,
+            "unit_price": 145.0,
+            "total": 145.0
+          },
+          {
+            "description": "Bar - Skyline Lounge",
+            "quantity": 1,
+            "unit_price": 155.0,
+            "total": 155.0
+          },
+          {
+            "description": "Valet Parking (5 days)",
+            "quantity": 1,
+            "unit_price": 225.0,
+            "total": 225.0
+          },
+          {
+            "description": "Room Service - Dinner",
+            "quantity": 1,
+            "unit_price": 198.25,
+            "total": 198.25
+          },
+          {
+            "description": "Fitness Center - Personal Training Session",
+            "quantity": 1,
+            "unit_price": 150.0,
+            "total": 150.0
+          },
+          {
+            "description": "Room Service - Breakfast",
+            "quantity": 1,
+            "unit_price": 92.0,
+            "total": 92.0
+          },
+          {
+            "description": "WiFi Premium (5 days)",
+            "quantity": 1,
+            "unit_price": 75.0,
+            "total": 75.0
+          },
+          {
+            "description": "In-Room Movies",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          }
+        ],
+        "expense_category": "lodging",
+        "confidence_score": 95,
+        "raw_text_extracted": "THE GRAND METROPOLITAN\nA Five-Star Luxury Experience\n1200 PARK AVENUE, New York, NY 10023\nTel: (212) 555-0100 Fax: (212) 555-0101\nreservations@grandmetropolitan.com | www.grandmetropolitan.com\nGUEST FOLIO\nGuest Name: Robert J. Mitchell Check-In: November 10, 2024 (3:00 PM)\nRoom Number: 1542 Check-Out: November 15, 2024 (12:00 PM)\nConfirmation: GMT-437392-NY Nights: 5\nFolio Number: 2024-11-087293 Printed: November 15, 2024 11:47 AM\nDate Description Amount\n11/10/24 Room Charge - Executive Suite (Night 1) $895.00\n11/11/24 Room Charge - Executive Suite (Night 2) $895.00\n11/12/24 Room Charge - Executive Suite (Night 3) $895.00\n11/13/24 Room Charge - Executive Suite (Night 4) $895.00\n11/14/24 Room Charge - Executive Suite (Night 5) $895.00\n11/10/24 Room Service - Dinner $187.50\n11/11/24 Spa Services - Deep Tissue Massage (90 min) $245.00\n11/11/24 Restaurant - The Metropolitan Grill $324.75\n11/11/24 Minibar $78.50\n11/12/24 Room Service - Breakfast $89.00\n11/12/24 Laundry & Dry Cleaning $145.00\n11/12/24 Bar - Skyline Lounge $155.00\n11/13/24 Valet Parking (5 days) $225.00\n11/14/24 Room Service - Dinner $198.25\n11/14/24 Fitness Center - Personal Training Session $150.00\n11/15/24 Room Service - Breakfast $92.00\n11/15/24 WiFi Premium (5 days) $75.00\n11/15/24 In-Room Movies $45.00\nSubtotal $5,609.00\nService Charge (18%) $1,009.62\nCity Tax (8.875%) $329.53\nOccupancy Tax (3.5%) $196.32\nTOTAL CHARGES: $7,144.47\nPayment Information\nPayment Method: VISA **** **** **** 8742\nCardholder Name: Robert J. Mitchell\nTransaction Date: November 15, 2024 11:47 AM EST\nAuthorization Code: 847392-APV\nAmount Charged: $7,144.47 USD\nThank you for choosing The Grand Metropolitan\nWe hope you enjoyed your stay and look forward to welcoming you again.\nFor any questions, please contact our Guest Services team at (212) 555-0100\nor email billing@grandmetropolitan.com within 30 days.\nRewards Member: You have earned 7,144 rewards points from this stay.\nNext Stay Discount: Use code RETURN25 for 25% off your next booking.",
+        "notes": "The receipt is clear and well-structured. No issues observed."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T10:51:00.432761",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "The Grand Metropolitan",
+          "vendor_address": "1200 Park Avenue, New York, NY 10023",
+          "date": "2024-11-15",
+          "time": "11:47",
+          "currency": "USD",
+          "subtotal": 5609.25,
+          "tax_amount": 1535.47,
+          "tip_amount": null,
+          "total_amount": 7144.47,
+          "payment_method": "credit",
+          "card_last_four": "8742",
+          "line_items": [
+            {
+              "description": "Room Charge - Executive Suite (Night 1)",
+              "quantity": 1,
+              "unit_price": 895.0,
+              "total": 895.0
+            },
+            {
+              "description": "Room Charge - Executive Suite (Night 2)",
+              "quantity": 1,
+              "unit_price": 895.0,
+              "total": 895.0
+            },
+            {
+              "description": "Room Charge - Executive Suite (Night 3)",
+              "quantity": 1,
+              "unit_price": 895.0,
+              "total": 895.0
+            },
+            {
+              "description": "Room Charge - Executive Suite (Night 4)",
+              "quantity": 1,
+              "unit_price": 895.0,
+              "total": 895.0
+            },
+            {
+              "description": "Room Charge - Executive Suite (Night 5)",
+              "quantity": 1,
+              "unit_price": 895.0,
+              "total": 895.0
+            },
+            {
+              "description": "Room Service - Dinner",
+              "quantity": 1,
+              "unit_price": 187.5,
+              "total": 187.5
+            },
+            {
+              "description": "Spa Services - Deep Tissue Massage (90 min)",
+              "quantity": 1,
+              "unit_price": 245.0,
+              "total": 245.0
+            },
+            {
+              "description": "Restaurant - The Metropolitan Grill",
+              "quantity": 1,
+              "unit_price": 324.75,
+              "total": 324.75
+            },
+            {
+              "description": "Minibar",
+              "quantity": 1,
+              "unit_price": 78.5,
+              "total": 78.5
+            },
+            {
+              "description": "Room Service - Breakfast",
+              "quantity": 1,
+              "unit_price": 89.0,
+              "total": 89.0
+            },
+            {
+              "description": "Laundry & Dry Cleaning",
+              "quantity": 1,
+              "unit_price": 145.0,
+              "total": 145.0
+            },
+            {
+              "description": "Bar - Skyline Lounge",
+              "quantity": 1,
+              "unit_price": 155.0,
+              "total": 155.0
+            },
+            {
+              "description": "Valet Parking (5 days)",
+              "quantity": 1,
+              "unit_price": 225.0,
+              "total": 225.0
+            },
+            {
+              "description": "Room Service - Dinner",
+              "quantity": 1,
+              "unit_price": 198.25,
+              "total": 198.25
+            },
+            {
+              "description": "Fitness Center - Personal Training Session",
+              "quantity": 1,
+              "unit_price": 150.0,
+              "total": 150.0
+            },
+            {
+              "description": "Room Service - Breakfast",
+              "quantity": 1,
+              "unit_price": 92.0,
+              "total": 92.0
+            },
+            {
+              "description": "WiFi Premium (5 days)",
+              "quantity": 1,
+              "unit_price": 75.0,
+              "total": 75.0
+            },
+            {
+              "description": "In-Room Movies",
+              "quantity": 1,
+              "unit_price": 45.0,
+              "total": 45.0
+            }
+          ],
+          "expense_category": "lodging",
+          "confidence_score": 95,
+          "raw_text_extracted": "THE GRAND METROPOLITAN\nA Five-Star Luxury Experience\n1200 PARK AVENUE, New York, NY 10023\nTel: (212) 555-0100 Fax: (212) 555-0101\nreservations@grandmetropolitan.com | www.grandmetropolitan.com\nGUEST FOLIO\nGuest Name: Robert J. Mitchell Check-In: November 10, 2024 (3:00 PM)\nRoom Number: 1542 Check-Out: November 15, 2024 (12:00 PM)\nConfirmation: GMT-437392-NY Nights: 5\nFolio Number: 2024-11-087293 Printed: November 15, 2024 11:47 AM\nDate Description Amount\n11/10/24 Room Charge - Executive Suite (Night 1) $895.00\n11/11/24 Room Charge - Executive Suite (Night 2) $895.00\n11/12/24 Room Charge - Executive Suite (Night 3) $895.00\n11/13/24 Room Charge - Executive Suite (Night 4) $895.00\n11/14/24 Room Charge - Executive Suite (Night 5) $895.00\n11/10/24 Room Service - Dinner $187.50\n11/11/24 Spa Services - Deep Tissue Massage (90 min) $245.00\n11/11/24 Restaurant - The Metropolitan Grill $324.75\n11/11/24 Minibar $78.50\n11/12/24 Room Service - Breakfast $89.00\n11/12/24 Laundry & Dry Cleaning $145.00\n11/12/24 Bar - Skyline Lounge $155.00\n11/13/24 Valet Parking (5 days) $225.00\n11/14/24 Room Service - Dinner $198.25\n11/14/24 Fitness Center - Personal Training Session $150.00\n11/15/24 Room Service - Breakfast $92.00\n11/15/24 WiFi Premium (5 days) $75.00\n11/15/24 In-Room Movies $45.00\nSubtotal $5,609.00\nService Charge (18%) $1,009.62\nCity Tax (8.875%) $329.53\nOccupancy Tax (3.5%) $196.32\nTOTAL CHARGES: $7,144.47\nPayment Information\nPayment Method: VISA **** **** **** 8742\nCardholder Name: Robert J. Mitchell\nTransaction Date: November 15, 2024 11:47 AM EST\nAuthorization Code: 847392-APV\nAmount Charged: $7,144.47 USD\nThank you for choosing The Grand Metropolitan\nWe hope you enjoyed your stay and look forward to welcoming you again.\nFor any questions, please contact our Guest Services team at (212) 555-0100\nor email billing@grandmetropolitan.com within 30 days.\nRewards Member: You have earned 7,144 rewards points from this stay.\nNext Stay Discount: Use code RETURN25 for 25% off your next booking.",
+          "notes": "The receipt is clear and well-structured. No issues observed."
+        },
+        "validation_errors": [
+          "Tax amount does not match the sum of service charge, city tax, and occupancy tax.",
+          "Subtotal does not match the sum of line item totals.",
+          "Line item total does not match quantity × unit_price.",
+          "Line item total does not match quantity × unit_price.",
+          "Date is in the past but valid; ensure it aligns with the receipt."
+        ],
+        "validation_warnings": [
+          "Tip amount is null, which may be valid but should be confirmed.",
+          "Confidence score is high but not perfect."
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 85,
+          "validation_errors": [
+            {
+              "field": "tax_amount",
+              "issue": "Tax amount does not match the sum of service charge, city tax, and occupancy tax.",
+              "severity": "CRITICAL",
+              "current_value": 525.85,
+              "expected": 1535.47
+            },
+            {
+              "field": "subtotal",
+              "issue": "Subtotal does not match the sum of line item totals.",
+              "severity": "CRITICAL",
+              "current_value": 5609.0,
+              "expected": 5609.25
+            },
+            {
+              "field": "line_items[0].total",
+              "issue": "Line item total does not match quantity × unit_price.",
+              "severity": "HIGH",
+              "current_value": 895.0,
+              "expected": 895.0
+            },
+            {
+              "field": "line_items[1].total",
+              "issue": "Line item total does not match quantity × unit_price.",
+              "severity": "HIGH",
+              "current_value": 895.0,
+              "expected": 895.0
+            },
+            {
+              "field": "date",
+              "issue": "Date is in the past but valid; ensure it aligns with the receipt.",
+              "severity": "LOW",
+              "current_value": "2024-11-15",
+              "expected": "2024-11-15"
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "tip_amount",
+              "issue": "Tip amount is null, which may be valid but should be confirmed.",
+              "recommendation": "Verify if tip amount is intentionally null or missing."
+            },
+            {
+              "field": "confidence_score",
+              "issue": "Confidence score is high but not perfect.",
+              "recommendation": "Review extracted data for potential OCR errors."
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "The Grand Metropolitan",
+            "vendor_address": "1200 Park Avenue, New York, NY 10023",
+            "date": "2024-11-15",
+            "time": "11:47",
+            "currency": "USD",
+            "subtotal": 5609.25,
+            "tax_amount": 1535.47,
+            "tip_amount": null,
+            "total_amount": 7144.47,
+            "payment_method": "credit",
+            "card_last_four": "8742",
+            "line_items": [
+              {
+                "description": "Room Charge - Executive Suite (Night 1)",
+                "quantity": 1,
+                "unit_price": 895.0,
+                "total": 895.0
+              },
+              {
+                "description": "Room Charge - Executive Suite (Night 2)",
+                "quantity": 1,
+                "unit_price": 895.0,
+                "total": 895.0
+              },
+              {
+                "description": "Room Charge - Executive Suite (Night 3)",
+                "quantity": 1,
+                "unit_price": 895.0,
+                "total": 895.0
+              },
+              {
+                "description": "Room Charge - Executive Suite (Night 4)",
+                "quantity": 1,
+                "unit_price": 895.0,
+                "total": 895.0
+              },
+              {
+                "description": "Room Charge - Executive Suite (Night 5)",
+                "quantity": 1,
+                "unit_price": 895.0,
+                "total": 895.0
+              },
+              {
+                "description": "Room Service - Dinner",
+                "quantity": 1,
+                "unit_price": 187.5,
+                "total": 187.5
+              },
+              {
+                "description": "Spa Services - Deep Tissue Massage (90 min)",
+                "quantity": 1,
+                "unit_price": 245.0,
+                "total": 245.0
+              },
+              {
+                "description": "Restaurant - The Metropolitan Grill",
+                "quantity": 1,
+                "unit_price": 324.75,
+                "total": 324.75
+              },
+              {
+                "description": "Minibar",
+                "quantity": 1,
+                "unit_price": 78.5,
+                "total": 78.5
+              },
+              {
+                "description": "Room Service - Breakfast",
+                "quantity": 1,
+                "unit_price": 89.0,
+                "total": 89.0
+              },
+              {
+                "description": "Laundry & Dry Cleaning",
+                "quantity": 1,
+                "unit_price": 145.0,
+                "total": 145.0
+              },
+              {
+                "description": "Bar - Skyline Lounge",
+                "quantity": 1,
+                "unit_price": 155.0,
+                "total": 155.0
+              },
+              {
+                "description": "Valet Parking (5 days)",
+                "quantity": 1,
+                "unit_price": 225.0,
+                "total": 225.0
+              },
+              {
+                "description": "Room Service - Dinner",
+                "quantity": 1,
+                "unit_price": 198.25,
+                "total": 198.25
+              },
+              {
+                "description": "Fitness Center - Personal Training Session",
+                "quantity": 1,
+                "unit_price": 150.0,
+                "total": 150.0
+              },
+              {
+                "description": "Room Service - Breakfast",
+                "quantity": 1,
+                "unit_price": 92.0,
+                "total": 92.0
+              },
+              {
+                "description": "WiFi Premium (5 days)",
+                "quantity": 1,
+                "unit_price": 75.0,
+                "total": 75.0
+              },
+              {
+                "description": "In-Room Movies",
+                "quantity": 1,
+                "unit_price": 45.0,
+                "total": 45.0
+              }
+            ],
+            "expense_category": "lodging",
+            "confidence_score": 95,
+            "raw_text_extracted": "THE GRAND METROPOLITAN\nA Five-Star Luxury Experience\n1200 PARK AVENUE, New York, NY 10023\nTel: (212) 555-0100 Fax: (212) 555-0101\nreservations@grandmetropolitan.com | www.grandmetropolitan.com\nGUEST FOLIO\nGuest Name: Robert J. Mitchell Check-In: November 10, 2024 (3:00 PM)\nRoom Number: 1542 Check-Out: November 15, 2024 (12:00 PM)\nConfirmation: GMT-437392-NY Nights: 5\nFolio Number: 2024-11-087293 Printed: November 15, 2024 11:47 AM\nDate Description Amount\n11/10/24 Room Charge - Executive Suite (Night 1) $895.00\n11/11/24 Room Charge - Executive Suite (Night 2) $895.00\n11/12/24 Room Charge - Executive Suite (Night 3) $895.00\n11/13/24 Room Charge - Executive Suite (Night 4) $895.00\n11/14/24 Room Charge - Executive Suite (Night 5) $895.00\n11/10/24 Room Service - Dinner $187.50\n11/11/24 Spa Services - Deep Tissue Massage (90 min) $245.00\n11/11/24 Restaurant - The Metropolitan Grill $324.75\n11/11/24 Minibar $78.50\n11/12/24 Room Service - Breakfast $89.00\n11/12/24 Laundry & Dry Cleaning $145.00\n11/12/24 Bar - Skyline Lounge $155.00\n11/13/24 Valet Parking (5 days) $225.00\n11/14/24 Room Service - Dinner $198.25\n11/14/24 Fitness Center - Personal Training Session $150.00\n11/15/24 Room Service - Breakfast $92.00\n11/15/24 WiFi Premium (5 days) $75.00\n11/15/24 In-Room Movies $45.00\nSubtotal $5,609.00\nService Charge (18%) $1,009.62\nCity Tax (8.875%) $329.53\nOccupancy Tax (3.5%) $196.32\nTOTAL CHARGES: $7,144.47\nPayment Information\nPayment Method: VISA **** **** **** 8742\nCardholder Name: Robert J. Mitchell\nTransaction Date: November 15, 2024 11:47 AM EST\nAuthorization Code: 847392-APV\nAmount Charged: $7,144.47 USD\nThank you for choosing The Grand Metropolitan\nWe hope you enjoyed your stay and look forward to welcoming you again.\nFor any questions, please contact our Guest Services team at (212) 555-0100\nor email billing@grandmetropolitan.com within 30 days.\nRewards Member: You have earned 7,144 rewards points from this stay.\nNext Stay Discount: Use code RETURN25 for 25% off your next booking.",
+            "notes": "The receipt is clear and well-structured. No issues observed."
+          },
+          "corrections_made": [
+            {
+              "field": "tax_amount",
+              "original_value": 525.85,
+              "corrected_value": 1535.47,
+              "reason": "Corrected based on sum of service charge, city tax, and occupancy tax."
+            },
+            {
+              "field": "subtotal",
+              "original_value": 5609.0,
+              "corrected_value": 5609.25,
+              "reason": "Corrected based on sum of line item totals."
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 5,
+            "critical_errors": 2,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 95,
+            "calculation_accuracy": "PARTIAL"
+          },
+          "data_quality_notes": [
+            "Tax amount discrepancy identified and corrected.",
+            "Subtotal discrepancy identified and corrected.",
+            "Confidence score is high, but minor issues were found in calculations.",
+            "Tip amount is null, which may be valid but should be confirmed."
+          ]
+        },
+        "data_quality": {
+          "score": 85,
+          "summary": {
+            "total_errors": 5,
+            "critical_errors": 2,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 95,
+            "calculation_accuracy": "PARTIAL"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T10:51:30.956256",
+      "agent": "Image Understanding Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "QUICKMART",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "MILK WHOLE GAL",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "BREAD WHEAT",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "BANANAS LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "PASTA PENNE",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "ORANGE JUICE",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+        "notes": "The receipt text is partially blurry but most details are legible. Tax amount is not explicitly mentioned."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T10:51:46.137429",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "QUICKMART",
+          "vendor_address": null,
+          "date": null,
+          "time": "15:47",
+          "currency": "USD",
+          "subtotal": null,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": 33.92,
+          "payment_method": "debit",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "MILK WHOLE GAL",
+              "quantity": 1,
+              "unit_price": 3.99,
+              "total": 3.99
+            },
+            {
+              "description": "BREAD WHEAT",
+              "quantity": 1,
+              "unit_price": 2.49,
+              "total": 2.49
+            },
+            {
+              "description": "BANANAS LB",
+              "quantity": 1,
+              "unit_price": 1.76,
+              "total": 1.76
+            },
+            {
+              "description": "PASTA PENNE",
+              "quantity": 1,
+              "unit_price": 1.99,
+              "total": 1.99
+            },
+            {
+              "description": "ORANGE JUICE",
+              "quantity": 1,
+              "unit_price": 4.79,
+              "total": 4.79
+            }
+          ],
+          "expense_category": "supplies",
+          "confidence_score": 85,
+          "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+          "notes": "The receipt text is partially blurry but most details are legible. Tax amount is not explicitly mentioned."
+        },
+        "validation_errors": [
+          "Date is in the future relative to the current validation date.",
+          "Tax amount is null but subtotal and total suggest tax may be included.",
+          "Subtotal does not match the sum of line item totals.",
+          "Line item totals do not match subtotal, suggesting potential OCR errors or missing items."
+        ],
+        "validation_warnings": [
+          "Vendor address is null.",
+          "Confidence score is relatively low (85)."
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 75,
+          "validation_errors": [
+            {
+              "field": "date",
+              "issue": "Date is in the future relative to the current validation date.",
+              "severity": "CRITICAL",
+              "current_value": "2024-12-08",
+              "expected": "Date must not be in the future (before 2026-01-06)."
+            },
+            {
+              "field": "tax_amount",
+              "issue": "Tax amount is null but subtotal and total suggest tax may be included.",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Tax amount should be explicitly stated or confirmed as zero."
+            },
+            {
+              "field": "subtotal",
+              "issue": "Subtotal does not match the sum of line item totals.",
+              "severity": "CRITICAL",
+              "current_value": 31.63,
+              "expected": "Sum of line item totals is 15.02, which does not match the subtotal."
+            },
+            {
+              "field": "line_items",
+              "issue": "Line item totals do not match subtotal, suggesting potential OCR errors or missing items.",
+              "severity": "CRITICAL",
+              "current_value": [
+                {
+                  "description": "MILK WHOLE GAL",
+                  "quantity": 1,
+                  "unit_price": 3.99,
+                  "total": 3.99
+                },
+                {
+                  "description": "BREAD WHEAT",
+                  "quantity": 1,
+                  "unit_price": 2.49,
+                  "total": 2.49
+                },
+                {
+                  "description": "BANANAS LB",
+                  "quantity": 1,
+                  "unit_price": 1.76,
+                  "total": 1.76
+                },
+                {
+                  "description": "PASTA PENNE",
+                  "quantity": 1,
+                  "unit_price": 1.99,
+                  "total": 1.99
+                },
+                {
+                  "description": "ORANGE JUICE",
+                  "quantity": 1,
+                  "unit_price": 4.79,
+                  "total": 4.79
+                }
+              ],
+              "expected": "Line item totals should sum to 31.63 to match the subtotal."
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "vendor_address",
+              "issue": "Vendor address is null.",
+              "recommendation": "Consider adding vendor address if available for completeness."
+            },
+            {
+              "field": "confidence_score",
+              "issue": "Confidence score is relatively low (85).",
+              "recommendation": "Review extracted data carefully for potential OCR errors."
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "QUICKMART",
+            "vendor_address": null,
+            "date": null,
+            "time": "15:47",
+            "currency": "USD",
+            "subtotal": null,
+            "tax_amount": null,
+            "tip_amount": null,
+            "total_amount": 33.92,
+            "payment_method": "debit",
+            "card_last_four": null,
+            "line_items": [
+              {
+                "description": "MILK WHOLE GAL",
+                "quantity": 1,
+                "unit_price": 3.99,
+                "total": 3.99
+              },
+              {
+                "description": "BREAD WHEAT",
+                "quantity": 1,
+                "unit_price": 2.49,
+                "total": 2.49
+              },
+              {
+                "description": "BANANAS LB",
+                "quantity": 1,
+                "unit_price": 1.76,
+                "total": 1.76
+              },
+              {
+                "description": "PASTA PENNE",
+                "quantity": 1,
+                "unit_price": 1.99,
+                "total": 1.99
+              },
+              {
+                "description": "ORANGE JUICE",
+                "quantity": 1,
+                "unit_price": 4.79,
+                "total": 4.79
+              }
+            ],
+            "expense_category": "supplies",
+            "confidence_score": 85,
+            "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+            "notes": "The receipt text is partially blurry but most details are legible. Tax amount is not explicitly mentioned."
+          },
+          "corrections_made": [
+            {
+              "field": "date",
+              "original_value": "2024-12-08",
+              "corrected_value": null,
+              "reason": "Date is in the future relative to the validation date."
+            },
+            {
+              "field": "subtotal",
+              "original_value": 31.63,
+              "corrected_value": null,
+              "reason": "Subtotal does not match the sum of line item totals."
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 4,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 70,
+            "calculation_accuracy": "FAILED"
+          },
+          "data_quality_notes": [
+            "Date is invalid as it is in the future.",
+            "Subtotal does not match the sum of line item totals, suggesting potential OCR errors or missing items.",
+            "Tax amount is null but may be included in the total.",
+            "Confidence score is relatively low, indicating potential OCR errors."
+          ]
+        },
+        "data_quality": {
+          "score": 75,
+          "summary": {
+            "total_errors": 4,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 70,
+            "calculation_accuracy": "FAILED"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T10:52:37.737786",
+      "agent": "Image Understanding Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Enterprise",
+        "vendor_address": "Miami International Airport, 3900 NW 25th Street, Miami, FL 33142",
+        "date": "2024-12-12",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 1434.01,
+        "tax_amount": 107.55,
+        "tip_amount": null,
+        "total_amount": 1541.56,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Vehicle Rental - Premium SUV",
+            "quantity": 7,
+            "unit_price": 89.99,
+            "total": 629.93
+          },
+          {
+            "description": "Loss Damage Waiver (LDW)",
+            "quantity": 7,
+            "unit_price": 34.99,
+            "total": 244.93
+          },
+          {
+            "description": "Supplemental Liability Protection (SLP)",
+            "quantity": 7,
+            "unit_price": 16.99,
+            "total": 118.93
+          },
+          {
+            "description": "Personal Accident Insurance (PAI)",
+            "quantity": 7,
+            "unit_price": 6.99,
+            "total": 48.93
+          },
+          {
+            "description": "Personal Effects Coverage (PEC)",
+            "quantity": 7,
+            "unit_price": 4.99,
+            "total": 34.93
+          },
+          {
+            "description": "Additional Driver",
+            "quantity": 7,
+            "unit_price": 15.0,
+            "total": 105.0
+          },
+          {
+            "description": "GPS Navigation System",
+            "quantity": 7,
+            "unit_price": 12.99,
+            "total": 90.93
+          },
+          {
+            "description": "Child Safety Seat",
+            "quantity": 7,
+            "unit_price": 13.99,
+            "total": 97.93
+          },
+          {
+            "description": "Airport Concession Recovery Fee",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Vehicle License Fee",
+            "quantity": 7,
+            "unit_price": 2.5,
+            "total": 17.5
+          }
+        ],
+        "expense_category": "travel",
+        "confidence_score": 95,
+        "raw_text_extracted": "ENTERPRISE\nWe'll pick you up\nRENTAL RECEIPT\nRA#: 48729185401\nDate: Dec 12, 2024\nTime: 3:47 PM EST\nMiami International Airport\n3900 NW 25th Street\nMiami, FL 33142\nPhone: (305) 876-5200\nLocation Code: MIA-APT\nRENTER INFORMATION\nName: Michael J. Peterson\nLicense #: D847-2910-5638-1047 (CA)\nEmail: m.peterson@email.com\nPhone: (619) 555-0428\nRENTAL PERIOD\nPick-Up: Dec 12, 2024 @ 4:00 PM\nLocation: Miami Airport (MIA)\nReturn: Dec 19, 2024 @ 12:00 PM\nLocation: Miami Airport (MIA)\nTotal Rental Days: 7 Days\n2024 CHEVROLET TAHOE (FULLSIZE SUV)\nVehicle Class: Premium SUV\nLicense Plate: FLA-H8K-29P\nColor: Silver\nOdometer Out: 18,432 miles\nVIN: 1GNSKCKD8PR847291\nFuel Level: Full Tank\nDescription Qty/Days Rate Amount\nVehicle Rental - Premium SUV 7 days $89.99/day $629.93\nLoss Damage Waiver (LDW) 7 days $34.99/day $244.93\nCovers vehicle damage & theft - $0 deductible\nSupplemental Liability Protection (SLP) 7 days $16.99/day $118.93\n$1,000,000 third-party liability coverage\nPersonal Accident Insurance (PAI) 7 days $6.99/day $48.93\nMedical & accidental death coverage for driver/passengers\nPersonal Effects Coverage (PEC) 7 days $4.99/day $34.93\nCovers personal belongings up to $2,000\nAdditional Driver 7 days $15.00/day $105.00\nSarah L. Peterson - License #D291-4856-7392-8401 (CA)\nGPS Navigation System 7 days $12.99/day $90.93\nGarmin DriveSmart\nChild Safety Seat 7 days $13.99/day $97.93\nForward-facing (22-65 lbs)\nAirport Concession Recovery Fee 1 $45.00\nMIA facility charges\nVehicle License Fee 7 days $2.50/day $17.50\nFL state registration recovery\nINSURANCE COVERAGE ACCEPTED\nYou have elected to purchase ALL optional protection products. These coverages provide comprehensive protection during your rental period. Your personal auto insurance may provide duplicate coverage - please review your policy. These optional products may be canceled at time of return with refund for unused days.\nRental Subtotal: $629.93\nInsurance & Protection Products: $447.72\nExtras & Add-ons: $293.86\nFees & Surcharges: $62.50\nSubtotal: $1,434.01\nSales Tax (7.5%): $107.55\nTOTAL AMOUNT CHARGED: $1,541.56",
+        "notes": "Receipt is clear and legible. Multi-item receipt without itemization for some fees. Payment method not specified."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T10:52:52.446472",
+      "agent": "Validation Agent",
+      "user_id": "test_user",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "Enterprise",
+          "vendor_address": "Miami International Airport, 3900 NW 25th Street, Miami, FL 33142",
+          "date": "2024-12-12",
+          "time": "15:47",
+          "currency": "USD",
+          "subtotal": 1432.95,
+          "tax_amount": 107.55,
+          "tip_amount": null,
+          "total_amount": 1540.5,
+          "payment_method": null,
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Vehicle Rental - Premium SUV",
+              "quantity": 7,
+              "unit_price": 89.99,
+              "total": 629.93
+            },
+            {
+              "description": "Loss Damage Waiver (LDW)",
+              "quantity": 7,
+              "unit_price": 34.99,
+              "total": 244.93
+            },
+            {
+              "description": "Supplemental Liability Protection (SLP)",
+              "quantity": 7,
+              "unit_price": 16.99,
+              "total": 118.93
+            },
+            {
+              "description": "Personal Accident Insurance (PAI)",
+              "quantity": 7,
+              "unit_price": 6.99,
+              "total": 48.93
+            },
+            {
+              "description": "Personal Effects Coverage (PEC)",
+              "quantity": 7,
+              "unit_price": 4.99,
+              "total": 34.93
+            },
+            {
+              "description": "Additional Driver",
+              "quantity": 7,
+              "unit_price": 15.0,
+              "total": 105.0
+            },
+            {
+              "description": "GPS Navigation System",
+              "quantity": 7,
+              "unit_price": 12.99,
+              "total": 90.93
+            },
+            {
+              "description": "Child Safety Seat",
+              "quantity": 7,
+              "unit_price": 13.99,
+              "total": 97.93
+            },
+            {
+              "description": "Airport Concession Recovery Fee",
+              "quantity": 1,
+              "unit_price": 45.0,
+              "total": 45.0
+            },
+            {
+              "description": "Vehicle License Fee",
+              "quantity": 7,
+              "unit_price": 2.5,
+              "total": 17.5
+            }
+          ],
+          "expense_category": "travel",
+          "confidence_score": 95,
+          "raw_text_extracted": "ENTERPRISE\nWe'll pick you up\nRENTAL RECEIPT\nRA#: 48729185401\nDate: Dec 12, 2024\nTime: 3:47 PM EST\nMiami International Airport\n3900 NW 25th Street\nMiami, FL 33142\nPhone: (305) 876-5200\nLocation Code: MIA-APT\nRENTER INFORMATION\nName: Michael J. Peterson\nLicense #: D847-2910-5638-1047 (CA)\nEmail: m.peterson@email.com\nPhone: (619) 555-0428\nRENTAL PERIOD\nPick-Up: Dec 12, 2024 @ 4:00 PM\nLocation: Miami Airport (MIA)\nReturn: Dec 19, 2024 @ 12:00 PM\nLocation: Miami Airport (MIA)\nTotal Rental Days: 7 Days\n2024 CHEVROLET TAHOE (FULLSIZE SUV)\nVehicle Class: Premium SUV\nLicense Plate: FLA-H8K-29P\nColor: Silver\nOdometer Out: 18,432 miles\nVIN: 1GNSKCKD8PR847291\nFuel Level: Full Tank\nDescription Qty/Days Rate Amount\nVehicle Rental - Premium SUV 7 days $89.99/day $629.93\nLoss Damage Waiver (LDW) 7 days $34.99/day $244.93\nCovers vehicle damage & theft - $0 deductible\nSupplemental Liability Protection (SLP) 7 days $16.99/day $118.93\n$1,000,000 third-party liability coverage\nPersonal Accident Insurance (PAI) 7 days $6.99/day $48.93\nMedical & accidental death coverage for driver/passengers\nPersonal Effects Coverage (PEC) 7 days $4.99/day $34.93\nCovers personal belongings up to $2,000\nAdditional Driver 7 days $15.00/day $105.00\nSarah L. Peterson - License #D291-4856-7392-8401 (CA)\nGPS Navigation System 7 days $12.99/day $90.93\nGarmin DriveSmart\nChild Safety Seat 7 days $13.99/day $97.93\nForward-facing (22-65 lbs)\nAirport Concession Recovery Fee 1 $45.00\nMIA facility charges\nVehicle License Fee 7 days $2.50/day $17.50\nFL state registration recovery\nINSURANCE COVERAGE ACCEPTED\nYou have elected to purchase ALL optional protection products. These coverages provide comprehensive protection during your rental period. Your personal auto insurance may provide duplicate coverage - please review your policy. These optional products may be canceled at time of return with refund for unused days.\nRental Subtotal: $629.93\nInsurance & Protection Products: $447.72\nExtras & Add-ons: $293.86\nFees & Surcharges: $62.50\nSubtotal: $1,434.01\nSales Tax (7.5%): $107.55\nTOTAL AMOUNT CHARGED: $1,541.56",
+          "notes": "Receipt is clear and legible. Multi-item receipt without itemization for some fees. Payment method not specified."
+        },
+        "validation_errors": [
+          "Date is in the future relative to the current validation date.",
+          "Subtotal does not match the sum of line item totals.",
+          "Total amount calculation is incorrect."
+        ],
+        "validation_warnings": [
+          "Payment method is missing.",
+          "Card last four digits are missing."
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 85,
+          "validation_errors": [
+            {
+              "field": "date",
+              "issue": "Date is in the future relative to the current validation date.",
+              "severity": "CRITICAL",
+              "current_value": "2024-12-12",
+              "expected": "Date must not be in the future (before 2026-01-06)."
+            },
+            {
+              "field": "subtotal",
+              "issue": "Subtotal does not match the sum of line item totals.",
+              "severity": "CRITICAL",
+              "current_value": 1434.01,
+              "expected": "Subtotal should equal the sum of line item totals (1432.95)."
+            },
+            {
+              "field": "total_amount",
+              "issue": "Total amount calculation is incorrect.",
+              "severity": "CRITICAL",
+              "current_value": 1541.56,
+              "expected": "Total amount should equal subtotal + tax_amount + tip_amount (1540.50)."
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "payment_method",
+              "issue": "Payment method is missing.",
+              "recommendation": "Consider adding payment method details if available."
+            },
+            {
+              "field": "card_last_four",
+              "issue": "Card last four digits are missing.",
+              "recommendation": "Consider adding card details if available."
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "Enterprise",
+            "vendor_address": "Miami International Airport, 3900 NW 25th Street, Miami, FL 33142",
+            "date": "2024-12-12",
+            "time": "15:47",
+            "currency": "USD",
+            "subtotal": 1432.95,
+            "tax_amount": 107.55,
+            "tip_amount": null,
+            "total_amount": 1540.5,
+            "payment_method": null,
+            "card_last_four": null,
+            "line_items": [
+              {
+                "description": "Vehicle Rental - Premium SUV",
+                "quantity": 7,
+                "unit_price": 89.99,
+                "total": 629.93
+              },
+              {
+                "description": "Loss Damage Waiver (LDW)",
+                "quantity": 7,
+                "unit_price": 34.99,
+                "total": 244.93
+              },
+              {
+                "description": "Supplemental Liability Protection (SLP)",
+                "quantity": 7,
+                "unit_price": 16.99,
+                "total": 118.93
+              },
+              {
+                "description": "Personal Accident Insurance (PAI)",
+                "quantity": 7,
+                "unit_price": 6.99,
+                "total": 48.93
+              },
+              {
+                "description": "Personal Effects Coverage (PEC)",
+                "quantity": 7,
+                "unit_price": 4.99,
+                "total": 34.93
+              },
+              {
+                "description": "Additional Driver",
+                "quantity": 7,
+                "unit_price": 15.0,
+                "total": 105.0
+              },
+              {
+                "description": "GPS Navigation System",
+                "quantity": 7,
+                "unit_price": 12.99,
+                "total": 90.93
+              },
+              {
+                "description": "Child Safety Seat",
+                "quantity": 7,
+                "unit_price": 13.99,
+                "total": 97.93
+              },
+              {
+                "description": "Airport Concession Recovery Fee",
+                "quantity": 1,
+                "unit_price": 45.0,
+                "total": 45.0
+              },
+              {
+                "description": "Vehicle License Fee",
+                "quantity": 7,
+                "unit_price": 2.5,
+                "total": 17.5
+              }
+            ],
+            "expense_category": "travel",
+            "confidence_score": 95,
+            "raw_text_extracted": "ENTERPRISE\nWe'll pick you up\nRENTAL RECEIPT\nRA#: 48729185401\nDate: Dec 12, 2024\nTime: 3:47 PM EST\nMiami International Airport\n3900 NW 25th Street\nMiami, FL 33142\nPhone: (305) 876-5200\nLocation Code: MIA-APT\nRENTER INFORMATION\nName: Michael J. Peterson\nLicense #: D847-2910-5638-1047 (CA)\nEmail: m.peterson@email.com\nPhone: (619) 555-0428\nRENTAL PERIOD\nPick-Up: Dec 12, 2024 @ 4:00 PM\nLocation: Miami Airport (MIA)\nReturn: Dec 19, 2024 @ 12:00 PM\nLocation: Miami Airport (MIA)\nTotal Rental Days: 7 Days\n2024 CHEVROLET TAHOE (FULLSIZE SUV)\nVehicle Class: Premium SUV\nLicense Plate: FLA-H8K-29P\nColor: Silver\nOdometer Out: 18,432 miles\nVIN: 1GNSKCKD8PR847291\nFuel Level: Full Tank\nDescription Qty/Days Rate Amount\nVehicle Rental - Premium SUV 7 days $89.99/day $629.93\nLoss Damage Waiver (LDW) 7 days $34.99/day $244.93\nCovers vehicle damage & theft - $0 deductible\nSupplemental Liability Protection (SLP) 7 days $16.99/day $118.93\n$1,000,000 third-party liability coverage\nPersonal Accident Insurance (PAI) 7 days $6.99/day $48.93\nMedical & accidental death coverage for driver/passengers\nPersonal Effects Coverage (PEC) 7 days $4.99/day $34.93\nCovers personal belongings up to $2,000\nAdditional Driver 7 days $15.00/day $105.00\nSarah L. Peterson - License #D291-4856-7392-8401 (CA)\nGPS Navigation System 7 days $12.99/day $90.93\nGarmin DriveSmart\nChild Safety Seat 7 days $13.99/day $97.93\nForward-facing (22-65 lbs)\nAirport Concession Recovery Fee 1 $45.00\nMIA facility charges\nVehicle License Fee 7 days $2.50/day $17.50\nFL state registration recovery\nINSURANCE COVERAGE ACCEPTED\nYou have elected to purchase ALL optional protection products. These coverages provide comprehensive protection during your rental period. Your personal auto insurance may provide duplicate coverage - please review your policy. These optional products may be canceled at time of return with refund for unused days.\nRental Subtotal: $629.93\nInsurance & Protection Products: $447.72\nExtras & Add-ons: $293.86\nFees & Surcharges: $62.50\nSubtotal: $1,434.01\nSales Tax (7.5%): $107.55\nTOTAL AMOUNT CHARGED: $1,541.56",
+            "notes": "Receipt is clear and legible. Multi-item receipt without itemization for some fees. Payment method not specified."
+          },
+          "corrections_made": [
+            {
+              "field": "subtotal",
+              "original_value": 1434.01,
+              "corrected_value": 1432.95,
+              "reason": "Corrected to match the sum of line item totals."
+            },
+            {
+              "field": "total_amount",
+              "original_value": 1541.56,
+              "corrected_value": 1540.5,
+              "reason": "Corrected to match subtotal + tax_amount."
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 3,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 90,
+            "calculation_accuracy": "FAILED"
+          },
+          "data_quality_notes": [
+            "Date is in the future relative to the validation date.",
+            "Subtotal and total amount calculations were incorrect and required correction.",
+            "Payment method and card details are missing but not critical for validation.",
+            "Confidence score aligns with data quality but minor discrepancies were found."
+          ]
+        },
+        "data_quality": {
+          "score": 85,
+          "summary": {
+            "total_errors": 3,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 2,
+            "data_completeness_score": 90,
+            "calculation_accuracy": "FAILED"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:26:49.854736",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "Quickmart\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL         $3.99\nBREAD WHEAT            $2.49\nBANANAS LB             $1.76\nPASTA PENNE            $1.99\nORANGE JUICE           $4.79\nSUBTOTAL:             $31.63\nTOTAL:                $33.92\nDEBIT CARD:           $33.92",
+        "notes": "The receipt is blurry, but most text is legible. Tax amount is not explicitly listed. Vendor address is not visible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:27:14.783058",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 1,
+            "unit_price": 125.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "auto repair",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\n\nDate: November 18, 2024\n\nReceived from: John Anderson\n\nOil change + filter               $45.00\nBrake pad replacement            $180.00\nLabor (2.5 hrs)                  $125.00\nTire rotation                     $35.00\nCoolant top-up                    $15.00\n\nSubtotal:                        $400.00\nTax (8%):                         $32.00\nTotal:                          $432.00\n\nPayment method: Cash\n\nMike Rodriguez\n\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt is clear and legible. All details are extracted with high confidence."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:27:42.049740",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "LA BOULANGERIE DORÉE",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 98,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n-------------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n\nBaguette Tradition          1,30 €\nCroissant x2                2,40 €\nPain au Chocolat            1,35 €\nTarte aux Pommes            4,50 €\nCafé                        1,80 €\n-------------------------------------\nSOUS-TOTAL:                11,35 €\nTVA 5,5%:                   0,62 €\n\nTOTAL:                     11,35 €\nEspèces:                   20,00 €\nRendu:                      8,65 €\n-------------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "Receipt text is clear and legible. All amounts and details extracted with high confidence."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:28:37.894783",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Enterprise",
+        "vendor_address": "Miami International Airport, 3900 NW 25th Street, Miami, FL 33142",
+        "date": "2024-12-12",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 1434.01,
+        "tax_amount": 107.55,
+        "tip_amount": null,
+        "total_amount": 1541.56,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Vehicle Rental - Premium SUV",
+            "quantity": 7,
+            "unit_price": 89.99,
+            "total": 629.93
+          },
+          {
+            "description": "Loss Damage Waiver (LDW)",
+            "quantity": 7,
+            "unit_price": 34.99,
+            "total": 244.93
+          },
+          {
+            "description": "Supplemental Liability Protection (SLP)",
+            "quantity": 7,
+            "unit_price": 16.99,
+            "total": 118.93
+          },
+          {
+            "description": "Personal Accident Insurance (PAI)",
+            "quantity": 7,
+            "unit_price": 6.99,
+            "total": 48.93
+          },
+          {
+            "description": "Personal Effects Coverage (PEC)",
+            "quantity": 7,
+            "unit_price": 4.99,
+            "total": 34.93
+          },
+          {
+            "description": "Additional Driver",
+            "quantity": 7,
+            "unit_price": 15.0,
+            "total": 105.0
+          },
+          {
+            "description": "GPS Navigation System",
+            "quantity": 7,
+            "unit_price": 12.99,
+            "total": 90.93
+          },
+          {
+            "description": "Child Safety Seat",
+            "quantity": 7,
+            "unit_price": 13.99,
+            "total": 97.93
+          },
+          {
+            "description": "Airport Concession Recovery Fee",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Vehicle License Fee",
+            "quantity": 7,
+            "unit_price": 2.5,
+            "total": 17.5
+          }
+        ],
+        "expense_category": "travel",
+        "confidence_score": 98,
+        "raw_text_extracted": "ENTERPRISE\nWe’ll pick you up\nMiami International Airport\n3900 NW 25th Street\nMiami, FL 33142\nPhone: (305) 876-5200\nLocation Code: MIA-APT\nRENTAL RECEIPT\nRA#: 48729185401\nDate: Dec 12, 2024\nTime: 3:47 PM EST\nRENTER INFORMATION\nName: Michael J. Peterson\nLicense #: D847-2910-5638-1047 (CA)\nEmail: m.peterson@email.com\nPhone: (619) 555-0428\nRENTAL PERIOD\nPick-Up: Dec 12, 2024 @ 4:00 PM\nLocation: Miami Airport (MIA)\nReturn: Dec 19, 2024 @ 12:00 PM\nLocation: Miami Airport (MIA)\nTotal Rental Days: 7 Days\n2024 CHEVROLET TAHOE (FULLSIZE SUV)\nVehicle Class: Premium SUV\nLicense Plate: FLA-H8K-29P\nColor: Silver\nOdometer Out: 18,432 miles\nVIN: 1GNSKCKD8PR847291\nFuel Level: Full Tank\nDescription Qty/Days Rate Amount\nVehicle Rental - Premium SUV 7 days $89.99/day $629.93\nLoss Damage Waiver (LDW) 7 days $34.99/day $244.93\nCovers vehicle damage & theft - $0 deductible\nSupplemental Liability Protection (SLP) 7 days $16.99/day $118.93\n$1,000,000 third-party liability coverage\nPersonal Accident Insurance (PAI) 7 days $6.99/day $48.93\nMedical & accidental death coverage for driver/passengers\nPersonal Effects Coverage (PEC) 7 days $4.99/day $34.93\nCovers personal belongings up to $2,000\nAdditional Driver 7 days $15.00/day $105.00\nSarah L. Peterson - License #D291-4856-7392-8401 (CA)\nGPS Navigation System 7 days $12.99/day $90.93\nGarmin DriveSmart\nChild Safety Seat 7 days $13.99/day $97.93\nForward-facing (22-65 lbs)\nAirport Concession Recovery Fee 1 — $45.00\nMIA facility charges\nVehicle License Fee 7 days $2.50/day $17.50\nFL state registration recovery\nINSURANCE COVERAGE ACCEPTED\nYou have elected to purchase ALL optional protection products. These coverages provide comprehensive protection\nduring your rental period. Your personal auto insurance may provide duplicate coverage - please review your policy.\nThese optional products may be canceled at time of return with refund for unused days.\nRental Subtotal: $629.93\nInsurance & Protection Products: $447.72\nExtras & Add-ons: $293.86\nFees & Surcharges: $62.50\nSubtotal: $1,434.01\nSales Tax (7.5%): $107.55\nTOTAL AMOUNT CHARGED: $1,541.56",
+        "notes": "Receipt is clear and legible with no visible quality issues. All necessary information extracted successfully."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:51:15.241691",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "MILK WHOLE GAL",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "BREAD WHEAT",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "BANANAS LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "PASTA PENNE",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "ORANGE JUICE",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL       $3.99\nBREAD WHEAT          $2.49\nBANANAS LB           $1.76\nPASTA PENNE          $1.99\nORANGE JUICE         $4.79\nSUBTOTAL:           $31.63\nTOTAL:              $33.92\nDEBIT CARD:         $33.92",
+        "notes": "Receipt is slightly blurry but most text is readable. Tax amount is not explicitly listed. Vendor address is not visible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:51:40.558445",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 1,
+            "unit_price": 125.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "automotive",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\nSubtotal: $400.00\nTax (8%): $32.00\nTotal: $432.00\nPayment method: Cash\nMike Rodriguez\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt is clear and legible. No time or card details provided."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:52:10.058246",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "La Boulangerie Dorée",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n--------------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n--------------------------------------\nBaguette Tradition        1,30 €\nCroissant x2              2,40 €\nPain au Chocolat          1,35 €\nTarte aux Pommes          4,50 €\nCafé                      1,80 €\n--------------------------------------\nSOUS-TOTAL:              11,35 €\nTVA 5,5%:                 0,62 €\nTOTAL:                   11,35 €\nEspèces:                 20,00 €\nRendu:                    8,65 €\n--------------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "The receipt is clear and legible. All amounts and details are accurately extracted."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T11:52:52.111238",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Enterprise",
+        "vendor_address": "Miami International Airport, 3900 NW 25th Street, Miami, FL 33142",
+        "date": "2024-12-12",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 1434.01,
+        "tax_amount": 107.55,
+        "tip_amount": null,
+        "total_amount": 1541.56,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Vehicle Rental - Premium SUV",
+            "quantity": 7,
+            "unit_price": 89.99,
+            "total": 629.93
+          },
+          {
+            "description": "Loss Damage Waiver (LDW)",
+            "quantity": 7,
+            "unit_price": 34.99,
+            "total": 244.93
+          },
+          {
+            "description": "Supplemental Liability Protection (SLP)",
+            "quantity": 7,
+            "unit_price": 16.99,
+            "total": 118.93
+          },
+          {
+            "description": "Personal Accident Insurance (PAI)",
+            "quantity": 7,
+            "unit_price": 6.99,
+            "total": 48.93
+          },
+          {
+            "description": "Personal Effects Coverage (PEC)",
+            "quantity": 7,
+            "unit_price": 4.99,
+            "total": 34.93
+          },
+          {
+            "description": "Additional Driver",
+            "quantity": 7,
+            "unit_price": 15.0,
+            "total": 105.0
+          },
+          {
+            "description": "GPS Navigation System",
+            "quantity": 7,
+            "unit_price": 12.99,
+            "total": 90.93
+          },
+          {
+            "description": "Child Safety Seat",
+            "quantity": 7,
+            "unit_price": 13.99,
+            "total": 97.93
+          },
+          {
+            "description": "Airport Concession Recovery Fee",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Vehicle License Fee",
+            "quantity": 7,
+            "unit_price": 2.5,
+            "total": 17.5
+          }
+        ],
+        "expense_category": "travel",
+        "confidence_score": 98,
+        "raw_text_extracted": "ENTERPRISE\nWe'll pick you up\nMiami International Airport\n3900 NW 25th Street\nMiami, FL 33142\nPhone: (305) 876-5200\nLocation Code: MIA-APT\nRENTAL RECEIPT\nRA#: 48729185401\nDate: Dec 12, 2024\nTime: 3:47 PM EST\nRENTER INFORMATION\nName: Michael J. Peterson\nLicense #: D847-2910-5638-1047 (CA)\nEmail: m.peterson@email.com\nPhone: (619) 555-0428\nRENTAL PERIOD\nPick-Up: Dec 12, 2024 @ 4:00 PM\nLocation: Miami Airport (MIA)\nReturn: Dec 19, 2024 @ 12:00 PM\nLocation: Miami Airport (MIA)\nTotal Rental Days: 7 Days\n2024 CHEVROLET TAHOE (FULLSIZE SUV)\nVehicle Class: Premium SUV\nLicense Plate: FLA-H8K-29P\nColor: Silver\nOdometer Out: 18,432 miles\nVIN: 1GNSKCKD8PR847291\nFuel Level: Full Tank\nDescription Qty/Days Rate Amount\nVehicle Rental - Premium SUV 7 days $89.99/day $629.93\nLoss Damage Waiver (LDW) 7 days $34.99/day $244.93\nCovers vehicle damage & theft - $0 deductible\nSupplemental Liability Protection (SLP) 7 days $16.99/day $118.93\n$1,000,000 third-party liability coverage\nPersonal Accident Insurance (PAI) 7 days $6.99/day $48.93\nMedical & accidental death coverage for driver/passengers\nPersonal Effects Coverage (PEC) 7 days $4.99/day $34.93\nCovers personal belongings up to $2,000\nAdditional Driver 7 days $15.00/day $105.00\nSarah L. Peterson - License #D291-4856-7392-8401 (CA)\nGPS Navigation System 7 days $12.99/day $90.93\nGarmin DriveSmart\nChild Safety Seat 7 days $13.99/day $97.93\nForward-facing (22-65 lbs)\nAirport Concession Recovery Fee 1 — $45.00\nMIA facility charges\nVehicle License Fee 7 days $2.50/day $17.50\nFL state registration recovery\nINSURANCE COVERAGE ACCEPTED\nYou have elected to purchase ALL optional protection products. These coverages provide comprehensive protection during your rental period. Your personal auto insurance may provide duplicate coverage - please review your policy. These optional products may be canceled at time of return with refund for unused days.\nRental Subtotal: $629.93\nInsurance & Protection Products: $447.72\nExtras & Add-ons: $293.86\nFees & Surcharges: $62.50\nSubtotal: $1,434.01\nSales Tax (7.5%): $107.55\nTOTAL AMOUNT CHARGED: $1,541.56",
+        "notes": "Receipt is clear and legible. All expense details are extracted accurately. No payment method or card information is provided in the receipt."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:10:46.966068",
+      "agent": "Image Understanding Agent",
+      "user_id": "test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "The Grand Metropolitan",
+        "vendor_address": "1200 Park Avenue, New York, NY 10028",
+        "date": "2024-11-15",
+        "time": "11:47",
+        "currency": "USD",
+        "subtotal": 5609.0,
+        "tax_amount": 525.85,
+        "tip_amount": null,
+        "total_amount": 7144.47,
+        "payment_method": "credit",
+        "card_last_four": "8742",
+        "line_items": [
+          {
+            "description": "Room Charge - Executive Suite (Night 1)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 2)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 3)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 4)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Charge - Executive Suite (Night 5)",
+            "quantity": 1,
+            "unit_price": 895.0,
+            "total": 895.0
+          },
+          {
+            "description": "Room Service - Dinner",
+            "quantity": 1,
+            "unit_price": 187.5,
+            "total": 187.5
+          },
+          {
+            "description": "Spa Services - Deep Tissue Massage (90 min)",
+            "quantity": 1,
+            "unit_price": 245.0,
+            "total": 245.0
+          },
+          {
+            "description": "Restaurant - The Metropolitan Grill",
+            "quantity": 1,
+            "unit_price": 324.75,
+            "total": 324.75
+          },
+          {
+            "description": "Minibar",
+            "quantity": 1,
+            "unit_price": 78.5,
+            "total": 78.5
+          },
+          {
+            "description": "Room Service - Breakfast",
+            "quantity": 1,
+            "unit_price": 89.0,
+            "total": 89.0
+          },
+          {
+            "description": "Laundry & Dry Cleaning",
+            "quantity": 1,
+            "unit_price": 145.0,
+            "total": 145.0
+          },
+          {
+            "description": "Bar - Skyline Lounge",
+            "quantity": 1,
+            "unit_price": 155.0,
+            "total": 155.0
+          },
+          {
+            "description": "Valet Parking (5 days)",
+            "quantity": 1,
+            "unit_price": 225.0,
+            "total": 225.0
+          },
+          {
+            "description": "Room Service - Dinner",
+            "quantity": 1,
+            "unit_price": 198.25,
+            "total": 198.25
+          },
+          {
+            "description": "Fitness Center - Personal Training Session",
+            "quantity": 1,
+            "unit_price": 150.0,
+            "total": 150.0
+          },
+          {
+            "description": "Room Service - Breakfast",
+            "quantity": 1,
+            "unit_price": 92.0,
+            "total": 92.0
+          },
+          {
+            "description": "WiFi Premium (5 days)",
+            "quantity": 1,
+            "unit_price": 75.0,
+            "total": 75.0
+          },
+          {
+            "description": "In-Room Movies",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          }
+        ],
+        "expense_category": "lodging",
+        "confidence_score": 100,
+        "raw_text_extracted": "THE GRAND METROPOLITAN\nA Five-Star Luxury Experience\n1200 PARK AVENUE, NEW YORK, NY 10028\nTel: (212) 555-0100 Fax: (212) 555-0101\nreservations@grandmetropolitan.com | www.grandmetropolitan.com\nGUEST FOLIO\nGuest Name: Robert J. Mitchell Check In: November 10, 2024 (3:00 PM)\nRoom Number: 1542 Check Out: November 15, 2024 (12:00 PM)\nConfirmation: GMT-43792-NY Nights: 5\nFolio Number: 2024-11-08/7293 Printed: November 15, 2024 11:47 AM\nDate Description Amount\n11/10/24 Room Charge - Executive Suite (Night 1) $895.00\n11/11/24 Room Charge - Executive Suite (Night 2) $895.00\n11/12/24 Room Charge - Executive Suite (Night 3) $895.00\n11/13/24 Room Charge - Executive Suite (Night 4) $895.00\n11/14/24 Room Charge - Executive Suite (Night 5) $895.00\n11/10/24 Room Service - Dinner $187.50\n11/11/24 Spa Services - Deep Tissue Massage (90 min) $245.00\n11/11/24 Restaurant - The Metropolitan Grill $324.75\n11/11/24 Minibar $78.50\n11/12/24 Room Service - Breakfast $89.00\n11/12/24 Laundry & Dry Cleaning $145.00\n11/12/24 Bar - Skyline Lounge $155.00\n11/12/24 Valet Parking (5 days) $225.00\n11/14/24 Room Service - Dinner $198.25\n11/14/24 Fitness Center - Personal Training Session $150.00\n11/15/24 Room Service - Breakfast $92.00\n11/15/24 WiFi Premium (5 days) $75.00\n11/15/24 In-Room Movies $45.00\nSubtotal $5,609.00\nService Charge (18%) $1,009.62\nCity Tax (8.875%) $329.53\nOccupancy Tax (3.5%) $196.32\nTOTAL CHARGES: $7,144.47\nPayment Information\nPayment Method: VISA **** **** **** 8742\nCardholder Name: Robert J. Mitchell\nTransaction Date: November 15, 2024 11:47 AM EST\nAuthorization Code: 947392-APV\nAmount Charged: $7,144.47 USD\nThank you for choosing The Grand Metropolitan\nWe hope you enjoyed your stay and look forward to welcoming you again.\nFor any questions, please contact our Guest Services at (212) 555-0100\nor email billing@grandmetropolitan.com within 30 days.\nReward Members: You have earned 7,144 rewards points from this stay.\nNext Stay Discount: Use code RETURN25 for 25% off your next booking.",
+        "notes": "All data extracted successfully. Receipt quality is clear and legible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:11:21.594684",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+        "notes": "Receipt is slightly blurry but legible. Vendor address not visible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:11:43.020025",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 2.5,
+            "unit_price": 50.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "auto",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\nSubtotal: $400.00\nTax (8%): $32.00\nTotal: $432.00\nPayment method: Cash\nMike Rodriguez\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt with clear text. No time specified. Payment method is cash. Labor cost calculated based on 2.5 hours at $50/hour."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:12:09.830136",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "LA BOULANGERIE DORÉE",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n----------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n\nBaguette Tradition       1,30 €\nCroissant x2             2,40 €\nPain au Chocolat         1,35 €\nTarte aux Pommes         4,50 €\nCafé                     1,80 €\n\nSOUS-TOTAL:             11,35 €\nTVA 5,5%:                0,62 €\n\nTOTAL:                  11,35 €\n\nEspèces:                20,00 €\nRendu:                   8,65 €\n----------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "Receipt is clear and legible. All amounts and details are extracted accurately. No tip amount is listed."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:12:40.390679",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Robert K. Henderson",
+        "vendor_address": "8742 Lakewood Drive, Scottsdale, AZ 85251",
+        "date": "2024-12-10",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 165000.0,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 169000.0,
+        "payment_method": "cashier's check",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "2021 Steinway & Sons Model D Concert Grand Piano",
+            "quantity": 1,
+            "unit_price": 165000.0,
+            "total": 165000.0
+          },
+          {
+            "description": "Professional Moving/Delivery",
+            "quantity": 1,
+            "unit_price": 2800.0,
+            "total": 2800.0
+          },
+          {
+            "description": "Climate-Controlled Transport Insurance",
+            "quantity": 1,
+            "unit_price": 1200.0,
+            "total": 1200.0
+          }
+        ],
+        "expense_category": "other",
+        "confidence_score": 95,
+        "raw_text_extracted": "RECEIPT OF PRIVATE SALE\nBill of Sale for Personal Property\nSELLER INFORMATION\nName: Robert K. Henderson\nAddress: 8742 Lakewood Drive, Scottsdale, AZ 85251\nPhone: (480) 555-0892\nEmail: r.henderson.az@email.com\nBUYER INFORMATION\nName: Jennifer M. Torres\nAddress: 2156 Mountain View Lane, Phoenix, AZ 85018\nPhone: (602) 555-0347\nEmail: jtorres.phx@email.com\n2021 STEINWAY & SONS MODEL D CONCERT GRAND PIANO\nModel: Steinway Model D-274\nSerial Number: 607842\nYear Manufactured: 2021\nFinish: Ebonized Satin (Black)\nLength: 8'11¾\" (274 cm)\nCondition: Excellent - Professionally maintained, climate controlled storage\nLast Service: September 2024 by Steinway-certified technician\nIncludes: Original bench, humidity control system, full-length piano cover, all original documentation\nTRANSACTION DETAILS\nDate of Sale: December 10, 2024\nLocation of Sale: Seller's residence (Scottsdale, AZ)\nPayment Method: Cashier's Check #847291 - Wells Fargo Bank\nReceipt Number: PS-2024-1210-RKH\nPurchase Price: $165,000.00\nProfessional Moving/Delivery: $2,800.00\nClimate-Controlled Transport Insurance: $1,200.00\nTOTAL AMOUNT PAID: $169,000.00",
+        "notes": "Receipt is clear and all text is legible. No tax or tip is listed. Payment method specifies cashier's check."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:13:19.059758",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "The Capital Grille",
+        "vendor_address": "601 Pennsylvania Avenue NW, Washington, DC 20004",
+        "date": "2024-12-11",
+        "time": "19:42",
+        "currency": "USD",
+        "subtotal": 707.0,
+        "tax_amount": 70.7,
+        "tip_amount": 350.0,
+        "total_amount": 1127.7,
+        "payment_method": "credit",
+        "card_last_four": "1047",
+        "line_items": [
+          {
+            "description": "Lobster & Crab Cakes (2)",
+            "quantity": 1,
+            "unit_price": 46.0,
+            "total": 46.0
+          },
+          {
+            "description": "Seared Citrus Glazed Salmon",
+            "quantity": 1,
+            "unit_price": 52.0,
+            "total": 52.0
+          },
+          {
+            "description": "Dry Aged Porterhouse (24oz)",
+            "quantity": 1,
+            "unit_price": 78.0,
+            "total": 78.0
+          },
+          {
+            "description": "Filet Mignon (14oz)",
+            "quantity": 1,
+            "unit_price": 64.0,
+            "total": 64.0
+          },
+          {
+            "description": "Bone-In Ribeye (22oz)",
+            "quantity": 1,
+            "unit_price": 72.0,
+            "total": 72.0
+          },
+          {
+            "description": "Lobster Mac & Cheese",
+            "quantity": 1,
+            "unit_price": 24.0,
+            "total": 24.0
+          },
+          {
+            "description": "Truffle Fries",
+            "quantity": 1,
+            "unit_price": 16.0,
+            "total": 16.0
+          },
+          {
+            "description": "Creamed Spinach",
+            "quantity": 1,
+            "unit_price": 14.0,
+            "total": 14.0
+          },
+          {
+            "description": "Asparagus w/ Hollandaise",
+            "quantity": 1,
+            "unit_price": 16.0,
+            "total": 16.0
+          },
+          {
+            "description": "Silver Oak Cabernet (Bottle)",
+            "quantity": 1,
+            "unit_price": 185.0,
+            "total": 185.0
+          },
+          {
+            "description": "Craft Cocktails (4)",
+            "quantity": 4,
+            "unit_price": 17.0,
+            "total": 68.0
+          },
+          {
+            "description": "Pellegrino (2)",
+            "quantity": 2,
+            "unit_price": 7.0,
+            "total": 14.0
+          },
+          {
+            "description": "Flourless Chocolate Cake",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          },
+          {
+            "description": "Crème Brûlée (2)",
+            "quantity": 2,
+            "unit_price": 14.0,
+            "total": 28.0
+          },
+          {
+            "description": "Espresso (3)",
+            "quantity": 3,
+            "unit_price": 5.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 100,
+        "raw_text_extracted": "THE CAPITAL GRILLE\n601 Pennsylvania Avenue NW\nWashington, DC 20004\n(202) 737-6200\nwww.thecapitalgrille.com\nServer: Amanda S. Table: 24\nCheck #: 8472 Guests: 4\nDate: 12/11/2024 Time: 7:42 PM\nFOOD & BEVERAGE\nLobster & Crab Cakes (2) $46.00\nSeared Citrus Glazed Salmon $52.00\nDry Aged Porterhouse (24oz) $78.00\nFilet Mignon (14oz) $64.00\nBone-In Ribeye (22oz) $72.00\nLobster Mac & Cheese $24.00\nTruffle Fries $16.00\nCreamed Spinach $14.00\nAsparagus w/ Hollandaise $16.00\nBEVERAGES\nSilver Oak Cabernet (Bottle) $185.00\nCraft Cocktails (4) $68.00\nPellegrino (2) $14.00\nDESSERTS\nFlourless Chocolate Cake $15.00\nCrème Brûlée (2) $28.00\nEspresso (3) $15.00\nSubtotal: $707.00\nTax (10%): $70.70\nTotal Before Tip: $777.70\nSuggested Gratuity:\n18% (Good Service) $139.99\n20% (Great Service) $155.54\n22% (Excellent Service) $171.09\nTIP ADDED: $350.00\n(45% gratuity)\nTOTAL AMOUNT: $1,127.70\nPAYMENT METHOD\nAmerican Express Corporate Card\nCard: ****1047\nCardholder: DAVID M RICHARDSON\nAuth Code: 584729\nTransaction ID: APR847291CAP\nI agree to pay the above total amount according to\ncard issuer agreement.\nDavid M. Richardson\nCustomer Signature",
+        "notes": "Receipt is clear and legible. Tip amount is explicitly stated as $350.00 (45% gratuity)."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T12:13:47.468518",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Target",
+        "vendor_address": "7007 Friars Road, San Diego, CA 92108",
+        "date": "2024-12-14",
+        "time": "15:42",
+        "currency": "USD",
+        "subtotal": 2040.24,
+        "tax_amount": 154.41,
+        "tip_amount": null,
+        "total_amount": 2146.83,
+        "payment_method": "split",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Apple AirPods Pro (2nd Gen)",
+            "quantity": 1,
+            "unit_price": 249.99,
+            "total": 249.99
+          },
+          {
+            "description": "Nintendo Switch OLED",
+            "quantity": 1,
+            "unit_price": 349.99,
+            "total": 349.99
+          },
+          {
+            "description": "The Legend of Zelda: Tears Kingdom",
+            "quantity": 1,
+            "unit_price": 69.99,
+            "total": 69.99
+          },
+          {
+            "description": "Mario Kart 8 Deluxe",
+            "quantity": 1,
+            "unit_price": 59.99,
+            "total": 59.99
+          },
+          {
+            "description": "Dyson V15 Detect Cordless Vacuum",
+            "quantity": 1,
+            "unit_price": 649.99,
+            "total": 649.99
+          },
+          {
+            "description": "KitchenAid Stand Mixer",
+            "quantity": 1,
+            "unit_price": 429.99,
+            "total": 429.99
+          },
+          {
+            "description": "Various Grocery Items",
+            "quantity": 27,
+            "unit_price": null,
+            "total": 142.87
+          },
+          {
+            "description": "Household Essentials",
+            "quantity": 12,
+            "unit_price": null,
+            "total": 87.43
+          }
+        ],
+        "expense_category": "other",
+        "confidence_score": 100,
+        "raw_text_extracted": "TARGET\nStore #2847 - Fashion Valley\n7007 Friars Road\nSan Diego, CA 92108\n(619) 297-3381\nTransaction #: 084-721-9485-0472\nRegister: Lane 12\nDate: December 14, 2024 Time: 3:42 PM PST\nCashier: Sarah M. REDcard Saved: $47.82\nELECTRONICS\nApple AirPods Pro (2nd Gen) Qty: 1 $249.99\nUSB-C Charging Case\nNintendo Switch OLED Qty: 1 $349.99\nNeon Red/Blue - 64GB\nThe Legend of Zelda: Tears Kingdom Qty: 1 $69.99\nNintendo Switch Game\nMario Kart 8 Deluxe Qty: 1 $59.99\nNintendo Switch Game\nHOME & FURNITURE\nDyson V15 Detect Cordless Vacuum Qty: 1 $649.99\nLaser Dust Detection\nKitchenAid Stand Mixer Qty: 1 $429.99\nArtisan Series 5-Qt, Empire Red\nGROCERIES & HOUSEHOLD\nVarious Grocery Items Qty: 27 $142.87\nFood, beverages, snacks (27 items)\nHousehold Essentials Qty: 12 $87.43\nCleaning supplies, paper goods (12 items)\nSubtotal (47 items): $2,040.24\nTarget REDcard Discount (5%): -$47.82\nSubtotal After Discount: $1,992.42\nSales Tax (7.75%): $154.41\nTOTAL AMOUNT DUE: $2,146.83\nSPLIT PAYMENT - 3 METHODS USED\n1. TARGET REDCARD DEBIT $1,000.00\nCard: ****3847\nCardholder: JENNIFER MARTINEZ\nAuth: 847291-TGT\nChecking Account\n2. VISA CREDIT CARD $846.83\nCard: ****6142\nCardholder: JENNIFER MARTINEZ\nAuth: 928471-VIS\nChase Sapphire Reserve\n3. TARGET GIFT CARD $300.00\nCard: ****8294\nOriginal Balance: $450.00\nRemaining Balance: $150.00\nGift Card\nTOTAL PAID: $2,146.83",
+        "notes": "Split payment used with three methods: Target REDcard Debit ($1,000.00), Visa Credit Card ($846.83), and Target Gift Card ($300.00)."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:39:12.853966",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL       $3.99\nBREAD WHEAT          $2.49\nBANANAS LB           $1.76\nPASTA PENNE          $1.99\nORANGE JUICE         $4.79\nSUBTOTAL:           $31.63\nTOTAL:              $33.92\nDEBIT CARD:         $33.92",
+        "notes": "Receipt is slightly blurry but most text is legible. Tax amount is not explicitly shown."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:39:37.187476",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 1,
+            "unit_price": 125.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "automotive",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\nSubtotal: $400.00\nTax (8%): $32.00\nTotal: $432.00\nPayment method: Cash\nMike Rodriguez\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt with clear text and legible details. Warranty information noted at the bottom."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:40:20.644267",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "La Boulangerie Dorée",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 100,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n------------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n\nBaguette Tradition       1,30 €\nCroissant x2             2,40 €\nPain au Chocolat         1,35 €\nTarte aux Pommes         4,50 €\nCafé                     1,80 €\n------------------------------------\nSOUS-TOTAL:             11,35 €\nTVA 5,5%:                0,62 €\n\nTOTAL:                  11,35 €\n\nEspèces:                20,00 €\nRendu:                   8,65 €\n------------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "Receipt is clear and well-structured. All fields extracted confidently."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:40:58.974536",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "3:47 PM",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\n\nMILK WHOLE GAL       $3.99\nBREAD WHEAT          $2.49\nBANANAS LB           $1.76\nPASTA PENNE          $1.99\nORANGE JUICE         $4.79\n\nSUBTOTAL:           $31.63\n\nTOTAL:              $33.92\n\nDEBIT CARD:         $33.92\n\nThank You!",
+        "notes": "The receipt text is partially faded, but key details like totals, date, and items are legible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:41:29.019890",
+      "agent": "Image Understanding Agent",
+      "user_id": "quick_test",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 90,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+        "notes": "Receipt text is slightly blurry but legible. No tax or tip amount is visible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:41:39.431513",
+      "agent": "Validation Agent",
+      "user_id": "quick_test",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "Quickmart",
+          "vendor_address": null,
+          "date": null,
+          "time": "15:47",
+          "currency": "USD",
+          "subtotal": 15.02,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": null,
+          "payment_method": "debit",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Milk Whole Gal",
+              "quantity": 1,
+              "unit_price": 3.99,
+              "total": 3.99
+            },
+            {
+              "description": "Bread Wheat",
+              "quantity": 1,
+              "unit_price": 2.49,
+              "total": 2.49
+            },
+            {
+              "description": "Bananas LB",
+              "quantity": 1,
+              "unit_price": 1.76,
+              "total": 1.76
+            },
+            {
+              "description": "Pasta Penne",
+              "quantity": 1,
+              "unit_price": 1.99,
+              "total": 1.99
+            },
+            {
+              "description": "Orange Juice",
+              "quantity": 1,
+              "unit_price": 4.79,
+              "total": 4.79
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 90,
+          "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+          "notes": "Receipt text is slightly blurry but legible. No tax or tip amount is visible."
+        },
+        "validation_errors": [
+          "Date is in the future compared to the current validation date.",
+          "Subtotal does not match the sum of line items.",
+          "Total amount calculation is incorrect based on subtotal, tax, and tip."
+        ],
+        "validation_warnings": [
+          "Vendor address is null.",
+          "Tax amount is null.",
+          "Tip amount is null.",
+          "Card last four digits are null."
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 85,
+          "validation_errors": [
+            {
+              "field": "date",
+              "issue": "Date is in the future compared to the current validation date.",
+              "severity": "CRITICAL",
+              "current_value": "2024-12-08",
+              "expected": "Date should not be in the future (before 2026-01-06)."
+            },
+            {
+              "field": "subtotal",
+              "issue": "Subtotal does not match the sum of line items.",
+              "severity": "HIGH",
+              "current_value": 31.63,
+              "expected": "Sum of line items totals to 15.02."
+            },
+            {
+              "field": "total_amount",
+              "issue": "Total amount calculation is incorrect based on subtotal, tax, and tip.",
+              "severity": "CRITICAL",
+              "current_value": 33.92,
+              "expected": "Subtotal + tax_amount + tip_amount should equal total_amount."
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "vendor_address",
+              "issue": "Vendor address is null.",
+              "recommendation": "Consider adding vendor address if available for completeness."
+            },
+            {
+              "field": "tax_amount",
+              "issue": "Tax amount is null.",
+              "recommendation": "Verify if tax amount is applicable or confirm it is zero."
+            },
+            {
+              "field": "tip_amount",
+              "issue": "Tip amount is null.",
+              "recommendation": "Verify if tip amount is applicable or confirm it is zero."
+            },
+            {
+              "field": "card_last_four",
+              "issue": "Card last four digits are null.",
+              "recommendation": "Verify if card last four digits can be extracted for completeness."
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "Quickmart",
+            "vendor_address": null,
+            "date": null,
+            "time": "15:47",
+            "currency": "USD",
+            "subtotal": 15.02,
+            "tax_amount": null,
+            "tip_amount": null,
+            "total_amount": null,
+            "payment_method": "debit",
+            "card_last_four": null,
+            "line_items": [
+              {
+                "description": "Milk Whole Gal",
+                "quantity": 1,
+                "unit_price": 3.99,
+                "total": 3.99
+              },
+              {
+                "description": "Bread Wheat",
+                "quantity": 1,
+                "unit_price": 2.49,
+                "total": 2.49
+              },
+              {
+                "description": "Bananas LB",
+                "quantity": 1,
+                "unit_price": 1.76,
+                "total": 1.76
+              },
+              {
+                "description": "Pasta Penne",
+                "quantity": 1,
+                "unit_price": 1.99,
+                "total": 1.99
+              },
+              {
+                "description": "Orange Juice",
+                "quantity": 1,
+                "unit_price": 4.79,
+                "total": 4.79
+              }
+            ],
+            "expense_category": "meals",
+            "confidence_score": 90,
+            "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+            "notes": "Receipt text is slightly blurry but legible. No tax or tip amount is visible."
+          },
+          "corrections_made": [
+            {
+              "field": "date",
+              "original_value": "2024-12-08",
+              "corrected_value": null,
+              "reason": "Date is in the future compared to the current validation date."
+            },
+            {
+              "field": "subtotal",
+              "original_value": 31.63,
+              "corrected_value": 15.02,
+              "reason": "Corrected based on the sum of line items."
+            },
+            {
+              "field": "total_amount",
+              "original_value": 33.92,
+              "corrected_value": null,
+              "reason": "Subtotal + tax_amount + tip_amount does not equal total_amount."
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 3,
+            "critical_errors": 2,
+            "total_warnings": 4,
+            "fields_corrected": 3,
+            "data_completeness_score": 75,
+            "calculation_accuracy": "FAILED"
+          },
+          "data_quality_notes": [
+            "Date is in the future, which invalidates the receipt.",
+            "Subtotal and total amount calculations are incorrect based on line items and tax/tip amounts.",
+            "Vendor address, tax amount, tip amount, and card last four digits are missing, which affects completeness.",
+            "Confidence score of 90 is reasonable given the legibility of the receipt text, but errors suggest potential OCR issues."
+          ]
+        },
+        "data_quality": {
+          "score": 85,
+          "summary": {
+            "total_errors": 3,
+            "critical_errors": 2,
+            "total_warnings": 4,
+            "fields_corrected": 3,
+            "data_completeness_score": 75,
+            "calculation_accuracy": "FAILED"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:43:54.211875",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 85,
+        "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL     $3.99\nBREAD WHEAT        $2.49\nBANANAS LB         $1.76\nPASTA PENNE        $1.99\nORANGE JUICE       $4.79\nSUBTOTAL:          $31.63\nTOTAL:             $33.92\nDEBIT CARD:        $33.92",
+        "notes": "Receipt is slightly blurry but most details are legible. Tax amount is not explicitly mentioned."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:44:21.990714",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 1,
+            "unit_price": 125.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "auto repair",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\n\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\n\nSubtotal: $400.00\nTax (8%): $32.00\n\nTotal: $432.00\n\nPayment method: Cash\n\nMike Rodriguez\n\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt with clear text and amounts. Vendor details and itemization are well-documented."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:45:09.441158",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "La Boulangerie Dorée",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n--------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n\nBaguette Tradition          1,30 €\nCroissant x2                2,40 €\nPain au Chocolat            1,35 €\nTarte aux Pommes            4,50 €\nCafé                        1,80 €\n\nSOUS-TOTAL:                11,35 €\nTVA 5,5%:                   0,62 €\n\nTOTAL:                     11,35 €\n\nEspèces:                   20,00 €\nRendu:                      8,65 €\n\n--------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "Receipt is in French, but all key fields were extracted with high confidence."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:46:09.366274",
+      "agent": "Image Understanding Agent",
+      "user_id": "quick_test",
+      "success": true,
+      "data": {
+        "vendor_name": null,
+        "vendor_address": null,
+        "date": "2024-04-24",
+        "time": "08:23",
+        "currency": "USD",
+        "subtotal": null,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 180.75,
+        "payment_method": null,
+        "card_last_four": null,
+        "line_items": [],
+        "expense_category": "travel",
+        "confidence_score": 95,
+        "raw_text_extracted": "RECEIPT\nODOMETER READING\nDATE        04/24/2024\nTIME        08:23 AM\nMILES       1,057,880\n--------------------\nTOTAL       $180.75\nTHANK YOU!",
+        "notes": "No vendor or payment method information provided. Expense category inferred as 'travel' due to odometer reading."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-06T13:46:23.475339",
+      "agent": "Validation Agent",
+      "user_id": "quick_test",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "Unknown Vendor",
+          "vendor_address": "Unknown Address",
+          "date": "2024-04-24",
+          "time": "08:23",
+          "currency": "USD",
+          "subtotal": null,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": 180.75,
+          "payment_method": "Unknown Payment Method",
+          "card_last_four": "Unknown",
+          "line_items": [],
+          "expense_category": "travel",
+          "confidence_score": 95,
+          "raw_text_extracted": "RECEIPT\nODOMETER READING\nDATE        04/24/2024\nTIME        08:23 AM\nMILES       1,057,880\n--------------------\nTOTAL       $180.75\nTHANK YOU!",
+          "notes": "No vendor or payment method information provided. Expense category inferred as 'travel' due to odometer reading."
+        },
+        "validation_errors": [
+          "Missing critical field",
+          "Missing optional field",
+          "Date is in the past but valid; ensure it aligns with raw text",
+          "Missing optional field; subtotal should be calculated or extracted",
+          "Missing optional field; tax amount should be calculated or extracted",
+          "Missing optional field; tip amount should be calculated or extracted",
+          "Total amount does not align with subtotal + tax + tip",
+          "Missing optional field; payment method should be extracted",
+          "Missing optional field; card last four digits should be extracted"
+        ],
+        "validation_warnings": [
+          "Expense category inferred as 'travel' based on odometer reading",
+          "Confidence score is high but data has missing fields"
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 75,
+          "validation_errors": [
+            {
+              "field": "vendor_name",
+              "issue": "Missing critical field",
+              "severity": "CRITICAL",
+              "current_value": null,
+              "expected": "Vendor name extracted from raw text or marked as 'Unknown Vendor'"
+            },
+            {
+              "field": "vendor_address",
+              "issue": "Missing optional field",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Vendor address extracted from raw text or marked as 'Unknown Address'"
+            },
+            {
+              "field": "date",
+              "issue": "Date is in the past but valid; ensure it aligns with raw text",
+              "severity": "LOW",
+              "current_value": "2024-04-24",
+              "expected": "Valid date in YYYY-MM-DD format"
+            },
+            {
+              "field": "subtotal",
+              "issue": "Missing optional field; subtotal should be calculated or extracted",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Subtotal extracted or calculated from raw text"
+            },
+            {
+              "field": "tax_amount",
+              "issue": "Missing optional field; tax amount should be calculated or extracted",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Tax amount extracted or calculated from raw text"
+            },
+            {
+              "field": "tip_amount",
+              "issue": "Missing optional field; tip amount should be calculated or extracted",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Tip amount extracted or calculated from raw text"
+            },
+            {
+              "field": "total_amount",
+              "issue": "Total amount does not align with subtotal + tax + tip",
+              "severity": "CRITICAL",
+              "current_value": 180.75,
+              "expected": "Subtotal + tax_amount + tip_amount = total_amount"
+            },
+            {
+              "field": "payment_method",
+              "issue": "Missing optional field; payment method should be extracted",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Payment method extracted from raw text"
+            },
+            {
+              "field": "card_last_four",
+              "issue": "Missing optional field; card last four digits should be extracted",
+              "severity": "LOW",
+              "current_value": null,
+              "expected": "Card last four digits extracted from raw text"
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "expense_category",
+              "issue": "Expense category inferred as 'travel' based on odometer reading",
+              "recommendation": "Confirm if 'travel' is appropriate based on vendor and receipt details"
+            },
+            {
+              "field": "confidence_score",
+              "issue": "Confidence score is high but data has missing fields",
+              "recommendation": "Review OCR extraction process for potential improvements"
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "Unknown Vendor",
+            "vendor_address": "Unknown Address",
+            "date": "2024-04-24",
+            "time": "08:23",
+            "currency": "USD",
+            "subtotal": null,
+            "tax_amount": null,
+            "tip_amount": null,
+            "total_amount": 180.75,
+            "payment_method": "Unknown Payment Method",
+            "card_last_four": "Unknown",
+            "line_items": [],
+            "expense_category": "travel",
+            "confidence_score": 95,
+            "raw_text_extracted": "RECEIPT\nODOMETER READING\nDATE        04/24/2024\nTIME        08:23 AM\nMILES       1,057,880\n--------------------\nTOTAL       $180.75\nTHANK YOU!",
+            "notes": "No vendor or payment method information provided. Expense category inferred as 'travel' due to odometer reading."
+          },
+          "corrections_made": [
+            {
+              "field": "vendor_name",
+              "original_value": null,
+              "corrected_value": "Unknown Vendor",
+              "reason": "Vendor name missing; marked as 'Unknown Vendor'"
+            },
+            {
+              "field": "vendor_address",
+              "original_value": null,
+              "corrected_value": "Unknown Address",
+              "reason": "Vendor address missing; marked as 'Unknown Address'"
+            },
+            {
+              "field": "payment_method",
+              "original_value": null,
+              "corrected_value": "Unknown Payment Method",
+              "reason": "Payment method missing; marked as 'Unknown Payment Method'"
+            },
+            {
+              "field": "card_last_four",
+              "original_value": null,
+              "corrected_value": "Unknown",
+              "reason": "Card last four digits missing; marked as 'Unknown'"
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 9,
+            "critical_errors": 2,
+            "total_warnings": 2,
+            "fields_corrected": 4,
+            "data_completeness_score": 60,
+            "calculation_accuracy": "FAILED"
+          },
+          "data_quality_notes": [
+            "Vendor name and address are missing; marked as 'Unknown' for completeness.",
+            "Subtotal, tax amount, and tip amount are missing, making total amount unverifiable.",
+            "Confidence score is high, but missing fields suggest OCR extraction issues.",
+            "Expense category inferred as 'travel' based on odometer reading; verify appropriateness."
+          ]
+        },
+        "data_quality": {
+          "score": 75,
+          "summary": {
+            "total_errors": 9,
+            "critical_errors": 2,
+            "total_warnings": 2,
+            "fields_corrected": 4,
+            "data_completeness_score": 60,
+            "calculation_accuracy": "FAILED"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-14T16:18:17.378021",
+      "agent": "Image Understanding Agent",
+      "user_id": "quick_test",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "Quickmart\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: Amanda R.\nMilk Whole Gal $3.99\nBread Wheat $2.49\nBananas LB $1.76\nPasta Penne $1.99\nOrange Juice $4.79\nSubtotal: $31.63\nTotal: $33.92\nDebit Card: $33.92",
+        "notes": "Receipt is clear and legible. Vendor address is not visible. Tax amount is not explicitly listed."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-14T16:18:29.058354",
+      "agent": "Validation Agent",
+      "user_id": "quick_test",
+      "success": false,
+      "data": {
+        "success": false,
+        "status": "needs_correction",
+        "validated_data": {
+          "vendor_name": "Quickmart",
+          "vendor_address": null,
+          "date": "2024-12-08",
+          "time": "15:47",
+          "currency": "USD",
+          "subtotal": 31.02,
+          "tax_amount": 0.0,
+          "tip_amount": null,
+          "total_amount": 31.02,
+          "payment_method": "debit",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Milk Whole Gal",
+              "quantity": 1,
+              "unit_price": 3.99,
+              "total": 3.99
+            },
+            {
+              "description": "Bread Wheat",
+              "quantity": 1,
+              "unit_price": 2.49,
+              "total": 2.49
+            },
+            {
+              "description": "Bananas LB",
+              "quantity": 1,
+              "unit_price": 1.76,
+              "total": 1.76
+            },
+            {
+              "description": "Pasta Penne",
+              "quantity": 1,
+              "unit_price": 1.99,
+              "total": 1.99
+            },
+            {
+              "description": "Orange Juice",
+              "quantity": 1,
+              "unit_price": 4.79,
+              "total": 4.79
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "Quickmart\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: Amanda R.\nMilk Whole Gal $3.99\nBread Wheat $2.49\nBananas LB $1.76\nPasta Penne $1.99\nOrange Juice $4.79\nSubtotal: $31.63\nTotal: $33.92\nDebit Card: $33.92",
+          "notes": "Receipt is clear and legible. Vendor address is not visible. Tax amount is not explicitly listed."
+        },
+        "validation_errors": [
+          "Date is in the future relative to the current validation date.",
+          "Tax amount is null but not explicitly stated as zero in the raw text.",
+          "Subtotal does not match the sum of line item totals.",
+          "Total amount does not match the calculated value based on subtotal, tax, and tip."
+        ],
+        "validation_warnings": [
+          "Vendor address is null.",
+          "Card last four digits are null."
+        ],
+        "validation_details": {
+          "validation_status": "needs_correction",
+          "is_valid": false,
+          "data_quality_score": 85,
+          "validation_errors": [
+            {
+              "field": "date",
+              "issue": "Date is in the future relative to the current validation date.",
+              "severity": "CRITICAL",
+              "current_value": "2024-12-08",
+              "expected": "A date on or before 2026-01-14"
+            },
+            {
+              "field": "tax_amount",
+              "issue": "Tax amount is null but not explicitly stated as zero in the raw text.",
+              "severity": "MEDIUM",
+              "current_value": null,
+              "expected": "Explicit value (e.g., 0.00) or confirmation from raw text"
+            },
+            {
+              "field": "subtotal",
+              "issue": "Subtotal does not match the sum of line item totals.",
+              "severity": "CRITICAL",
+              "current_value": 31.63,
+              "expected": "Sum of line item totals (31.02)"
+            },
+            {
+              "field": "total_amount",
+              "issue": "Total amount does not match the calculated value based on subtotal, tax, and tip.",
+              "severity": "CRITICAL",
+              "current_value": 33.92,
+              "expected": "Calculated total based on corrected subtotal and tax"
+            }
+          ],
+          "validation_warnings": [
+            {
+              "field": "vendor_address",
+              "issue": "Vendor address is null.",
+              "recommendation": "Consider adding the vendor address if available."
+            },
+            {
+              "field": "card_last_four",
+              "issue": "Card last four digits are null.",
+              "recommendation": "Verify if card last four digits can be extracted or are available."
+            }
+          ],
+          "corrected_data": {
+            "vendor_name": "Quickmart",
+            "vendor_address": null,
+            "date": "2024-12-08",
+            "time": "15:47",
+            "currency": "USD",
+            "subtotal": 31.02,
+            "tax_amount": 0.0,
+            "tip_amount": null,
+            "total_amount": 31.02,
+            "payment_method": "debit",
+            "card_last_four": null,
+            "line_items": [
+              {
+                "description": "Milk Whole Gal",
+                "quantity": 1,
+                "unit_price": 3.99,
+                "total": 3.99
+              },
+              {
+                "description": "Bread Wheat",
+                "quantity": 1,
+                "unit_price": 2.49,
+                "total": 2.49
+              },
+              {
+                "description": "Bananas LB",
+                "quantity": 1,
+                "unit_price": 1.76,
+                "total": 1.76
+              },
+              {
+                "description": "Pasta Penne",
+                "quantity": 1,
+                "unit_price": 1.99,
+                "total": 1.99
+              },
+              {
+                "description": "Orange Juice",
+                "quantity": 1,
+                "unit_price": 4.79,
+                "total": 4.79
+              }
+            ],
+            "expense_category": "meals",
+            "confidence_score": 95,
+            "raw_text_extracted": "Quickmart\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: Amanda R.\nMilk Whole Gal $3.99\nBread Wheat $2.49\nBananas LB $1.76\nPasta Penne $1.99\nOrange Juice $4.79\nSubtotal: $31.63\nTotal: $33.92\nDebit Card: $33.92",
+            "notes": "Receipt is clear and legible. Vendor address is not visible. Tax amount is not explicitly listed."
+          },
+          "corrections_made": [
+            {
+              "field": "subtotal",
+              "original_value": 31.63,
+              "corrected_value": 31.02,
+              "reason": "Corrected to match the sum of line item totals."
+            },
+            {
+              "field": "tax_amount",
+              "original_value": null,
+              "corrected_value": 0.0,
+              "reason": "Tax amount is not explicitly listed in the raw text, assumed to be zero."
+            },
+            {
+              "field": "total_amount",
+              "original_value": 33.92,
+              "corrected_value": 31.02,
+              "reason": "Corrected to match the calculated total based on corrected subtotal and tax."
+            }
+          ],
+          "validation_summary": {
+            "total_errors": 4,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 3,
+            "data_completeness_score": 90,
+            "calculation_accuracy": "FAILED"
+          },
+          "data_quality_notes": [
+            "The date is in the future relative to the validation date, which is a critical issue.",
+            "The subtotal in the extracted data does not match the sum of the line item totals, indicating a calculation error.",
+            "The total amount does not match the calculated total based on the corrected subtotal and tax.",
+            "Tax amount is null but not explicitly stated as zero in the raw text, which could lead to ambiguity.",
+            "Vendor address and card last four digits are missing, but these are not critical fields for validation."
+          ]
+        },
+        "data_quality": {
+          "score": 85,
+          "summary": {
+            "total_errors": 4,
+            "critical_errors": 3,
+            "total_warnings": 2,
+            "fields_corrected": 3,
+            "data_completeness_score": 90,
+            "calculation_accuracy": "FAILED"
+          }
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-14T16:26:33.014993",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Quickmart",
+        "vendor_address": null,
+        "date": "2024-12-08",
+        "time": "15:47",
+        "currency": "USD",
+        "subtotal": 31.63,
+        "tax_amount": null,
+        "tip_amount": null,
+        "total_amount": 33.92,
+        "payment_method": "debit",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Milk Whole Gal",
+            "quantity": 1,
+            "unit_price": 3.99,
+            "total": 3.99
+          },
+          {
+            "description": "Bread Wheat",
+            "quantity": 1,
+            "unit_price": 2.49,
+            "total": 2.49
+          },
+          {
+            "description": "Bananas LB",
+            "quantity": 1,
+            "unit_price": 1.76,
+            "total": 1.76
+          },
+          {
+            "description": "Pasta Penne",
+            "quantity": 1,
+            "unit_price": 1.99,
+            "total": 1.99
+          },
+          {
+            "description": "Orange Juice",
+            "quantity": 1,
+            "unit_price": 4.79,
+            "total": 4.79
+          }
+        ],
+        "expense_category": "supplies",
+        "confidence_score": 85,
+        "raw_text_extracted": "Quickmart\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL $3.99\nBREAD WHEAT $2.49\nBANANAS LB $1.76\nPASTA PENNE $1.99\nORANGE JUICE $4.79\nSUBTOTAL: $31.63\nTOTAL: $33.92\nDEBIT CARD: $33.92",
+        "notes": "Receipt is slightly blurry but most details are legible. Vendor address is not visible."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-14T16:26:51.827674",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "Mike's Auto Repair",
+        "vendor_address": "734 Oak Street, Portland, OR 97214",
+        "date": "2024-11-18",
+        "time": null,
+        "currency": "USD",
+        "subtotal": 400.0,
+        "tax_amount": 32.0,
+        "tip_amount": null,
+        "total_amount": 432.0,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Oil change + filter",
+            "quantity": 1,
+            "unit_price": 45.0,
+            "total": 45.0
+          },
+          {
+            "description": "Brake pad replacement",
+            "quantity": 1,
+            "unit_price": 180.0,
+            "total": 180.0
+          },
+          {
+            "description": "Labor (2.5 hrs)",
+            "quantity": 1,
+            "unit_price": 125.0,
+            "total": 125.0
+          },
+          {
+            "description": "Tire rotation",
+            "quantity": 1,
+            "unit_price": 35.0,
+            "total": 35.0
+          },
+          {
+            "description": "Coolant top-up",
+            "quantity": 1,
+            "unit_price": 15.0,
+            "total": 15.0
+          }
+        ],
+        "expense_category": "auto repair",
+        "confidence_score": 95,
+        "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\nSubtotal: $400.00\nTax (8%): $32.00\nTotal: $432.00\nPayment method: Cash\nMike Rodriguez\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+        "notes": "Handwritten receipt with clear text and itemization. No time specified."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-01-14T16:27:14.523872",
+      "agent": "Image Understanding Agent",
+      "user_id": "va_test_user",
+      "success": true,
+      "data": {
+        "vendor_name": "LA BOULANGERIE DORÉE",
+        "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+        "date": "2024-12-15",
+        "time": "14:32",
+        "currency": "EUR",
+        "subtotal": 11.35,
+        "tax_amount": 0.62,
+        "tip_amount": null,
+        "total_amount": 11.35,
+        "payment_method": "cash",
+        "card_last_four": null,
+        "line_items": [
+          {
+            "description": "Baguette Tradition",
+            "quantity": 1,
+            "unit_price": 1.3,
+            "total": 1.3
+          },
+          {
+            "description": "Croissant x2",
+            "quantity": 2,
+            "unit_price": 1.2,
+            "total": 2.4
+          },
+          {
+            "description": "Pain au Chocolat",
+            "quantity": 1,
+            "unit_price": 1.35,
+            "total": 1.35
+          },
+          {
+            "description": "Tarte aux Pommes",
+            "quantity": 1,
+            "unit_price": 4.5,
+            "total": 4.5
+          },
+          {
+            "description": "Café",
+            "quantity": 1,
+            "unit_price": 1.8,
+            "total": 1.8
+          }
+        ],
+        "expense_category": "meals",
+        "confidence_score": 95,
+        "raw_text_extracted": "LA BOULANGERIE DORÉE\n42 Rue de Rivoli\n75004 Paris, France\nTél: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n-------------------------------------\nTicket N°: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Opérateur: Marie\n\nBaguette Tradition       1,30 €\nCroissant x2             2,40 €\nPain au Chocolat         1,35 €\nTarte aux Pommes         4,50 €\nCafé                     1,80 €\n\nSOUS-TOTAL:             11,35 €\nTVA 5,5%:                0,62 €\nTOTAL:                  11,35 €\n\nEspèces:                20,00 €\nRendu:                   8,65 €\n-------------------------------------\nMERCI DE VOTRE VISITE!\nÀ bientôt\nwww.laboulangerie-doree.fr",
+        "notes": "Receipt is clear and well-structured. Foreign language (French) but all key details are legible. No tip amount is specified."
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    }
+  ]
+}

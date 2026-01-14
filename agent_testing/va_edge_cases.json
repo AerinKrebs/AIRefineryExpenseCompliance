@@ -1,0 +1,429 @@
+[
+  {
+    "category": "Image Quality",
+    "test_case": "Blurry Receipt",
+    "description": "Receipt image is blurry or out of focus",
+    "expected_behavior": "Extract what's readable, flag low confidence, note image quality issues",
+    "image_number": 2,
+    "evaluation_criteria": {
+      "extracts_partial_data": true,
+      "flags_quality_issue": true,
+      "provides_confidence_score": true,
+      "identifies_readable_fields": true
+    }
+  },
+  {
+    "category": "Image Quality",
+    "test_case": "Handwritten Receipt",
+    "description": "Handwritten receipt with varied legibility",
+    "expected_behavior": "Attempt OCR, flag as handwritten, note any unclear text",
+    "image_number": 9,
+    "evaluation_criteria": {
+      "detects_handwritten": true,
+      "extracts_legible_portions": true,
+      "flags_uncertainty": true
+    }
+  },
+  {
+    "category": "Language Processing",
+    "test_case": "Foreign Language Receipt",
+    "description": "Receipt in non-English language",
+    "expected_behavior": "Extract text, identify language, extract numbers/dates regardless of language",
+    "image_number": 5,
+    "evaluation_criteria": {
+      "extracts_raw_text": true,
+      "identifies_language": true,
+      "extracts_amounts": true,
+      "extracts_dates": true,
+      "flags_translation_needed": true
+    }
+  },
+  {
+    "category": "Data Extraction",
+    "test_case": "Multi-Item Receipt",
+    "description": "Receipt with multiple line items",
+    "expected_behavior": "Extract all line items with descriptions, quantities, and amounts",
+    "image_number": 4,
+    "evaluation_criteria": {
+      "extracts_all_line_items": true,
+      "separates_items_correctly": true,
+      "captures_quantities": true,
+      "captures_individual_prices": true
+    }
+  },
+  {
+    "category": "Data Extraction",
+    "test_case": "Missing Vendor Information",
+    "description": "Receipt lacks clear vendor name or details",
+    "expected_behavior": "Extract available info, flag missing vendor data",
+    "image_number": 32,
+    "evaluation_criteria": {
+      "flags_missing_vendor": true,
+      "extracts_other_data": true,
+      "attempts_vendor_identification": true
+    }
+  },
+  {
+    "category": "Data Extraction",
+    "test_case": "Complex Receipt Format",
+    "description": "Receipt with non-standard layout or format",
+    "expected_behavior": "Parse structure, extract key fields, note format complexity",
+    "image_number": 22,
+    "evaluation_criteria": {
+      "identifies_key_fields": true,
+      "handles_unusual_layout": true,
+      "extracts_total_amount": true
+    }
+  },
+  {
+    "category": "Financial Data",
+    "test_case": "Receipt with Tax Breakdown",
+    "description": "Receipt showing subtotal, tax, and total separately",
+    "expected_behavior": "Extract and separate subtotal, tax, tip, and total amounts",
+    "image_number": 42,
+    "evaluation_criteria": {
+      "extracts_subtotal": true,
+      "extracts_tax": true,
+      "extracts_total": true,
+      "separates_amounts_correctly": true
+    }
+  },
+  {
+    "category": "Financial Data",
+    "test_case": "Receipt with Tips",
+    "description": "Receipt showing tip line and calculations",
+    "expected_behavior": "Extract tip amount separately from total",
+    "image_number": 43,
+    "evaluation_criteria": {
+      "extracts_tip_amount": true,
+      "distinguishes_tip_from_total": true,
+      "captures_payment_breakdown": true
+    }
+  },
+  {
+    "category": "Financial Data",
+    "test_case": "Multiple Payment Methods",
+    "description": "Receipt showing split payment across multiple methods",
+    "expected_behavior": "Extract all payment methods and amounts",
+    "image_number": 46,
+    "evaluation_criteria": {
+      "identifies_multiple_payments": true,
+      "extracts_each_payment_amount": true,
+      "notes_payment_methods": true
+    }
+  },
+  {
+    "category": "Financial Data",
+    "test_case": "Currency Identification",
+    "description": "Receipt in foreign currency",
+    "expected_behavior": "Identify currency from symbols or text, extract amounts correctly",
+    "image_number": 17,
+    "evaluation_criteria": {
+      "identifies_currency": true,
+      "extracts_amounts": true,
+      "notes_currency_code": true
+    }
+  },
+  {
+    "category": "Date and Time",
+    "test_case": "Date Format Recognition",
+    "description": "Receipt with various date formats",
+    "expected_behavior": "Parse date correctly regardless of format",
+    "image_number": 27,
+    "evaluation_criteria": {
+      "extracts_date": true,
+      "normalizes_date_format": true,
+      "handles_various_formats": true
+    }
+  },
+  {
+    "category": "Date and Time",
+    "test_case": "Timestamp Extraction",
+    "description": "Receipt with both date and time",
+    "expected_behavior": "Extract both date and time accurately",
+    "image_number": 34,
+    "evaluation_criteria": {
+      "extracts_date": true,
+      "extracts_time": true,
+      "formats_correctly": true
+    }
+  },
+  {
+    "category": "Special Items",
+    "test_case": "Alcohol on Receipt",
+    "description": "Receipt containing alcohol line items",
+    "expected_behavior": "Extract all items including alcohol, identify alcohol items",
+    "image_number": 15,
+    "evaluation_criteria": {
+      "extracts_all_items": true,
+      "identifies_alcohol_items": true,
+      "separates_alcohol_from_food": true
+    }
+  },
+  {
+    "category": "Special Items",
+    "test_case": "Meal Receipt",
+    "description": "Restaurant receipt with food and beverage items",
+    "expected_behavior": "Categorize as meal expense, extract all food items",
+    "image_number": 14,
+    "evaluation_criteria": {
+      "categorizes_as_meal": true,
+      "extracts_food_items": true,
+      "identifies_restaurant": true
+    }
+  },
+  {
+    "category": "Travel Expenses",
+    "test_case": "Lodging Receipt",
+    "description": "Hotel or accommodation receipt",
+    "expected_behavior": "Identify as lodging, extract nightly rate, dates, location",
+    "image_number": 10,
+    "evaluation_criteria": {
+      "categorizes_as_lodging": true,
+      "extracts_nightly_rate": true,
+      "extracts_dates": true,
+      "identifies_location": true
+    }
+  },
+  {
+    "category": "Travel Expenses",
+    "test_case": "Airfare Receipt",
+    "description": "Flight booking or airline receipt",
+    "expected_behavior": "Identify as airfare, extract flight details, class, amount",
+    "image_number": 11,
+    "evaluation_criteria": {
+      "categorizes_as_airfare": true,
+      "extracts_flight_info": true,
+      "identifies_travel_class": true,
+      "extracts_total_amount": true
+    }
+  },
+  {
+    "category": "Travel Expenses",
+    "test_case": "Car Rental Receipt",
+    "description": "Car rental or transportation receipt",
+    "expected_behavior": "Identify transportation expense, extract rental details",
+    "image_number": 40,
+    "evaluation_criteria": {
+      "categorizes_correctly": true,
+      "extracts_rental_details": true,
+      "identifies_insurance_charges": true
+    }
+  },
+  {
+    "category": "Travel Expenses",
+    "test_case": "Parking and Tolls",
+    "description": "Parking or toll charges receipt",
+    "expected_behavior": "Identify expense type, extract amount, location, time",
+    "image_number": 41,
+    "evaluation_criteria": {
+      "categorizes_correctly": true,
+      "extracts_amount": true,
+      "extracts_location_if_present": true
+    }
+  },
+  {
+    "category": "Expense Categorization",
+    "test_case": "Supplies Purchase",
+    "description": "Receipt for office or business supplies",
+    "expected_behavior": "Categorize as supplies, extract items and amounts",
+    "image_number": 12,
+    "evaluation_criteria": {
+      "categorizes_correctly": true,
+      "extracts_items": true,
+      "identifies_vendor_type": true
+    }
+  },
+  {
+    "category": "Expense Categorization",
+    "test_case": "Entertainment Expense",
+    "description": "Receipt for entertainment or client meals",
+    "expected_behavior": "Identify as entertainment, extract details",
+    "image_number": 13,
+    "evaluation_criteria": {
+      "categorizes_correctly": true,
+      "extracts_details": true,
+      "notes_venue_type": true
+    }
+  },
+  {
+    "category": "Document Type",
+    "test_case": "Invoice vs Receipt",
+    "description": "Distinguish between invoice and actual receipt",
+    "expected_behavior": "Identify document type, extract relevant data",
+    "image_number": 7,
+    "evaluation_criteria": {
+      "identifies_document_type": true,
+      "extracts_appropriate_fields": true,
+      "notes_payment_status": true
+    }
+  },
+  {
+    "category": "OCR Challenges",
+    "test_case": "Faded Receipt",
+    "description": "Receipt with faded or light text",
+    "expected_behavior": "Extract readable portions, flag quality issues",
+    "image_number": 2,
+    "evaluation_criteria": {
+      "extracts_readable_text": true,
+      "flags_faded_sections": true,
+      "provides_confidence_scores": true
+    }
+  },
+  {
+    "category": "OCR Challenges",
+    "test_case": "Crumpled or Damaged Receipt",
+    "description": "Receipt that is physically damaged or crumpled",
+    "expected_behavior": "Extract what's visible, note damage",
+    "image_number": 3,
+    "evaluation_criteria": {
+      "extracts_visible_data": true,
+      "notes_document_condition": true,
+      "flags_missing_sections": true
+    }
+  },
+  {
+    "category": "OCR Challenges",
+    "test_case": "Small Text or Poor Resolution",
+    "description": "Receipt with very small text or low resolution image",
+    "expected_behavior": "Attempt extraction, flag resolution issues",
+    "image_number": 2,
+    "evaluation_criteria": {
+      "attempts_extraction": true,
+      "flags_resolution_issue": true,
+      "provides_partial_data": true
+    }
+  },
+  {
+    "category": "Edge Cases",
+    "test_case": "Receipt Missing Total",
+    "description": "Receipt where total amount is not clearly marked",
+    "expected_behavior": "Calculate from line items if possible, flag missing total",
+    "image_number": 30,
+    "evaluation_criteria": {
+      "attempts_calculation": true,
+      "flags_missing_total": true,
+      "extracts_line_items": true
+    }
+  },
+  {
+    "category": "Edge Cases",
+    "test_case": "Duplicate Receipt",
+    "description": "Receipt marked as duplicate or copy",
+    "expected_behavior": "Extract data, note duplicate status",
+    "image_number": 8,
+    "evaluation_criteria": {
+      "extracts_data": true,
+      "identifies_duplicate_marking": true,
+      "notes_in_metadata": true
+    }
+  },
+  {
+    "category": "Edge Cases",
+    "test_case": "Receipt with Multiple Dates",
+    "description": "Receipt showing purchase date, posting date, etc.",
+    "expected_behavior": "Extract all dates, identify which is transaction date",
+    "image_number": 28,
+    "evaluation_criteria": {
+      "extracts_all_dates": true,
+      "identifies_transaction_date": true,
+      "distinguishes_date_types": true
+    }
+  },
+  {
+    "category": "Edge Cases",
+    "test_case": "Receipt with Promotional Text",
+    "description": "Receipt cluttered with promotions and ads",
+    "expected_behavior": "Filter out promotional text, extract transaction data",
+    "image_number": 49,
+    "evaluation_criteria": {
+      "separates_ads_from_data": true,
+      "extracts_transaction_info": true,
+      "ignores_irrelevant_text": true
+    }
+  },
+  {
+    "category": "Payment Information",
+    "test_case": "Card Last Four Digits",
+    "description": "Receipt showing last 4 digits of payment card",
+    "expected_behavior": "Extract card last four, identify payment method",
+    "image_number": 45,
+    "evaluation_criteria": {
+      "extracts_card_digits": true,
+      "identifies_card_type": true,
+      "notes_payment_method": true
+    }
+  },
+  {
+    "category": "Payment Information",
+    "test_case": "Cash Payment",
+    "description": "Receipt indicating cash payment",
+    "expected_behavior": "Identify cash payment method",
+    "image_number": 45,
+    "evaluation_criteria": {
+      "identifies_cash_payment": true,
+      "extracts_amount_tendered": true,
+      "notes_change_if_present": true
+    }
+  },
+  {
+    "category": "Complex Scenarios",
+    "test_case": "Multi-Page Receipt",
+    "description": "Receipt spanning multiple pages",
+    "expected_behavior": "Note multi-page status, extract from visible page",
+    "image_number": 4,
+    "evaluation_criteria": {
+      "identifies_multi_page": true,
+      "extracts_visible_data": true,
+      "flags_incomplete_doc": true
+    }
+  },
+  {
+    "category": "Complex Scenarios",
+    "test_case": "Receipt with Return/Refund",
+    "description": "Receipt showing return or refund transaction",
+    "expected_behavior": "Identify as return/refund, extract negative amount",
+    "image_number": 29,
+    "evaluation_criteria": {
+      "identifies_refund": true,
+      "handles_negative_amount": true,
+      "notes_original_transaction": true
+    }
+  },
+  {
+    "category": "Vendor Details",
+    "test_case": "Chain Store Receipt",
+    "description": "Receipt from chain store with location info",
+    "expected_behavior": "Extract store name, location, store number",
+    "image_number": 38,
+    "evaluation_criteria": {
+      "extracts_vendor_name": true,
+      "extracts_location": true,
+      "extracts_store_number": true
+    }
+  },
+  {
+    "category": "Vendor Details",
+    "test_case": "Receipt with QR Code",
+    "description": "Receipt containing QR code or barcode",
+    "expected_behavior": "Note QR code presence, extract text data",
+    "image_number": 6,
+    "evaluation_criteria": {
+      "notes_qr_code": true,
+      "extracts_text_data": true,
+      "ignores_non_text_elements": true
+    }
+  },
+  {
+    "category": "High Value Items",
+    "test_case": "Large Amount Transaction",
+    "description": "Receipt with unusually large total amount",
+    "expected_behavior": "Extract amount accurately, note high value",
+    "image_number": 19,
+    "evaluation_criteria": {
+      "extracts_amount_correctly": true,
+      "handles_large_numbers": true,
+      "notes_high_value": true
+    }
+  }
+]

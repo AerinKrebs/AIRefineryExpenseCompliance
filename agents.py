@@ -103,6 +103,12 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
     
     # Build the extraction prompt
     extraction_prompt = f"""
+        **CRITICAL ANTI-HALLUCINATION RULES:**
+        1. NEVER make up data that is not clearly visible
+        2. If you cannot see a field, set it to null
+        3. If image is blank/no receipt → ALL fields null
+        4. When in doubt → return null
+
         You are an expert receipt and invoice analyzer for expense compliance.
         Analyze this {image_type} image and extract all relevant expense information.
 
@@ -141,6 +147,10 @@ async def image_understanding_agent(query: str, env_variable=None, chat_history=
 
         IMPORTANT: Return ONLY the raw JSON object. Do NOT wrap it in markdown code blocks or any other formatting.
         Return ONLY the JSON object, no additional text.
+
+        **SELF-CHECK BEFORE RESPONDING:**
+        - "Am I making up ANY data?" → If YES: Set to null
+        - "Is there a receipt here?" → If NO: All nulls
         """
     
     try:
