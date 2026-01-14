@@ -1,0 +1,46 @@
+================================================================================
+IMAGE UNDERSTANDING AGENT (VA) - TEST SUMMARY
+Test Run: 2026-01-14 16:27:24
+================================================================================
+
+TEST SCOPE:
+  - Image Understanding Agent (VA) ONLY
+  - Tests extraction and OCR capabilities
+  - Does NOT test validation logic
+
+OVERALL RESULTS:
+  Total Tests: 3
+  Passed: 3 (100.0%)
+  Failed: 0 (0.0%)
+  Errors/Skipped: 0
+
+  Average Extraction Score: 91.7/100
+
+RESULTS BY CATEGORY:
+
+  Image Quality:
+    Total: 2
+    Passed: 2
+    Partial: 0
+    Failed: 0
+    Errors: 0
+
+  Language Processing:
+    Total: 1
+    Passed: 1
+    Partial: 0
+    Failed: 0
+    Errors: 0
+
+================================================================================
+EXTRACTION FAILURES:
+================================================================================
+
+================================================================================
+COMMON EXTRACTION ISSUES:
+================================================================================
+  - Failed to extract vendor address and other optiona... (1 occurrences)
+  - Could improve handling of blurry text to attempt e... (1 occurrences)
+  - Failed to extract optional fields like time and ti... (1 occurrences)
+  - Did not explicitly flag uncertainty for potentiall... (1 occurrences)
+  - Did not extract 'tip_amount' or 'card_last_four', ... (1 occurrences)

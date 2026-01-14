@@ -1,0 +1,411 @@
+{
+  "summary": {
+    "total_tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "errors": 0,
+    "categories": {
+      "Image Quality": {
+        "total": 2,
+        "passed": 2,
+        "partial": 0,
+        "failed": 0,
+        "errors": 0
+      },
+      "Language Processing": {
+        "total": 1,
+        "passed": 1,
+        "partial": 0,
+        "failed": 0,
+        "errors": 0
+      }
+    }
+  },
+  "test_results": [
+    {
+      "test_case": {
+        "category": "Image Quality",
+        "test_case": "Blurry Receipt",
+        "description": "Receipt image is blurry or out of focus",
+        "expected_behavior": "Extract what's readable, flag low confidence, note image quality issues",
+        "image_number": 2,
+        "evaluation_criteria": {
+          "extracts_partial_data": true,
+          "flags_quality_issue": true,
+          "provides_confidence_score": true,
+          "identifies_readable_fields": true
+        }
+      },
+      "status": "PASS",
+      "score": 88,
+      "image_path": "C:\\Users\\aerin.krebs\\AI Refinery Plus1\\AIRefineryExpenseCompliance\\VAtesting\\2 Blurry.png",
+      "extraction_result": {
+        "success": true,
+        "extracted_data": {
+          "vendor_name": "Quickmart",
+          "vendor_address": null,
+          "date": "2024-12-08",
+          "time": "15:47",
+          "currency": "USD",
+          "subtotal": 31.63,
+          "tax_amount": null,
+          "tip_amount": null,
+          "total_amount": 33.92,
+          "payment_method": "debit",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Milk Whole Gal",
+              "quantity": 1,
+              "unit_price": 3.99,
+              "total": 3.99
+            },
+            {
+              "description": "Bread Wheat",
+              "quantity": 1,
+              "unit_price": 2.49,
+              "total": 2.49
+            },
+            {
+              "description": "Bananas LB",
+              "quantity": 1,
+              "unit_price": 1.76,
+              "total": 1.76
+            },
+            {
+              "description": "Pasta Penne",
+              "quantity": 1,
+              "unit_price": 1.99,
+              "total": 1.99
+            },
+            {
+              "description": "Orange Juice",
+              "quantity": 1,
+              "unit_price": 4.79,
+              "total": 4.79
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 85,
+          "raw_text_extracted": "QUICKMART\nReceipt #: 8273645\n12/08/2024 3:47 PM\nCashier: AMANDA R.\nMILK WHOLE GAL     $3.99\nBREAD WHEAT        $2.49\nBANANAS LB         $1.76\nPASTA PENNE        $1.99\nORANGE JUICE       $4.79\nSUBTOTAL:          $31.63\nTOTAL:             $33.92\nDEBIT CARD:        $33.92",
+          "notes": "Receipt is slightly blurry but most details are legible. Tax amount is not explicitly mentioned."
+        },
+        "processing_notes": [],
+        "image_type": "receipt",
+        "error": null
+      },
+      "evaluation": {
+        "test_result": "PASS",
+        "score": 88,
+        "extraction_quality": {
+          "completeness": "good",
+          "accuracy": "excellent",
+          "field_identification": "excellent",
+          "ocr_quality": "good"
+        },
+        "criteria_evaluation": {
+          "extracts_partial_data": "met",
+          "flags_quality_issue": "met",
+          "provides_confidence_score": "met",
+          "identifies_readable_fields": "met"
+        },
+        "extracted_successfully": [
+          "vendor_name",
+          "date",
+          "time",
+          "currency",
+          "subtotal",
+          "total_amount",
+          "payment_method",
+          "line_items",
+          "expense_category",
+          "raw_text_extracted"
+        ],
+        "extraction_failures": [
+          "vendor_address",
+          "tax_amount",
+          "tip_amount",
+          "card_last_four"
+        ],
+        "notes_quality": {
+          "flagged_issues": true,
+          "appropriate_warnings": true,
+          "confidence_score_reasonable": true
+        },
+        "reasoning": "The agent successfully extracted most key fields from the blurry receipt, including vendor name, date, time, subtotal, total amount, payment method, and line items. The raw text extraction was comprehensive and accurate, with minor omissions such as vendor address and tax amount, which were likely unreadable due to image quality. The agent flagged the image quality issue and provided a reasonable confidence score of 85, reflecting the challenges posed by the blurry image. Field identification was excellent, with amounts parsed correctly as numbers and dates formatted properly.",
+        "strengths": [
+          "Accurate extraction of readable fields despite image quality issues.",
+          "Comprehensive raw text extraction.",
+          "Correct identification and parsing of numerical fields and dates.",
+          "Appropriate flagging of image quality issues."
+        ],
+        "weaknesses": [
+          "Failed to extract vendor address and tax amount, which may have been partially readable.",
+          "Did not attempt to infer missing fields like tax amount or card last four digits."
+        ],
+        "improvement_suggestions": [
+          "Enhance OCR capabilities to better handle blurry text and extract partially readable fields.",
+          "Implement inference mechanisms to estimate missing fields like tax amount based on subtotal and total.",
+          "Provide more detailed notes on specific fields that were unreadable due to image quality."
+        ]
+      },
+      "timestamp": "2026-01-06T13:44:00.845216"
+    },
+    {
+      "test_case": {
+        "category": "Image Quality",
+        "test_case": "Handwritten Receipt",
+        "description": "Handwritten receipt with varied legibility",
+        "expected_behavior": "Attempt OCR, flag as handwritten, note any unclear text",
+        "image_number": 9,
+        "evaluation_criteria": {
+          "detects_handwritten": true,
+          "extracts_legible_portions": true,
+          "flags_uncertainty": true
+        }
+      },
+      "status": "PASS",
+      "score": 92,
+      "image_path": "C:\\Users\\aerin.krebs\\AI Refinery Plus1\\AIRefineryExpenseCompliance\\VAtesting\\9 Handwritten.png",
+      "extraction_result": {
+        "success": true,
+        "extracted_data": {
+          "vendor_name": "Mike's Auto Repair",
+          "vendor_address": "734 Oak Street, Portland, OR 97214",
+          "date": "2024-11-18",
+          "time": null,
+          "currency": "USD",
+          "subtotal": 400.0,
+          "tax_amount": 32.0,
+          "tip_amount": null,
+          "total_amount": 432.0,
+          "payment_method": "cash",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Oil change + filter",
+              "quantity": 1,
+              "unit_price": 45.0,
+              "total": 45.0
+            },
+            {
+              "description": "Brake pad replacement",
+              "quantity": 1,
+              "unit_price": 180.0,
+              "total": 180.0
+            },
+            {
+              "description": "Labor (2.5 hrs)",
+              "quantity": 1,
+              "unit_price": 125.0,
+              "total": 125.0
+            },
+            {
+              "description": "Tire rotation",
+              "quantity": 1,
+              "unit_price": 35.0,
+              "total": 35.0
+            },
+            {
+              "description": "Coolant top-up",
+              "quantity": 1,
+              "unit_price": 15.0,
+              "total": 15.0
+            }
+          ],
+          "expense_category": "auto repair",
+          "confidence_score": 95,
+          "raw_text_extracted": "Mike's Auto Repair\n734 Oak Street\nPortland, OR 97214\n(503) 555-0198\nDate: November 18, 2024\nReceived from: John Anderson\n\nOil change + filter $45.00\nBrake pad replacement $180.00\nLabor (2.5 hrs) $125.00\nTire rotation $35.00\nCoolant top-up $15.00\n\nSubtotal: $400.00\nTax (8%): $32.00\n\nTotal: $432.00\n\nPayment method: Cash\n\nMike Rodriguez\n\nThank you for your business!\nWarranty: 90 days / 3,000 miles",
+          "notes": "Handwritten receipt with clear text and amounts. Vendor details and itemization are well-documented."
+        },
+        "processing_notes": [],
+        "image_type": "receipt",
+        "error": null
+      },
+      "evaluation": {
+        "test_result": "PASS",
+        "score": 92,
+        "extraction_quality": {
+          "completeness": "excellent",
+          "accuracy": "excellent",
+          "field_identification": "excellent",
+          "ocr_quality": "good"
+        },
+        "criteria_evaluation": {
+          "detects_handwritten": "met",
+          "extracts_legible_portions": "met",
+          "flags_uncertainty": "partially_met"
+        },
+        "extracted_successfully": [
+          "vendor_name",
+          "vendor_address",
+          "date",
+          "subtotal",
+          "tax_amount",
+          "total_amount",
+          "payment_method",
+          "line_items",
+          "expense_category",
+          "raw_text_extracted"
+        ],
+        "extraction_failures": [
+          "time",
+          "tip_amount",
+          "card_last_four"
+        ],
+        "notes_quality": {
+          "flagged_issues": true,
+          "appropriate_warnings": true,
+          "confidence_score_reasonable": true
+        },
+        "reasoning": "The agent successfully extracted all key fields from the handwritten receipt, including vendor details, date, amounts, and itemization. The raw text extraction is comprehensive and matches the receipt content well. It correctly flagged the receipt as handwritten and noted its clarity. However, it did not explicitly flag uncertainty for missing fields such as 'time' and 'tip_amount', which could have been noted as unclear or absent.",
+        "strengths": [
+          "Accurate extraction of vendor details and address.",
+          "Correct parsing of amounts and itemization.",
+          "Comprehensive raw text extraction.",
+          "Appropriate categorization as 'auto repair'."
+        ],
+        "weaknesses": [
+          "Did not explicitly flag uncertainty for missing fields like 'time' and 'tip_amount'.",
+          "OCR quality could be improved for handwritten text with potential edge cases."
+        ],
+        "improvement_suggestions": [
+          "Enhance OCR capabilities to better handle potential ambiguities in handwritten text.",
+          "Explicitly flag missing or unclear fields to improve transparency in extraction results."
+        ]
+      },
+      "timestamp": "2026-01-06T13:44:29.711652"
+    },
+    {
+      "test_case": {
+        "category": "Language Processing",
+        "test_case": "Foreign Language Receipt",
+        "description": "Receipt in non-English language",
+        "expected_behavior": "Extract text, identify language, extract numbers/dates regardless of language",
+        "image_number": 5,
+        "evaluation_criteria": {
+          "extracts_raw_text": true,
+          "identifies_language": true,
+          "extracts_amounts": true,
+          "extracts_dates": true,
+          "flags_translation_needed": true
+        }
+      },
+      "status": "PASS",
+      "score": 95,
+      "image_path": "C:\\Users\\aerin.krebs\\AI Refinery Plus1\\AIRefineryExpenseCompliance\\VAtesting\\5 Non English.png",
+      "extraction_result": {
+        "success": true,
+        "extracted_data": {
+          "vendor_name": "La Boulangerie Dor\u00e9e",
+          "vendor_address": "42 Rue de Rivoli, 75004 Paris, France",
+          "date": "2024-12-15",
+          "time": "14:32",
+          "currency": "EUR",
+          "subtotal": 11.35,
+          "tax_amount": 0.62,
+          "tip_amount": null,
+          "total_amount": 11.35,
+          "payment_method": "cash",
+          "card_last_four": null,
+          "line_items": [
+            {
+              "description": "Baguette Tradition",
+              "quantity": 1,
+              "unit_price": 1.3,
+              "total": 1.3
+            },
+            {
+              "description": "Croissant x2",
+              "quantity": 2,
+              "unit_price": 1.2,
+              "total": 2.4
+            },
+            {
+              "description": "Pain au Chocolat",
+              "quantity": 1,
+              "unit_price": 1.35,
+              "total": 1.35
+            },
+            {
+              "description": "Tarte aux Pommes",
+              "quantity": 1,
+              "unit_price": 4.5,
+              "total": 4.5
+            },
+            {
+              "description": "Caf\u00e9",
+              "quantity": 1,
+              "unit_price": 1.8,
+              "total": 1.8
+            }
+          ],
+          "expense_category": "meals",
+          "confidence_score": 95,
+          "raw_text_extracted": "LA BOULANGERIE DOR\u00c9E\n42 Rue de Rivoli\n75004 Paris, France\nT\u00e9l: 01 42 77 88 99\nSIRET: 123 456 789 00012\nTVA: FR 12 345678901\n--------------------------------\nTicket N\u00b0: 2847\nDate: 15/12/2024 14:32\nCaisse: 02 Op\u00e9rateur: Marie\n\nBaguette Tradition          1,30 \u20ac\nCroissant x2                2,40 \u20ac\nPain au Chocolat            1,35 \u20ac\nTarte aux Pommes            4,50 \u20ac\nCaf\u00e9                        1,80 \u20ac\n\nSOUS-TOTAL:                11,35 \u20ac\nTVA 5,5%:                   0,62 \u20ac\n\nTOTAL:                     11,35 \u20ac\n\nEsp\u00e8ces:                   20,00 \u20ac\nRendu:                      8,65 \u20ac\n\n--------------------------------\nMERCI DE VOTRE VISITE!\n\u00c0 bient\u00f4t\nwww.laboulangerie-doree.fr",
+          "notes": "Receipt is in French, but all key fields were extracted with high confidence."
+        },
+        "processing_notes": [],
+        "image_type": "receipt",
+        "error": null
+      },
+      "evaluation": {
+        "test_result": "PASS",
+        "score": 95,
+        "extraction_quality": {
+          "completeness": "excellent",
+          "accuracy": "excellent",
+          "field_identification": "excellent",
+          "ocr_quality": "excellent"
+        },
+        "criteria_evaluation": {
+          "extracts_raw_text": "met",
+          "identifies_language": "met",
+          "extracts_amounts": "met",
+          "extracts_dates": "met",
+          "flags_translation_needed": "met"
+        },
+        "extracted_successfully": [
+          "vendor_name",
+          "vendor_address",
+          "date",
+          "time",
+          "currency",
+          "subtotal",
+          "tax_amount",
+          "total_amount",
+          "payment_method",
+          "line_items",
+          "raw_text_extracted",
+          "expense_category"
+        ],
+        "extraction_failures": [
+          "tip_amount",
+          "card_last_four"
+        ],
+        "notes_quality": {
+          "flagged_issues": true,
+          "appropriate_warnings": true,
+          "confidence_score_reasonable": true
+        },
+        "reasoning": "The agent successfully extracted all key fields from the receipt, including vendor details, date, time, amounts, and line items. The raw text extraction was comprehensive and accurate, with no significant errors. The language was correctly identified as French, and the agent flagged that translation might be needed. The confidence score of 95 is reasonable given the high accuracy of the extraction. Minor fields like 'tip_amount' and 'card_last_four' were not applicable or missing, but these do not impact the overall completeness significantly.",
+        "strengths": [
+          "Accurate extraction of vendor details, amounts, and line items.",
+          "Comprehensive raw text extraction with no errors.",
+          "Correct identification of language and appropriate flagging for translation.",
+          "High confidence score aligned with the quality of extraction."
+        ],
+        "weaknesses": [
+          "Did not extract 'tip_amount' and 'card_last_four', though these may not have been present on the receipt."
+        ],
+        "improvement_suggestions": [
+          "Ensure that optional fields like 'tip_amount' and 'card_last_four' are explicitly marked as not applicable if missing.",
+          "Provide additional context in notes about why certain fields were not extracted, if relevant."
+        ]
+      },
+      "timestamp": "2026-01-06T13:45:17.625983"
+    }
+  ],
+  "timestamp": "2026-01-06T13:45:18.637326",
+  "test_type": "Image Understanding Agent (VA) Only"
+}
