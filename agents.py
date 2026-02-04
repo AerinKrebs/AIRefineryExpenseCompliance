@@ -482,7 +482,1007 @@ Perform the validation now.
             "validation_errors": [str(e)],
             "validation_warnings": []
         }, indent=2)
+# ========================================== DATA ANALYTICS AGENT ===========================================
+
+async def data_analytics_agent(query: str, env_variable=None, chat_history=None) -> str:
+    """
+    Analyzes expense data for patterns, trends, anomalies, and insights.
+    Leverages historical expense data to provide context and identify unusual patterns.
+    
+    Parameters:
+        query (str): The user's query or analysis instructions.
+        env_variable (dict): Environment variables containing validated expense data and history.
+        chat_history (list): Previous conversation history.
+    
+    Returns:
+        str: JSON string containing analytics results, insights, and recommendations.
+    """
+    
+    # Extract the validated expense data
+    validated_data = env_variable.get("validated_data", {}) if env_variable else {}
+    expense_history = env_variable.get("expense_history", []) if env_variable else []
+    user_id = env_variable.get("user_id", "unknown") if env_variable else "unknown"
+    
+    if not validated_data:
+        return json.dumps({
+            "success": False,
+            "error": "No validated expense data provided for analysis",
+            "analytics_results": None,
+            "insights": [],
+            "anomalies": []
+        })
+    
+    # Build the analytics prompt
+    analytics_prompt = f"""
+You are an expert financial data analyst specializing in expense management and fraud detection.
+Your role is to analyze expense submissions for patterns, trends, anomalies, and provide actionable insights.
+
+**CURRENT DATE/TIME:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+**CURRENT EXPENSE SUBMISSION:**
+{json.dumps(validated_data, indent=2)}
+
+**USER'S HISTORICAL EXPENSE DATA (Last 90 days):**
+{json.dumps(expense_history[-50:], indent=2) if expense_history else "No historical data available"}
+
+**USER CONTEXT:**
+{query}
+
+**YOUR ANALYSIS TASKS:**
+
+1. **Spending Pattern Analysis:**
+   - Compare current expense against user's historical spending patterns
+   - Identify if this expense is typical or unusual for this user
+   - Analyze spending by category, vendor, time period
+   - Calculate average expense amounts by category
+
+2. **Anomaly Detection:**
+   - Flag expenses that are statistical outliers (>2 standard deviations from mean)
+   - Identify unusual timing (weekend/holiday submissions, late-night transactions)
+   - Detect duplicate or near-duplicate expenses
+   - Spot suspicious patterns (round numbers, repeated amounts)
+   - Check for rapid successive submissions
+
+3. **Trend Identification:**
+   - Identify spending trends over time (increasing, decreasing, stable)
+   - Spot seasonal patterns or cyclical behavior
+   - Detect changes in spending habits
+   - Analyze frequency of submissions
+
+4. **Risk Assessment:**
+   - Calculate risk score based on multiple factors
+   - Identify potential fraud indicators
+   - Flag expenses that need extra scrutiny
+   - Assess likelihood of policy violations
+
+5. **Comparative Analysis:**
+   - Compare against user's own history
+   - Identify deviations from normal behavior
+   - Calculate percentile ranking of this expense
+   - Benchmark against typical ranges
+
+6. **Insight Generation:**
+   - Provide actionable insights for approvers
+   - Recommend areas for follow-up questions
+   - Suggest additional verification steps if needed
+   - Offer context to help decision-making
+
+**RISK SCORING FACTORS:**
+- Amount deviation from average (weight: 30%)
+- Timing anomalies (weight: 15%)
+- Vendor/category consistency (weight: 20%)
+- Submission frequency (weight: 15%)
+- Data quality/completeness (weight: 10%)
+- Historical pattern match (weight: 10%)
+
+**OUTPUT FORMAT:**
+Return a JSON object with this exact structure:
+
+{{
+  "analytics_status": "completed" or "partial" or "failed",
+  "analysis_confidence": 0-100,
+  
+  "expense_profile": {{
+    "category": "primary expense category",
+    "amount_percentile": 0-100,
+    "frequency_assessment": "rare/occasional/frequent/very_frequent",
+    "timing_assessment": "normal/unusual/suspicious",
+    "vendor_familiarity": "new/occasional/frequent"
+  }},
+  
+  "anomaly_detection": {{
+    "is_anomalous": true/false,
+    "anomaly_score": 0-100,
+    "anomaly_flags": [
+      {{
+        "type": "amount/timing/duplicate/pattern/other",
+        "severity": "LOW/MEDIUM/HIGH/CRITICAL",
+        "description": "detailed description of anomaly",
+        "evidence": "supporting data or comparison"
+      }}
+    ]
+  }},
+  
+  "risk_assessment": {{
+    "overall_risk_score": 0-100,
+    "risk_level": "LOW/MEDIUM/HIGH/CRITICAL",
+    "risk_factors": [
+      {{
+        "factor": "factor name",
+        "score": 0-100,
+        "weight": "percentage",
+        "rationale": "why this is a risk factor"
+      }}
+    ],
+    "fraud_indicators": [
+      "list of potential fraud indicators if any"
+    ]
+  }},
+  
+  "spending_patterns": {{
+    "user_avg_expense_amount": number or null,
+    "user_total_expenses_90d": number or null,
+    "category_avg_amount": number or null,
+    "category_frequency_90d": number or null,
+    "deviation_from_average": "percentage or amount",
+    "historical_trend": "increasing/decreasing/stable/insufficient_data"
+  }},
+  
+  "comparative_analysis": {{
+    "vs_user_average": "higher/lower/similar",
+    "vs_category_average": "higher/lower/similar",
+    "percentile_rank": 0-100,
+    "is_statistical_outlier": true/false,
+    "standard_deviations_from_mean": number or null
+  }},
+  
+  "insights": [
+    {{
+      "insight_type": "pattern/trend/anomaly/recommendation/context",
+      "priority": "HIGH/MEDIUM/LOW",
+      "message": "actionable insight message",
+      "supporting_data": "relevant data points"
+    }}
+  ],
+  
+  "recommendations": [
+    {{
+      "recommendation_type": "approval/verification/investigation/documentation",
+      "action": "suggested action to take",
+      "reason": "why this recommendation is made",
+      "urgency": "immediate/high/medium/low"
+    }}
+  ],
+  
+  "verification_suggestions": [
+    "Questions or items to verify with the submitter"
+  ],
+  
+  "analysis_summary": {{
+    "total_anomalies_detected": 0,
+    "critical_anomalies": 0,
+    "key_findings": ["summary of key findings"],
+    "overall_assessment": "brief overall assessment"
+  }},
+  
+  "metadata": {{
+    "historical_data_points": 0,
+    "analysis_date": "{datetime.now().isoformat()}",
+    "user_id": "{user_id}"
+  }}
+}}
+
+**CRITICAL RULES:**
+1. Be data-driven - base all insights on actual patterns in the data
+2. Don't flag normal expenses as anomalous - be reasonable
+3. Consider context - business travel expenses are different from office supplies
+4. High amounts alone aren't suspicious - context matters
+5. Provide actionable insights, not just observations
+6. If insufficient historical data, acknowledge this limitation
+7. Return ONLY valid JSON, no markdown formatting or extra text
+8. Balance thoroughness with practicality
+
+Perform the analysis now.
+"""
+    
+    try:
+        # Call the LLM for analytics
+        client = AsyncAIRefinery(api_key=API_KEY)
+        
+        response = await client.chat.completions.create(
+            model="openai/gpt-4o",  # Use a capable model for complex analysis
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert financial analyst and fraud detection specialist. You analyze expense data to identify patterns, anomalies, and risks."
+                },
+                {
+                    "role": "user",
+                    "content": analytics_prompt
+                }
+            ],
+            temperature=0.2  # Low temperature for consistent analysis
+        )
+        
+        analytics_response = response.choices[0].message.content.strip()
+        
+        # Parse the analytics response
+        try:
+            # Clean response of markdown formatting
+            clean_response = analytics_response.strip()
+            
+            # Remove markdown code blocks if present
+            import re
+            code_block_pattern = r'```(?:json)?\s*([\s\S]*?)\s*```'
+            match = re.search(code_block_pattern, clean_response)
+            
+            if match:
+                clean_response = match.group(1).strip()
+            
+            clean_response = clean_response.strip('`').strip()
+            
+            analytics_result = json.loads(clean_response)
+            
+        except json.JSONDecodeError as e:
+            return json.dumps({
+                "success": False,
+                "error": f"Failed to parse analytics response as JSON: {str(e)}",
+                "raw_response": analytics_response,
+                "analytics_results": None,
+                "insights": [],
+                "anomalies": []
+            }, indent=2)
+        
+        # Prepare final result
+        result = {
+            "success": True,
+            "status": analytics_result.get("analytics_status", "completed"),
+            "analytics_results": analytics_result,
+            "risk_score": analytics_result.get("risk_assessment", {}).get("overall_risk_score", 0),
+            "risk_level": analytics_result.get("risk_assessment", {}).get("risk_level", "MEDIUM"),
+            "is_anomalous": analytics_result.get("anomaly_detection", {}).get("is_anomalous", False),
+            "key_insights": [
+                insight.get("message", str(insight))
+                for insight in analytics_result.get("insights", [])
+            ],
+            "recommendations": [
+                rec.get("action", str(rec))
+                for rec in analytics_result.get("recommendations", [])
+            ]
+        }
+        
+        # Save to audit log
+        audit_log.save(
+            agent_name="Data Analytics Agent",
+            result=result,
+            user_id=user_id
+        )
+        
+        return json.dumps(result, indent=2)
+        
+    except Exception as e:
+        return json.dumps({
+            "success": False,
+            "error": f"Data analytics agent error: {str(e)}",
+            "analytics_results": None,
+            "insights": [],
+            "anomalies": []
+        }, indent=2)
+    
+# ========================================== COMPLIANCE POLICY AGENT ===========================================
+
+async def compliance_policy_agent(query: str, env_variable=None, chat_history=None) -> str:
+    """
+    Checks expense submissions against organizational policies and compliance rules.
+    Determines approval routing, identifies policy violations, and assesses compliance status.
+    
+    Parameters:
+        query (str): The user's query or compliance check instructions.
+        env_variable (dict): Environment variables containing validated data, analytics, and policy documents.
+        chat_history (list): Previous conversation history.
+    
+    Returns:
+        str: JSON string containing compliance assessment, policy violations, and approval routing.
+    """
+    
+    # Extract data for compliance checking
+    validated_data = env_variable.get("validated_data", {}) if env_variable else {}
+    analytics_data = env_variable.get("analytics_results", {}) if env_variable else {}
+    company_policies = env_variable.get("company_policies", {}) if env_variable else {}
+    user_id = env_variable.get("user_id", "unknown") if env_variable else "unknown"
+    user_role = env_variable.get("user_role", "employee") if env_variable else "employee"
+    user_department = env_variable.get("user_department", "unknown") if env_variable else "unknown"
+    
+    if not validated_data:
+        return json.dumps({
+            "success": False,
+            "error": "No validated expense data provided for compliance check",
+            "compliance_status": "failed",
+            "policy_violations": [],
+            "approval_required": True
+        })
+    
+    # Default policies if none provided
+    if not company_policies:
+        company_policies = {
+            "daily_meal_limit": 75.00,
+            "single_meal_limit": 50.00,
+            "lodging_daily_limit": 250.00,
+            "domestic_travel_daily_limit": 200.00,
+            "international_travel_daily_limit": 300.00,
+            "entertainment_requires_justification": True,
+            "receipts_required_over": 25.00,
+            "alcohol_policy": "allowed_with_clients",
+            "approval_thresholds": {
+                "manager": 500.00,
+                "director": 2500.00,
+                "vp": 10000.00,
+                "cfo": 25000.00
+            },
+            "prohibited_categories": ["personal_items", "family_expenses", "gifts_over_50"],
+            "mileage_rate": 0.67,
+            "international_requires_pre_approval": True
+        }
+    
+    # Build the compliance prompt
+    compliance_prompt = f"""
+You are an expert compliance officer specializing in corporate expense policy enforcement.
+Your role is to thoroughly check expense submissions against company policies and determine appropriate approval routing.
+
+**CURRENT DATE/TIME:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+**EMPLOYEE INFORMATION:**
+- User ID: {user_id}
+- Role: {user_role}
+- Department: {user_department}
+
+**EXPENSE SUBMISSION:**
+{json.dumps(validated_data, indent=2)}
+
+**ANALYTICS ASSESSMENT:**
+{json.dumps(analytics_data, indent=2) if analytics_data else "No analytics available"}
+
+**COMPANY EXPENSE POLICIES:**
+{json.dumps(company_policies, indent=2)}
+
+**USER CONTEXT:**
+{query}
+
+**YOUR COMPLIANCE TASKS:**
+
+1. **Policy Violation Detection:**
+   - Check amount against category-specific limits
+   - Verify expense type is allowed under policy
+   - Ensure receipts meet documentation requirements
+   - Check for prohibited expense categories
+   - Validate business purpose requirements
+   - Review alcohol/entertainment justifications
+
+2. **Approval Routing Determination:**
+   - Determine approval level required based on amount thresholds
+   - Identify if escalation is needed
+   - Route anomalous expenses for higher review
+   - Flag high-risk expenses for additional scrutiny
+
+3. **Documentation Compliance:**
+   - Verify required documentation is present
+   - Check if additional justification needed
+   - Ensure receipt quality meets standards
+   - Validate itemization requirements
+
+4. **Special Conditions:**
+   - Check pre-approval requirements (international travel, etc.)
+   - Identify if expense needs special handling
+   - Flag timing-sensitive policy rules
+   - Check department-specific policies
+
+5. **Risk-Based Assessment:**
+   - Consider analytics risk score in routing
+   - Apply stricter checks for high-risk expenses
+   - Factor in user's compliance history if available
+   - Evaluate contextual factors
+
+**APPROVAL ROUTING LOGIC:**
+- Amount < Manager Threshold → Auto-approve if compliant
+- Manager Threshold < Amount < Director Threshold → Manager approval
+- Director Threshold < Amount < VP Threshold → Director approval
+- Amount > VP Threshold → VP or CFO approval
+- High Risk Score (>70) → Escalate one level
+- Critical Anomalies → Route to Finance/Audit team
+- Policy Violations → Reject or route for exception handling
+
+**OUTPUT FORMAT:**
+Return a JSON object with this exact structure:
+
+{{
+  "compliance_status": "compliant/non_compliant/requires_review/requires_exception",
+  "is_compliant": true/false,
+  "compliance_score": 0-100,
+  
+  "policy_violations": [
+    {{
+      "policy_name": "name of violated policy",
+      "severity": "CRITICAL/HIGH/MEDIUM/LOW",
+      "violation_description": "detailed description",
+      "policy_limit": "what the limit is",
+      "actual_value": "what was submitted",
+      "recommended_action": "reject/approve_with_exception/request_justification"
+    }}
+  ],
+  
+  "policy_warnings": [
+    {{
+      "policy_name": "name of policy",
+      "warning_message": "description of concern",
+      "recommendation": "suggested action"
+    }}
+  ],
+  
+  "approval_routing": {{
+    "approval_required": true/false,
+    "approval_level": "auto_approve/manager/director/vp/cfo/ceo",
+    "approver_role": "role of person who should approve",
+    "routing_reason": "why this approval level",
+    "escalation_needed": true/false,
+    "escalation_reason": "reason for escalation if applicable",
+    "requires_finance_review": true/false,
+    "requires_audit_review": true/false
+  }},
+  
+  "documentation_compliance": {{
+    "receipt_provided": true/false,
+    "receipt_quality": "excellent/good/acceptable/poor/missing",
+    "itemization_adequate": true/false,
+    "business_purpose_documented": true/false,
+    "missing_documentation": ["list of missing docs"],
+    "additional_documentation_required": ["list of required docs"]
+  }},
+  
+  "special_conditions": [
+    {{
+      "condition_type": "pre_approval/exception/special_handling",
+      "description": "description of condition",
+      "met": true/false,
+      "action_required": "what needs to be done"
+    }}
+  ],
+  
+  "compliance_checks": [
+    {{
+      "check_name": "name of compliance check",
+      "passed": true/false,
+      "details": "details of the check result"
+    }}
+  ],
+  
+  "recommendations": [
+    {{
+      "recommendation": "specific recommendation",
+      "priority": "HIGH/MEDIUM/LOW",
+      "rationale": "why this is recommended"
+    }}
+  ],
+  
+  "required_actions": [
+    {{
+      "action": "action that must be taken",
+      "responsible_party": "who should do it",
+      "deadline": "when it should be done or null",
+      "blocking": true/false
+    }}
+  ],
+  
+  "compliance_summary": {{
+    "total_violations": 0,
+    "critical_violations": 0,
+    "total_warnings": 0,
+    "auto_approvable": true/false,
+    "requires_manual_review": true/false,
+    "overall_assessment": "brief summary",
+    "final_recommendation": "approve/reject/request_more_info/route_for_exception"
+  }},
+  
+  "metadata": {{
+    "policies_checked": ["list of policies checked"],
+    "check_date": "{datetime.now().isoformat()}",
+    "user_id": "{user_id}",
+    "user_role": "{user_role}"
+  }}
+}}
+
+**CRITICAL RULES:**
+1. Be thorough but fair - don't create obstacles for legitimate expenses
+2. Focus on material violations, not technicalities
+3. Consider business context and reasonableness
+4. Provide clear explanations for any violations
+5. Route efficiently - don't over-escalate minor issues
+6. Balance policy enforcement with business needs
+7. Return ONLY valid JSON, no markdown formatting or extra text
+8. If in doubt about a gray area, flag for review rather than auto-reject
+
+Perform the compliance check now.
+"""
+    
+    try:
+        # Call the LLM for compliance checking
+        client = AsyncAIRefinery(api_key=API_KEY)
+        
+        response = await client.chat.completions.create(
+            model="openai/gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert compliance officer. You enforce expense policies fairly and thoroughly while considering business context."
+                },
+                {
+                    "role": "user",
+                    "content": compliance_prompt
+                }
+            ],
+            temperature=0.1  # Very low temperature for consistent policy enforcement
+        )
+        
+        compliance_response = response.choices[0].message.content.strip()
+        
+        # Parse the compliance response
+        try:
+            # Clean response of markdown formatting
+            clean_response = compliance_response.strip()
+            
+            # Remove markdown code blocks if present
+            import re
+            code_block_pattern = r'```(?:json)?\s*([\s\S]*?)\s*```'
+            match = re.search(code_block_pattern, clean_response)
+            
+            if match:
+                clean_response = match.group(1).strip()
+            
+            clean_response = clean_response.strip('`').strip()
+            
+            compliance_result = json.loads(clean_response)
+            
+        except json.JSONDecodeError as e:
+            return json.dumps({
+                "success": False,
+                "error": f"Failed to parse compliance response as JSON: {str(e)}",
+                "raw_response": compliance_response,
+                "compliance_status": "failed",
+                "policy_violations": [],
+                "approval_required": True
+            }, indent=2)
+        
+        # Prepare final result
+        result = {
+            "success": True,
+            "status": compliance_result.get("compliance_status", "requires_review"),
+            "is_compliant": compliance_result.get("is_compliant", False),
+            "compliance_results": compliance_result,
+            "violations_count": len(compliance_result.get("policy_violations", [])),
+            "critical_violations": sum(
+                1 for v in compliance_result.get("policy_violations", [])
+                if v.get("severity") == "CRITICAL"
+            ),
+            "approval_required": compliance_result.get("approval_routing", {}).get("approval_required", True),
+            "approval_level": compliance_result.get("approval_routing", {}).get("approval_level", "manager"),
+            "final_recommendation": compliance_result.get("compliance_summary", {}).get("final_recommendation", "requires_review")
+        }
+        
+        # Save to audit log
+        audit_log.save(
+            agent_name="Compliance Policy Agent",
+            result=result,
+            user_id=user_id
+        )
+        
+        return json.dumps(result, indent=2)
+        
+    except Exception as e:
+        return json.dumps({
+            "success": False,
+            "error": f"Compliance policy agent error: {str(e)}",
+            "compliance_status": "failed",
+            "policy_violations": [],
+            "approval_required": True
+        }, indent=2)
+
+
+# ========================================== AUTHOR AGENT ===========================================
+
+async def author_agent(query: str, env_variable=None, chat_history=None) -> str:
+    """
+    Creates personalized, clear notifications and responses for users based on the
+    complete expense processing results. Translates technical outputs into user-friendly messages.
+    
+    Parameters:
+        query (str): The user's original query or notification preferences.
+        env_variable (dict): Environment variables containing all processing results.
+        chat_history (list): Previous conversation history.
+    
+    Returns:
+        str: JSON string containing formatted notification messages for different channels.
+    """
+    
+    # Extract all the processing results
+    validated_data = env_variable.get("validated_data", {}) if env_variable else {}
+    analytics_results = env_variable.get("analytics_results", {}) if env_variable else {}
+    compliance_results = env_variable.get("compliance_results", {}) if env_variable else {}
+    user_id = env_variable.get("user_id", "unknown") if env_variable else "unknown"
+    user_name = env_variable.get("user_name", "User") if env_variable else "User"
+    notification_preferences = env_variable.get("notification_preferences", {}) if env_variable else {}
+    
+    if not validated_data:
+        return json.dumps({
+            "success": False,
+            "error": "No expense data provided for notification authoring",
+            "messages": {}
+        })
+    
+    # Extract key information for context
+    expense_amount = validated_data.get("total_amount", 0)
+    vendor_name = validated_data.get("vendor_name", "Unknown Vendor")
+    expense_category = validated_data.get("expense_category", "unknown")
+    expense_date = validated_data.get("date", "unknown date")
+    
+    compliance_status = compliance_results.get("status", "unknown") if compliance_results else "unknown"
+    approval_required = compliance_results.get("approval_required", True) if compliance_results else True
+    approval_level = compliance_results.get("approval_level", "manager") if compliance_results else "manager"
+    violations = compliance_results.get("violations_count", 0) if compliance_results else 0
+    
+    risk_level = analytics_results.get("risk_level", "MEDIUM") if analytics_results else "MEDIUM"
+    is_anomalous = analytics_results.get("is_anomalous", False) if analytics_results else False
+    
+    # Build the authoring prompt
+    authoring_prompt = f"""
+You are an expert communication specialist who creates clear, professional, and user-friendly notifications
+for expense management systems. Your role is to translate technical processing results into messages that
+users can easily understand and act upon.
+
+**CURRENT DATE/TIME:** {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+**USER INFORMATION:**
+- Name: {user_name}
+- User ID: {user_id}
+
+**EXPENSE SUMMARY:**
+- Amount: ${expense_amount}
+- Vendor: {vendor_name}
+- Category: {expense_category}
+- Date: {expense_date}
+
+**PROCESSING RESULTS:**
+
+Validation Results:
+{json.dumps(validated_data, indent=2)}
+
+Analytics Results:
+{json.dumps(analytics_results, indent=2) if analytics_results else "Not available"}
+
+Compliance Results:
+{json.dumps(compliance_results, indent=2) if compliance_results else "Not available"}
+
+**USER CONTEXT:**
+{query}
+
+**NOTIFICATION PREFERENCES:**
+{json.dumps(notification_preferences, indent=2) if notification_preferences else "Use defaults"}
+
+**YOUR TASKS:**
+
+1. **Create Primary Notification:**
+   - Clear status update (approved/needs review/rejected/pending)
+   - Key information highlighted
+   - Next steps clearly stated
+   - Professional but friendly tone
+
+2. **Provide Detailed Explanation:**
+   - What happened during processing
+   - Why the outcome occurred
+   - Any issues or concerns identified
+   - What the user needs to do next
+
+3. **Tailor for Different Channels:**
+   - In-app notification (brief, actionable)
+   - Email notification (detailed, professional)
+   - SMS/Push notification (very brief, urgent items only)
+   - Dashboard status (concise summary)
+
+4. **Handle Different Outcomes:**
+   - Approved: Congratulatory, efficient
+   - Needs Review: Clear about what's needed, helpful
+   - Rejected: Empathetic, constructive, explains why
+   - Pending: Reassuring, sets expectations
+
+5. **User-Friendly Language:**
+   - Avoid technical jargon
+   - Explain policy terms simply
+   - Be specific about actions needed
+   - Use positive, helpful tone
+
+**TONE GUIDELINES:**
+- Professional but approachable
+- Clear and concise
+- Empathetic when delivering bad news
+- Action-oriented
+- Respectful of user's time
+
+**OUTPUT FORMAT:**
+Return a JSON object with this exact structure:
+
+{{
+  "authoring_status": "completed" or "failed",
+  "notification_type": "approval/rejection/review_needed/pending/error",
+  
+  "messages": {{
+    "in_app": {{
+      "title": "Brief notification title",
+      "body": "Main notification message (2-3 sentences)",
+      "action_button": "text for primary action button",
+      "action_url": "URL or route for action",
+      "priority": "high/medium/low"
+    }},
+    
+    "email": {{
+      "subject": "Email subject line",
+      "greeting": "Personalized greeting",
+      "body": "Full email body with details (multiple paragraphs)",
+      "key_points": ["bullet points of key information"],
+      "next_steps": ["clear action items for the user"],
+      "closing": "Email closing",
+      "signature": "System signature"
+    }},
+    
+    "sms": {{
+      "message": "Very brief SMS message (under 160 chars)",
+      "send_condition": "only_if_urgent/always/user_preference"
+    }},
+    
+    "push": {{
+      "title": "Push notification title",
+      "body": "Push notification body (1 sentence)",
+      "send_condition": "only_if_urgent/always/user_preference"
+    }},
+    
+    "dashboard": {{
+      "status_badge": "approved/rejected/pending/review",
+      "status_color": "green/red/yellow/blue",
+      "summary": "One sentence summary",
+      "details": "Additional details for dashboard view"
+    }}
+  }},
+  
+  "key_information": {{
+    "expense_id": "generated or existing ID",
+    "status": "final status",
+    "amount": {expense_amount},
+    "submitted_date": "{datetime.now().isoformat()}",
+    "expected_processing_time": "time estimate if pending",
+    "approval_timeline": "when decision expected"
+  }},
+  
+  "user_actions": [
+    {{
+      "action": "what the user should do",
+      "priority": "required/recommended/optional",
+      "deadline": "when to do it or null",
+      "instructions": "how to do it"
+    }}
+  ],
+  
+  "helpful_tips": [
+    "Tips for future submissions or current issue"
+  ],
+  
+  "support_info": {{
+    "contact_available": true/false,
+    "contact_method": "email/phone/chat",
+    "faq_link": "URL to FAQs or null",
+    "escalation_available": true/false
+  }},
+  
+  "metadata": {{
+    "template_used": "name of message template",
+    "personalization_applied": true/false,
+    "language": "en",
+    "generated_at": "{datetime.now().isoformat()}"
+  }}
+}}
+
+**CRITICAL RULES:**
+1. Be clear and direct - users should immediately understand the status
+2. Always include next steps - users should know what to do
+3. Be empathetic with rejections - explain constructively
+4. Celebrate approvals - make users feel good about compliant submissions
+5. Set realistic expectations for pending items
+6. Use the user's name to personalize
+7. Return ONLY valid JSON, no markdown formatting or extra text
+8. Make messages actionable - every notification should have a purpose
+
+**SPECIFIC SCENARIOS TO HANDLE:**
+
+If APPROVED:
+- Congratulate the user
+- Confirm the amount and details
+- Explain when reimbursement will occur
+- Encourage continued compliance
+
+If REJECTED:
+- Start with empathy
+- Clearly explain the reason
+- Provide specific steps to resubmit correctly
+- Offer to help if needed
+
+If NEEDS REVIEW:
+- Explain what's being reviewed
+- Set timeline expectations
+- List what user can do to expedite
+- Reassure them it's in progress
+
+If PENDING APPROVAL:
+- Confirm receipt
+- Explain the approval process
+- Set timeline expectations
+- No action needed from user
+
+Generate the notifications now.
+"""
+    
+    try:
+        # Call the LLM for message authoring
+        client = AsyncAIRefinery(api_key=API_KEY)
+        
+        response = await client.chat.completions.create(
+            model="openai/gpt-4o",
+            messages=[
+                {
+                    "role": "system",
+                    "content": "You are an expert communication specialist. You create clear, user-friendly notifications that help people understand and act on expense processing results."
+                },
+                {
+                    "role": "user",
+                    "content": authoring_prompt
+                }
+            ],
+            temperature=0.3  # Some creativity for natural language
+        )
+        
+        authoring_response = response.choices[0].message.content.strip()
+        
+        # Parse the authoring response
+        try:
+            # Clean response of markdown formatting
+            clean_response = authoring_response.strip()
+            
+            # Remove markdown code blocks if present
+            import re
+            code_block_pattern = r'```(?:json)?\s*([\s\S]*?)\s*```'
+            match = re.search(code_block_pattern, clean_response)
+            
+            if match:
+                clean_response = match.group(1).strip()
+            
+            clean_response = clean_response.strip('`').strip()
+            
+            authoring_result = json.loads(clean_response)
+            
+        except json.JSONDecodeError as e:
+            return json.dumps({
+                "success": False,
+                "error": f"Failed to parse authoring response as JSON: {str(e)}",
+                "raw_response": authoring_response,
+                "messages": {}
+            }, indent=2)
+        
+        # Prepare final result
+        result = {
+            "success": True,
+            "status": authoring_result.get("authoring_status", "completed"),
+            "notification_type": authoring_result.get("notification_type", "pending"),
+            "messages": authoring_result.get("messages", {}),
+            "user_actions": authoring_result.get("user_actions", []),
+            "key_information": authoring_result.get("key_information", {})
+        }
+        
+        # Save to audit log
+        audit_log.save(
+            agent_name="Author Agent",
+            result=result,
+            user_id=user_id
+        )
+        
+        return json.dumps(result, indent=2)
+        
+    except Exception as e:
+        return json.dumps({
+            "success": False,
+            "error": f"Author agent error: {str(e)}",
+            "messages": {}
+        }, indent=2)
+
 #=========================================== END AGENTS ================================================
+
+# #=========================================== TESTING FUNCTION ===========================================
+# async def test_agents():
+#     """
+#     Test function to demonstrate the agents working together.
+#     """
+    
+#     # Sample validated expense data
+#     sample_validated_data = {
+#         "vendor_name": "The Capital Grille",
+#         "date": "2026-02-03",
+#         "total_amount": 187.50,
+#         "tax_amount": 15.00,
+#         "tip_amount": 35.00,
+#         "subtotal": 137.50,
+#         "currency": "USD",
+#         "expense_category": "meals",
+#         "payment_method": "credit",
+#         "confidence_score": 95
+#     }
+    
+#     # Sample historical data
+#     sample_history = [
+#         {"date": "2026-01-15", "amount": 45.00, "category": "meals"},
+#         {"date": "2026-01-22", "amount": 32.50, "category": "meals"},
+#         {"date": "2026-01-28", "amount": 67.00, "category": "meals"}
+#     ]
+    
+#     # Test Data Analytics Agent
+#     print("=" * 80)
+#     print("TESTING DATA ANALYTICS AGENT")
+#     print("=" * 80)
+    
+#     analytics_result = await data_analytics_agent(
+#         query="Analyze this expense submission for patterns and anomalies",
+#         env_variable={
+#             "validated_data": sample_validated_data,
+#             "expense_history": sample_history,
+#             "user_id": "test_user_123"
+#         }
+#     )
+#     print(analytics_result)
+    
+#     # Test Compliance Policy Agent
+#     print("\n" + "=" * 80)
+#     print("TESTING COMPLIANCE POLICY AGENT")
+#     print("=" * 80)
+    
+#     compliance_result = await compliance_policy_agent(
+#         query="Check this expense against company policies",
+#         env_variable={
+#             "validated_data": sample_validated_data,
+#             "analytics_results": json.loads(analytics_result).get("analytics_results"),
+#             "user_id": "test_user_123",
+#             "user_role": "senior_engineer",
+#             "user_department": "engineering"
+#         }
+#     )
+#     print(compliance_result)
+    
+#     # Test Author Agent
+#     print("\n" + "=" * 80)
+#     print("TESTING AUTHOR AGENT")
+#     print("=" * 80)
+    
+#     author_result = await author_agent(
+#         query="Create notification for the user about their expense submission",
+#         env_variable={
+#             "validated_data": sample_validated_data,
+#             "analytics_results": json.loads(analytics_result).get("analytics_results"),
+#             "compliance_results": json.loads(compliance_result).get("compliance_results"),
+#             "user_id": "test_user_123",
+#             "user_name": "John Smith"
+#         }
+#     )
+#     print(author_result)
+
+
+# # Run tests if executed directly
+# if __name__ == "__main__":
+#     import asyncio
+#     asyncio.run(test_agents())
+
+
 #=========================================== DRIVER FUNCTION ===========================================
 
 # Driver that gets called by UI to send query to agentic system
