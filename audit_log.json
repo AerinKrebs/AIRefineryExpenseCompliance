@@ -9460,6 +9460,400 @@
       "error": null,
       "notes": [],
       "metadata": {}
+    },
+    {
+      "timestamp": "2026-02-04T13:20:47.559724",
+      "agent": "Data Analytics Agent",
+      "user_id": "test_user_123",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "completed",
+        "analytics_results": {
+          "analytics_status": "completed",
+          "analysis_confidence": 95,
+          "expense_profile": {
+            "category": "meals",
+            "amount_percentile": 95,
+            "frequency_assessment": "occasional",
+            "timing_assessment": "normal",
+            "vendor_familiarity": "new"
+          },
+          "anomaly_detection": {
+            "is_anomalous": true,
+            "anomaly_score": 85,
+            "anomaly_flags": [
+              {
+                "type": "amount",
+                "severity": "HIGH",
+                "description": "The expense amount ($187.50) is significantly higher than the user's average meal expense ($48.13) and exceeds 2 standard deviations from the mean.",
+                "evidence": "User's average meal expense: $48.13, standard deviation: $15.22, threshold for anomaly: $78.57."
+              },
+              {
+                "type": "vendor",
+                "severity": "MEDIUM",
+                "description": "Vendor 'The Capital Grille' is new and has not appeared in the user's historical data.",
+                "evidence": "No prior expenses recorded with this vendor in the last 90 days."
+              }
+            ]
+          },
+          "risk_assessment": {
+            "overall_risk_score": 70,
+            "risk_level": "MEDIUM",
+            "risk_factors": [
+              {
+                "factor": "amount deviation from average",
+                "score": 85,
+                "weight": "30%",
+                "rationale": "Expense is significantly higher than the user's historical average for meals."
+              },
+              {
+                "factor": "vendor/category consistency",
+                "score": 60,
+                "weight": "20%",
+                "rationale": "Vendor is unfamiliar, which increases risk slightly."
+              },
+              {
+                "factor": "timing anomalies",
+                "score": 20,
+                "weight": "15%",
+                "rationale": "Expense timing is normal (weekday submission)."
+              },
+              {
+                "factor": "submission frequency",
+                "score": 40,
+                "weight": "15%",
+                "rationale": "User submits meal expenses occasionally, reducing risk of rapid successive submissions."
+              },
+              {
+                "factor": "data quality/completeness",
+                "score": 95,
+                "weight": "10%",
+                "rationale": "Submission data is complete and confidence score is high."
+              },
+              {
+                "factor": "historical pattern match",
+                "score": 50,
+                "weight": "10%",
+                "rationale": "Expense deviates from historical spending patterns in amount and vendor."
+              }
+            ],
+            "fraud_indicators": [
+              "Significant deviation from historical spending patterns",
+              "Unfamiliar vendor"
+            ]
+          },
+          "spending_patterns": {
+            "user_avg_expense_amount": 48.13,
+            "user_total_expenses_90d": 144.5,
+            "category_avg_amount": 48.13,
+            "category_frequency_90d": 3,
+            "deviation_from_average": "289.6%",
+            "historical_trend": "stable"
+          },
+          "comparative_analysis": {
+            "vs_user_average": "higher",
+            "vs_category_average": "higher",
+            "percentile_rank": 95,
+            "is_statistical_outlier": true,
+            "standard_deviations_from_mean": 7.2
+          },
+          "insights": [
+            {
+              "insight_type": "anomaly",
+              "priority": "HIGH",
+              "message": "The expense amount is significantly higher than the user's historical average for meals and exceeds 2 standard deviations from the mean.",
+              "supporting_data": "User average: $48.13, standard deviation: $15.22, current expense: $187.50."
+            },
+            {
+              "insight_type": "pattern",
+              "priority": "MEDIUM",
+              "message": "Vendor 'The Capital Grille' is new and has not appeared in the user's historical data.",
+              "supporting_data": "No prior expenses recorded with this vendor in the last 90 days."
+            }
+          ],
+          "recommendations": [
+            {
+              "recommendation_type": "verification",
+              "action": "Request clarification from the user regarding the unusually high expense amount and new vendor.",
+              "reason": "Expense deviates significantly from historical patterns and involves an unfamiliar vendor.",
+              "urgency": "high"
+            },
+            {
+              "recommendation_type": "documentation",
+              "action": "Ensure receipt and business justification are provided for this expense.",
+              "reason": "High expense amounts require additional documentation for compliance.",
+              "urgency": "medium"
+            }
+          ],
+          "verification_suggestions": [
+            "What was the purpose of the meal?",
+            "Was this a business-related event or client meeting?",
+            "Can you provide the receipt and any supporting documentation?"
+          ],
+          "analysis_summary": {
+            "total_anomalies_detected": 2,
+            "critical_anomalies": 1,
+            "key_findings": [
+              "Expense amount is significantly higher than historical averages.",
+              "Vendor is unfamiliar and has not appeared in prior submissions."
+            ],
+            "overall_assessment": "The expense is unusual and warrants further verification due to high amount and unfamiliar vendor."
+          },
+          "metadata": {
+            "historical_data_points": 3,
+            "analysis_date": "2026-02-04T13:20:31.392709",
+            "user_id": "test_user_123"
+          }
+        },
+        "risk_score": 70,
+        "risk_level": "MEDIUM",
+        "is_anomalous": true,
+        "key_insights": [
+          "The expense amount is significantly higher than the user's historical average for meals and exceeds 2 standard deviations from the mean.",
+          "Vendor 'The Capital Grille' is new and has not appeared in the user's historical data."
+        ],
+        "recommendations": [
+          "Request clarification from the user regarding the unusually high expense amount and new vendor.",
+          "Ensure receipt and business justification are provided for this expense."
+        ]
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-02-04T13:21:05.586116",
+      "agent": "Compliance Policy Agent",
+      "user_id": "test_user_123",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "requires_review",
+        "is_compliant": false,
+        "compliance_results": {
+          "compliance_status": "requires_review",
+          "is_compliant": false,
+          "compliance_score": 65,
+          "policy_violations": [
+            {
+              "policy_name": "single_meal_limit",
+              "severity": "CRITICAL",
+              "violation_description": "The expense amount ($187.50) exceeds the single meal limit of $50.00.",
+              "policy_limit": 50.0,
+              "actual_value": 187.5,
+              "recommended_action": "reject"
+            },
+            {
+              "policy_name": "daily_meal_limit",
+              "severity": "HIGH",
+              "violation_description": "The expense amount ($187.50) exceeds the daily meal limit of $75.00.",
+              "policy_limit": 75.0,
+              "actual_value": 187.5,
+              "recommended_action": "request_justification"
+            }
+          ],
+          "policy_warnings": [
+            {
+              "policy_name": "vendor_familiarity",
+              "warning_message": "The vendor 'The Capital Grille' is new and has not appeared in the user's historical data.",
+              "recommendation": "Request clarification on the vendor and business purpose."
+            }
+          ],
+          "approval_routing": {
+            "approval_required": true,
+            "approval_level": "manager",
+            "approver_role": "manager",
+            "routing_reason": "Expense amount exceeds policy limits and requires justification.",
+            "escalation_needed": true,
+            "escalation_reason": "High anomaly score and critical policy violations.",
+            "requires_finance_review": false,
+            "requires_audit_review": false
+          },
+          "documentation_compliance": {
+            "receipt_provided": false,
+            "receipt_quality": "missing",
+            "itemization_adequate": false,
+            "business_purpose_documented": false,
+            "missing_documentation": [
+              "receipt",
+              "business justification"
+            ],
+            "additional_documentation_required": [
+              "receipt",
+              "business justification"
+            ]
+          },
+          "special_conditions": [
+            {
+              "condition_type": "exception",
+              "description": "Expense amount significantly exceeds policy limits and requires justification.",
+              "met": false,
+              "action_required": "Request additional documentation and justification."
+            }
+          ],
+          "compliance_checks": [
+            {
+              "check_name": "amount_within_single_meal_limit",
+              "passed": false,
+              "details": "The expense amount ($187.50) exceeds the single meal limit of $50.00."
+            },
+            {
+              "check_name": "amount_within_daily_meal_limit",
+              "passed": false,
+              "details": "The expense amount ($187.50) exceeds the daily meal limit of $75.00."
+            },
+            {
+              "check_name": "vendor_familiarity",
+              "passed": false,
+              "details": "The vendor 'The Capital Grille' is new and has not appeared in the user's historical data."
+            },
+            {
+              "check_name": "receipt_provided",
+              "passed": false,
+              "details": "No receipt was provided for this expense."
+            },
+            {
+              "check_name": "business_purpose_documented",
+              "passed": false,
+              "details": "No business purpose was documented for this expense."
+            }
+          ],
+          "recommendations": [
+            {
+              "recommendation": "Request receipt and business justification for the expense.",
+              "priority": "HIGH",
+              "rationale": "The expense amount exceeds policy limits and lacks required documentation."
+            },
+            {
+              "recommendation": "Verify if the expense was for a business-related event or client meeting.",
+              "priority": "MEDIUM",
+              "rationale": "The vendor is unfamiliar, and the expense amount is unusually high."
+            }
+          ],
+          "required_actions": [
+            {
+              "action": "Request receipt and business justification from the user.",
+              "responsible_party": "user",
+              "deadline": null,
+              "blocking": true
+            },
+            {
+              "action": "Route the expense to the manager for review and approval.",
+              "responsible_party": "manager",
+              "deadline": null,
+              "blocking": true
+            }
+          ],
+          "compliance_summary": {
+            "total_violations": 2,
+            "critical_violations": 1,
+            "total_warnings": 1,
+            "auto_approvable": false,
+            "requires_manual_review": true,
+            "overall_assessment": "The expense violates multiple policies, including critical limits, and requires additional documentation and manager review.",
+            "final_recommendation": "request_more_info"
+          },
+          "metadata": {
+            "policies_checked": [
+              "single_meal_limit",
+              "daily_meal_limit",
+              "receipts_required_over",
+              "vendor_familiarity",
+              "business_purpose_documentation"
+            ],
+            "check_date": "2026-02-04T13:20:47.603953",
+            "user_id": "test_user_123",
+            "user_role": "senior_engineer"
+          }
+        },
+        "violations_count": 2,
+        "critical_violations": 1,
+        "approval_required": true,
+        "approval_level": "manager",
+        "final_recommendation": "request_more_info"
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
+    },
+    {
+      "timestamp": "2026-02-04T13:21:19.800347",
+      "agent": "Author Agent",
+      "user_id": "test_user_123",
+      "success": true,
+      "data": {
+        "success": true,
+        "status": "completed",
+        "notification_type": "review_needed",
+        "messages": {
+          "in_app": {
+            "title": "Expense Submission Requires Review",
+            "body": "Your expense for $187.50 at The Capital Grille on 2026-02-03 needs additional review due to policy concerns. Please provide a receipt and business justification to proceed.",
+            "action_button": "Provide Documentation",
+            "action_url": "/expenses/test_user_123/details",
+            "priority": "high"
+          },
+          "email": {
+            "subject": "Action Required: Expense Submission Needs Review",
+            "greeting": "Dear John Smith,",
+            "body": "Thank you for submitting your expense for $187.50 at The Capital Grille on 2026-02-03. During processing, we identified some issues that require your attention before we can proceed:\n\n1. The expense amount exceeds the single meal limit of $50.00 and the daily meal limit of $75.00.\n2. The vendor 'The Capital Grille' is new and has not appeared in your historical expense data.\n3. A receipt and business justification were not provided with the submission.\n\nTo move forward, please provide the missing documentation and clarify the purpose of this expense. This will help us ensure compliance with company policies and complete the review process promptly.",
+            "key_points": [
+              "Expense amount: $187.50",
+              "Vendor: The Capital Grille (new vendor)",
+              "Policy violations: Exceeds meal limits",
+              "Missing documentation: Receipt and business justification"
+            ],
+            "next_steps": [
+              "Upload the receipt for this expense.",
+              "Provide a brief business justification (e.g., client meeting or business event).",
+              "Submit the required information by logging into your expense portal."
+            ],
+            "closing": "We appreciate your prompt attention to this matter. If you have any questions or need assistance, please don't hesitate to reach out.",
+            "signature": "Best regards,\nExpense Management Team"
+          },
+          "sms": {
+            "message": "Your expense for $187.50 at The Capital Grille needs review. Please provide a receipt and business justification. Check your email for details.",
+            "send_condition": "only_if_urgent"
+          },
+          "push": {
+            "title": "Expense Needs Review",
+            "body": "Your expense for $187.50 at The Capital Grille requires additional documentation. Please provide a receipt and justification.",
+            "send_condition": "only_if_urgent"
+          },
+          "dashboard": {
+            "status_badge": "review",
+            "status_color": "yellow",
+            "summary": "Your expense for $187.50 at The Capital Grille requires review due to policy concerns.",
+            "details": "The expense exceeds policy limits and lacks required documentation. Please provide a receipt and justification to proceed."
+          }
+        },
+        "user_actions": [
+          {
+            "action": "Upload the receipt for this expense.",
+            "priority": "required",
+            "deadline": null,
+            "instructions": "Log in to your expense portal, navigate to the expense details, and upload the receipt."
+          },
+          {
+            "action": "Provide a brief business justification for the expense.",
+            "priority": "required",
+            "deadline": null,
+            "instructions": "Include details such as the purpose of the meal (e.g., client meeting or business event)."
+          }
+        ],
+        "key_information": {
+          "expense_id": "test_user_123",
+          "status": "review_needed",
+          "amount": 187.5,
+          "submitted_date": "2026-02-04T13:21:05.633799",
+          "expected_processing_time": "2-3 business days after documentation is provided",
+          "approval_timeline": "Pending user action"
+        }
+      },
+      "error": null,
+      "notes": [],
+      "metadata": {}
     }
   ]
 }
