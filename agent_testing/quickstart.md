@@ -20,8 +20,7 @@ YourProject/
     ├── analyze_results.py      ← Results analyzer
     ├── run_tests.sh            ← Menu-driven runner
     ├── edge_cases.json         ← Test definitions
-    ├── QUICKSTART.md           ← This file
-    ├── TEST_README.md          ← Detailed docs
+    ├── QUICKSTART.md           ← This file 
     └── test_results/           ← Auto-created output folder
         ├── test_results_*.json
         ├── test_summary_*.txt

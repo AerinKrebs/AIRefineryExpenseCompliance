@@ -2,7 +2,7 @@ import os
 import yaml
 import json
 import pandas as pd
-from air import AsyncAIRefinery, DistillerClient
+from air import AsyncAIRefinery
 from audit import audit_log
 from dotenv import load_dotenv
 from datetime import datetime

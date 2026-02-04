@@ -1,0 +1,92 @@
+{
+  "test_run": {
+    "start_time": "2026-02-04T14:28:14.200477",
+    "end_time": "2026-02-04T14:31:33.752627",
+    "duration_seconds": 199.55215,
+    "total_tests": 2
+  },
+  "results": [
+    {
+      "image_name": "10 Lodging Limit.png",
+      "success": true,
+      "agents": {
+        "image_understanding": {
+          "success": true,
+          "vendor": "The Grand Metropolitan",
+          "amount": 7144.47,
+          "date": "2024-11-15",
+          "category": "lodging",
+          "confidence": 100,
+          "notes": "Receipt is clear and legible. All data extracted with high confidence."
+        },
+        "validation": {
+          "is_valid": false,
+          "status": "needs_correction",
+          "errors": 3,
+          "warnings": 2,
+          "data_quality_score": 85
+        },
+        "data_analytics": {
+          "risk_level": "HIGH",
+          "risk_score": 75,
+          "is_anomalous": true,
+          "insights_count": 3,
+          "top_insight": "The expense amount is an extreme outlier compared to the user's historical spending patterns."
+        },
+        "compliance_policy": {
+          "is_compliant": false,
+          "status": "requires_review",
+          "approval_level": "vp",
+          "violations": 3,
+          "recommendation": "request_more_info"
+        },
+        "author": {
+          "notification_type": "review_needed",
+          "title": "Expense Submission Requires Review",
+          "actions_required": 3
+        }
+      }
+    },
+    {
+      "image_name": "11 Airfare Upgrade.png",
+      "success": true,
+      "agents": {
+        "image_understanding": {
+          "success": true,
+          "vendor": "Skyline Airways",
+          "amount": 1770.5,
+          "date": "2024-12-10",
+          "category": "travel",
+          "confidence": 100,
+          "notes": "Receipt is clear and complete. All details are extracted with high confidence."
+        },
+        "validation": {
+          "is_valid": true,
+          "status": "approved",
+          "errors": 0,
+          "warnings": 0,
+          "data_quality_score": 100
+        },
+        "data_analytics": {
+          "risk_level": "MEDIUM",
+          "risk_score": 70,
+          "is_anomalous": true,
+          "insights_count": 3,
+          "top_insight": "Expense amount is significantly higher than user's historical average and is an outlier."
+        },
+        "compliance_policy": {
+          "is_compliant": false,
+          "status": "requires_review",
+          "approval_level": "director",
+          "violations": 2,
+          "recommendation": "request_more_info"
+        },
+        "author": {
+          "notification_type": "review_needed",
+          "title": "Expense Requires Review",
+          "actions_required": 3
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Compliance Pipeline Test Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+        
+        .summary-card .number {
+            font-size: 3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card .label {
+            font-size: 1.1em;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .agent-section {
+            padding: 40px;
+        }
+        
+        .agent-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: #2d3748;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .agent-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .agent-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .agent-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .agent-card .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .agent-card .stat:last-child {
+            border-bottom: none;
+        }
+        
+        .results-table {
+            padding: 40px;
+            background: white;
+        }
+        
+        .results-table h2 {
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            color: #2d3748;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        thead {
+            background: #667eea;
+            color: white;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:hover {
+            background: #f7fafc;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge-success {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .badge-danger {
+            background: #f56565;
+            color: white;
+        }
+        
+        .badge-info {
+            background: #4299e1;
+            color: white;
+        }
+        
+        .badge-low {
+            background: #48bb78;
+            color: white;
+        }
+        
+        .badge-medium {
+            background: #ed8936;
+            color: white;
+        }
+        
+        .badge-high {
+            background: #f56565;
+            color: white;
+        }
+        
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Expense Compliance Pipeline Test Report</h1>
+            <p class="subtitle">Comprehensive Analysis of All 5 Agents</p>
+            <p class="subtitle">Generated: February 04, 2026 at 14:31:33</p>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card">
+                <div class="number">2</div>
+                <div class="label">Total Tests</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">2</div>
+                <div class="label">Successful</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">0</div>
+                <div class="label">Failed</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">100.0%</div>
+                <div class="label">Success Rate</div>
+            </div>
+        </div>
+        
+        <div class="agent-section">
+            <h2>📊 Agent Performance Overview</h2>
+            <div class="agent-cards">
+                <div class="agent-card">
+                    <h3>1️⃣ Image Understanding</h3>
+                    <div class="stat">
+                        <span>Successful Extractions:</span>
+                        <span><strong>2</strong></span>
+                    </div>
+                    <div class="stat">
+                        <span>Failed Extractions:</span>
+                        <span><strong>0</strong></span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>2️⃣ Validation</h3>
+                    <div class="stat">
+                        <span>Valid Data:</span>
+                        <span><strong>1</strong></span>
+                    </div>
+                    <div class="stat">
+                        <span>Invalid/Flagged:</span>
+                        <span><strong>1</strong></span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>3️⃣ Data Analytics</h3>
+                    <div class="stat">
+                        <span>Low Risk:</span>
+                        <span><strong>0</strong></span>
+                    </div>
+                    <div class="stat">
+                        <span>Medium Risk:</span>
+                        <span><strong>1</strong></span>
+                    </div>
+                    <div class="stat">
+                        <span>High Risk:</span>
+                        <span><strong>1</strong></span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>4️⃣ Compliance Policy</h3>
+                    <div class="stat">
+                        <span>Compliant:</span>
+                        <span><strong>0</strong></span>
+                    </div>
+                    <div class="stat">
+                        <span>Non-Compliant:</span>
+                        <span><strong>2</strong></span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <h3>5️⃣ Author</h3>
+                    <div class="stat">
+                        <span>Notifications Created:</span>
+                        <span><strong>2</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="results-table">
+            <h2>📋 Detailed Test Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test Image</th>
+                        <th>Vendor</th>
+                        <th>Amount</th>
+                        <th>Validation</th>
+                        <th>Risk Level</th>
+                        <th>Compliance</th>
+                        <th>Approval</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><strong>10 Lodging Limit.png</strong></td>
+                        <td>The Grand Metropolitan</td>
+                        <td><strong>$7144.47</strong></td>
+                        <td><span class="badge badge-warning">Issues (3 errors)</span></td>
+                        <td><span class="badge badge-high">HIGH</span></td>
+                        <td><span class="badge badge-warning">Needs Review</span></td>
+                        <td>vp</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>11 Airfare Upgrade.png</strong></td>
+                        <td>Skyline Airways</td>
+                        <td><strong>$1770.5</strong></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                        <td><span class="badge badge-medium">MEDIUM</span></td>
+                        <td><span class="badge badge-warning">Needs Review</span></td>
+                        <td>director</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Generated by Expense Compliance Pipeline Test Suite</p>
+            <p>All 5 Agents: Image Understanding • Validation • Data Analytics • Compliance Policy • Author</p>
+        </div>
+    </div>
+</body>
+</html>
